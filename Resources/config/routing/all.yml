@@ -1,0 +1,3 @@
+acl:
+    resource: "@ArtesanusBundle/Resources/config/routing/acl.yml"
+    prefix: /acl

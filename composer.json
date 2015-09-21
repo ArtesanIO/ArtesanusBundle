@@ -1,0 +1,23 @@
+{
+    "name": "artesan-io/artesanus-bundle",
+    "type": "symfony-bundle",
+    "description": "ArtesanusBundle",
+    "keywords": ["Admin", "Dashboard", "artesanIO", "ArtesanusBundle"],
+    "homepage": "https://www.cristianangulo.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cristian Angulo Nova",
+            "email": "cristianangulonova@gmail.com",
+            "homepage": "http://cristianangulo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+      "friendsofsymfony/user-bundle": "~2.0@dev",
+      "knplabs/knp-menu-bundle": "~2"
+    },
+    "autoload": {
+        "psr-4": { "ArtesanIO\\ArtesanusBundle\\": "" }
+    }
+}

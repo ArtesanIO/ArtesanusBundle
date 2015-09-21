@@ -1,0 +1,11 @@
+artesanus:
+    buttons:
+        save: Guardar
+        update: Actualizar
+        delete: Eliminar
+
+    navs:
+        acl:
+            users: Usuarios
+            groups: Grupos
+            roles: Roles

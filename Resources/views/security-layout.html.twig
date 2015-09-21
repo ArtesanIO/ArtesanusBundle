@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ArtesanIO - ArtesanusBundle</title>
+        <link rel="stylesheet" href="{{ asset('bower/bootstrap/dist/css/bootstrap.min.css') }}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{{ asset('bundles/artesanus/css/app.css') }}" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+
+        <div id="wrap-security">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <script src="{{ asset('bower/jquery/dist/jquery.min.js') }}" charset="utf-8"></script>
+        <script src="{{ asset('bower/bootstrap/dist/js/bootstrap.min.js') }}" charset="utf-8"></script>
+        </body>
+</html>

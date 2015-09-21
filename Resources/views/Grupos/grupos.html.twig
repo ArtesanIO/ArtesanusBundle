@@ -1,0 +1,42 @@
+{% extends 'ArtesanusBundle::acl.html.twig' %}
+
+{% block artesanus_section_subtitle %}Grupos{% endblock %}
+
+{% block artesanus_section_body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Grupo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>#</th>
+            <th>Grupo</th>
+            <th></th>
+        </tr>
+    </tfoot>
+    <tbody>
+        {% for grupo in grupos %}
+        <tr>
+            <td>{{ grupo.id }}</td>
+            <td>{{ grupo.name }}</td>
+            <td class="text-right">
+                <div class="btn-group">
+                    <a href="{{ path('grupo', {id: grupo.id }) }}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

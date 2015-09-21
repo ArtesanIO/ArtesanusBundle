@@ -1,0 +1,13 @@
+admin:
+    titles:
+        acl: ACL
+        menus: Menus
+        routing: Routing
+        media: Media
+
+    subtitles:
+        acl.users: Users
+        acl.groups: Groups
+        acl.roles: Roles
+    buttons:
+        save: Save

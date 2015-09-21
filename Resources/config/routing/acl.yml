@@ -1,0 +1,35 @@
+usuarios:
+    path:     /users
+    defaults: { _controller: ArtesanusBundle:User:users }
+
+usuarios_crear:
+    path:     /users/new
+    defaults: { _controller: ArtesanusBundle:User:new }
+
+usuario:
+    path:     /user/{id}
+    defaults: { _controller: ArtesanusBundle:User:user }
+
+grupos:
+    path:     /groups
+    defaults: { _controller: ArtesanusBundle:Group:groups }
+
+grupos_crear:
+    path:     /groups/new
+    defaults: { _controller: ArtesanusBundle:Group:new }
+
+grupo:
+    path:     /group/{id}
+    defaults: { _controller: ArtesanusBundle:Group:group }
+
+roles:
+    path:     /roles
+    defaults: { _controller: ArtesanusBundle:Roles:roles }
+
+roles_crear:
+    path:     /roles/crear
+    defaults: { _controller: ArtesanusBundle:Roles:crear }
+
+role:
+    path:     /role/{id}
+    defaults: { _controller: ArtesanusBundle:Roles:role }

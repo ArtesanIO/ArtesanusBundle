@@ -1,0 +1,26 @@
+{% extends 'ArtesanusBundle::admin.html.twig' %}
+
+
+{% block artesanus_section_title %}
+
+    {{ 'admin.titles.acl'|trans({}, 'admin') }}
+
+{% endblock %}
+
+{% block artesanus_seccion_navbar %}
+    <a href="{{ path('usuarios') }}" class="btn btn-default">
+        Usuarios
+    </a>
+    <a href="{{ path('usuarios_crear') }}" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus"></span>
+    </a>
+    <a href="{{ path('grupos') }}" class="btn btn-default">
+        Grupos
+    </a>
+    <a href="{{ path('grupos_crear') }}" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus"></span>
+    </a>
+    <a href="{{ path('roles') }}" class="btn btn-default">
+        Roles
+    </a>
+{% endblock %}

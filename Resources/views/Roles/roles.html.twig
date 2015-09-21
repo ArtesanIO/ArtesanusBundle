@@ -1,0 +1,34 @@
+{% extends 'ArtesanusBundle::acl.html.twig' %}
+
+{% block artesanus_section_subtitle %}Roles{% endblock %}
+
+
+{% block artesanus_section_body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Role Key</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Role</th>
+            <th>Role Key</th>
+            <th>Description</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        {% for role in roles %}
+        <tr>
+            <td>{{ role.role }}</td>
+            <td>{{ role.key }}</td>
+            <td>{{ role.description }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

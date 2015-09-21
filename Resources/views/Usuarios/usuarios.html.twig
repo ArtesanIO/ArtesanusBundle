@@ -1,0 +1,48 @@
+{% extends 'ArtesanusBundle::acl.html.twig' %}
+
+
+{% block artesanus_section_subtitle %}{{ 'admin.subtitles.acl.users'|trans({}, 'admin') }}{% endblock %}
+
+{% block artesanus_section_body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Last Login</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Last Login</th>
+            <th></th>
+        </tr>
+    </tfoot>
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.name }}</td>
+            <td>
+                {{ usuario.lastLogin|date() }}
+            </td>
+            <td class="text-right">
+                <div class="btn-group">
+                    <a href="{{ path('usuario', {id: usuario.username }) }}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                    <button type="button" class="btn btn-default artesanus-btn-delete">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
