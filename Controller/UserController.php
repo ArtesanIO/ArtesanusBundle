@@ -31,7 +31,7 @@ class UserController extends Controller
 
         if ($userForm->isValid()) {
             $userManager->updateUser($user);
-
+            $this->get('artesanus.flashers')->add('info','Usuario creado');
             return $this->redirect($this->generateUrl('usuario', array('id' => $user->getUsername())));
         }
 
@@ -53,7 +53,7 @@ class UserController extends Controller
         if($form->isValid()){
 
             $userManager->updateUser($user);
-
+            $this->get('artesanus.flashers')->add('info','Usuario actualizado');
             return $this->redirect($this->generateUrl('usuario', array('id' => $user->getUsername())));
         }
 
@@ -66,6 +66,7 @@ class UserController extends Controller
 
         if ($usuarioPasswordForm->isValid()) {
             $userManager->updateUser($user);
+            $this->get('artesanus.flashers')->add('info','Contraseña actualizada');
             return $this->redirect($this->generateUrl('usuario', array('id' => $user->getUsername())));
         }
 
