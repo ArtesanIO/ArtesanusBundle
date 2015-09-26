@@ -4,3 +4,9 @@ artesanus:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+artesanus_front_user_profile:
+    path:     /user-profile
+    defaults: { _controller: ArtesanusBundle:Profile:profile, type: user-profile }
+    requirements:
+        type: user-profile

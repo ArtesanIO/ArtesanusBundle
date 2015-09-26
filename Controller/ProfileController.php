@@ -1,34 +1,14 @@
 <?php
 
-/*
- * This file is part of the FOSUserBundle package.
- *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace ArtesanIO\ArtesanusBundle\Controller;
 
-use FOS\UserBundle\FOSUserEvents;
-use FOS\UserBundle\Event\FormEvent;
-use FOS\UserBundle\Event\FilterUserResponseEvent;
-use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\Model\UserInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-/**
- * Controller managing the user profile
- *
- * @author Christophe Coevoet <stof@notk.org>
- */
 class ProfileController extends Controller
 {
-    public function editAction(Request $request)
+    public function profileAction(Request $request)
     {
         if(!$this->isGranted("IS_AUTHENTICATED_FULLY")){
             return $this->redirect($this->generateUrl('fos_user_security_login'));
@@ -45,7 +25,7 @@ class ProfileController extends Controller
         if($form->isValid()){
             $user->upload();
             $userManager->updateUser($user);
-            return $this->redirect($this->generateUrl('fos_user_profile_edit'));
+            return $this->redirect($this->generateUrl('artesanus_front_user_profile'));
         }
 
         $formFactory = $this->get('fos_user.change_password.form.factory');
@@ -61,9 +41,53 @@ class ProfileController extends Controller
         }
 
         return $this->render('ArtesanusBundle:Profile:profile.html.twig', array(
-            'usuario_form' => $form->createView(),
-            'usuario_password_form' => $usuarioPasswordForm->createView()
+            'user_form' => $form->createView(),
+            'user_password_form' => $usuarioPasswordForm->createView()
         ));
+    }
 
+    public function coursesAction()
+    {
+        if(!$this->isGranted("IS_AUTHENTICATED_FULLY")){
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
+        $coursesManager = $this->get('moocsy.courses_manager');
+        $courses = $coursesManager->findCoursesUser();
+
+        return $this->render('MoocsyBundle:Profile:courses.html.twig', array(
+            'courses' => $courses
+        ));
+    }
+
+    public function notificationsAction(Request $request)
+    {
+        if(!$this->isGranted("IS_AUTHENTICATED_FULLY")){
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
+        $notificationsManager = $this->get('moocsy.notifications_manager');
+
+        $notifications = $notificationsManager->create();
+
+        $notificationsForm = $this->createForm('moocsy_notifications_type', $notifications)->handleRequest($request);
+
+        if($notificationsForm->isValid()){
+
+            $notifications->setRequestResponse(1);
+
+            $notificationsManager->save($notifications);
+
+            $this->get('artesanus.flashers')->add('info','Mensaje creado');
+
+            return $this->redirect($this->generateUrl('moocsy_front_notifications'));
+        }
+
+        $userNotifications = $notificationsManager->findUserNotifications($this->getUser()->getId());
+
+        return $this->render('MoocsyBundle:Profile:notifications.html.twig', array(
+            'notifications_form' => $notificationsForm->createView(),
+            'user_notifications' => $userNotifications
+        ));
     }
 }
