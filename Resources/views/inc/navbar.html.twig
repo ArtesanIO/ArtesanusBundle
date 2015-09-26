@@ -1,9 +1,3 @@
-{% extends 'ArtesanusBundle::layout.html.twig' %}
-
-{% block artesanus %}
-
-{% block artesanus_navbar %}
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -23,7 +17,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if app.user.name == "" %} {{ app.user.username }} {% else %} {{ app.user.name }} {% endif %}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('artesanus_front_user_profile') }}">Perfil</a></li>
+                        <li><a href="{{ path('fos_user_profile_edit') }}">Perfil</a></li>
                         <!--<li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>-->
                         <li role="separator" class="divider"></li>
@@ -34,19 +28,3 @@
         </div>
     </div>
 </nav>
-
-
-{% endblock %}
-
-    <div id="content-wrap">
-        <div class="page-header">
-            <h3>{% block artesanus_section_title %}{% endblock %} <small>{% block artesanus_section_subtitle %}{% endblock %}</small></h3>
-            <hr>
-            <div class="btn-group">
-                {% block artesanus_seccion_navbar %}{% endblock %}
-                {% include 'ArtesanusBundle::includes/acl-navbar.html.twig' %}
-            </div>
-        </div>
-    </div>
-
-{% endblock %}
