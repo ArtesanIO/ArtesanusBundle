@@ -14,8 +14,8 @@
         }
     ],
     "require": {
-      "friendsofsymfony/user-bundle": "~2.0@dev",
-      "knplabs/knp-menu-bundle": "~2"
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "knplabs/knp-menu-bundle": "~2"
     },
     "autoload": {
         "psr-4": { "ArtesanIO\\ArtesanusBundle\\": "" }
