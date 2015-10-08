@@ -4,6 +4,7 @@
 {% block artesanus_section_subtitle %}{{ 'admin.subtitles.acl.users'|trans({}, 'admin') }}{% endblock %}
 
 {% block artesanus_section_body %}
+
 <table class="table">
     <thead>
         <tr>
@@ -34,7 +35,7 @@
                     <a href="{{ path('usuario', {id: usuario.username }) }}" class="btn btn-default">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
-                    <button type="button" class="btn btn-default artesanus-btn-delete">
+                    <button type="button" class="btn btn-default btn-delete">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </div>
