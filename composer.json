@@ -16,9 +16,9 @@
     "require": {
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "knplabs/knp-menu-bundle": "~2",
-        "doctrine/doctrine-fixtures-bundle": "^2.2"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^2.2",
         "hautelook/alice-bundle": "^1.0"
     },
     "autoload": {
