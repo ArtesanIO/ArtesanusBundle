@@ -6,6 +6,10 @@ usuarios_crear:
     path:     /users/new
     defaults: { _controller: ArtesanusBundle:User:new }
 
+user_delete:
+    path:     /user-delete/{id}
+    defaults: { _controller: ArtesanusBundle:User:delete }
+
 usuario:
     path:     /user/{id}
     defaults: { _controller: ArtesanusBundle:User:user }

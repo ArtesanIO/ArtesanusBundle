@@ -35,9 +35,9 @@
                     <a href="{{ path('usuario', {id: usuario.username }) }}" class="btn btn-default">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
-                    <button type="button" class="btn btn-default btn-delete">
+                    <a href="{{ path('user_delete', {id: usuario.id }) }}" type="button" class="btn btn-default btn-delete">
                         <span class="glyphicon glyphicon-trash"></span>
-                    </button>
+                    </a>
                 </div>
             </td>
         </tr>

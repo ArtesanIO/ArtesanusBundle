@@ -1,22 +1,14 @@
 $(document).ready(function(){
 
-    $('.btn-delete').click(function(){
+    $('.btn-delete').click(function(event) {
 
-        alertify.confirm("¿Seguro?",
-            function(e){
-                if(e){
-                    alertify.success('Listo');
-                }else{
-                    alertify.error('Cancelado');
-                }
-            });
+        var r = confirm("¿Estás segur@?");
 
-        return false;
-    });
-
-    $( 'textarea.ckeditor').each( function() {
-        CKEDITOR.replace( $(this).attr('id') );
+        if (r != true) {
+            event.preventDefault();
+        }
 
     });
+
 
 });
