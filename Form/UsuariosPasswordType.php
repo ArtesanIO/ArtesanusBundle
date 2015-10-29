@@ -5,7 +5,6 @@ namespace ArtesanIO\ACLBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use ArtesanIO\ACLBundle\Form\EventListener\UsuariosSubscriber;
 
 class UsuariosPasswordType extends AbstractType
 {

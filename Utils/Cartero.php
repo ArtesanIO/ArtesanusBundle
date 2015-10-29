@@ -9,17 +9,15 @@ class Cartero
 {
 
     private $contentType;
-    private $subject = 'ArtesanusBundle | ArtesanIO';
+    private $subject;
     private $from = array("no-reply@artesan.io" => "artesan.io");
     private $mailer;
-    private $to;
-    private $body;
 
     public function __construct(\Swift_Mailer $mailer)
     {
       $this->mailer = $mailer;
       $this->contentType = 'text/html';
-      $this->subject = 'SinergiaFC';
+      $this->subject = 'ArtesanusBundle | ArtesanIO';
       $this->from = array("no-reply@artesan.io" => "artesan.io");
     }
 

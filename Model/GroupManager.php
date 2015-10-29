@@ -3,7 +3,6 @@
 namespace ArtesanIO\ArtesanusBundle\Model;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class GroupManager
 {

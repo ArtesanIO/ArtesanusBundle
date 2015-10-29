@@ -5,10 +5,7 @@ namespace ArtesanIO\ArtesanusBundle\Form\EventListener;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
-use Doctrine\ORM\EntityRepository;
 
 class UserSubscriber implements EventSubscriberInterface
 {

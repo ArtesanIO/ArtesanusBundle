@@ -5,7 +5,6 @@ namespace ArtesanIO\ArtesanusBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use ArtesanIO\ArtesanusBundle\Form\EventListener\UserSubscriber;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 

@@ -5,7 +5,6 @@ namespace ArtesanIO\ArtesanusBundle\Form\EventListener;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class GroupSubscriber implements EventSubscriberInterface

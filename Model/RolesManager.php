@@ -5,8 +5,6 @@ namespace ArtesanIO\ArtesanusBundle\Model;
 use ArtesanIO\ArtesanusBundle\ArtesanusEvents;
 use ArtesanIO\ArtesanusBundle\Event\ArtesanusRolesEvent;
 use ArtesanIO\ArtesanusBundle\Model\Roles;
-use ArtesanIO\ArtesanusBundle\Utils\SlugerRole as Sluger;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class RolesManager extends ContainerAware
