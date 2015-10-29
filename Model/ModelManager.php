@@ -2,6 +2,7 @@
 
 namespace ArtesanIO\ArtesanusBundle\Model;
 
+use ArtesanIO\ArtesanusBundle\Model\ModelEvent;
 use ArtesanIO\ArtesanusBundle\Model\ModelManagerInterface;
 use Doctrine\ORM\EntityManager;
 

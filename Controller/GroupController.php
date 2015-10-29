@@ -45,8 +45,6 @@ class GroupController extends Controller
 
         $group = $groupManager->find($id);
 
-        $roles = $this->get('artesanus.roles_manager')->getRoles();
-
         $groupForm = $this->createForm('artesanus_group_type', $group)->handleRequest($request);
 
         if($groupForm->isValid()){
