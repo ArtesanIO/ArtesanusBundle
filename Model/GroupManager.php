@@ -39,7 +39,7 @@ class GroupManager
         $this->_save($model);
     }
 
-    protected function _save($model)
+    protected function persist($model)
     {
         $this->em->persist($model);
         $this->em->flush();

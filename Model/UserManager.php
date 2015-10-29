@@ -59,7 +59,7 @@ class UserManager extends ModelManager
         $this->_save($model);
     }
 
-    protected function _save($model, $flus = true)
+    protected function persist($model, $flus = true)
     {
         $this->em->persist($model);
         $this->em->flush();

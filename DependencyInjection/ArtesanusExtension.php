@@ -20,8 +20,6 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('managers.yml');
         $loader->load('parameters.yml');

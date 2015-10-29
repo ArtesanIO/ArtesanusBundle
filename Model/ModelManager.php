@@ -56,7 +56,7 @@ abstract class ModelManager implements ModelManagerInterface
     public function save($model, $flush= true) {
         $this->getDispatcher()->dispatch('model_before_save', new ModelEvent($model, $this->getContainer()));
         $this->getDispatcher()->dispatch($model->getEventPrefix() . '_before_save', new ModelEvent($model, $this->getContainer()));
-        $this->_save($model, $flush);
+        $this->persist($model, $flush);
         $this->getDispatcher()->dispatch('model_after_save', new ModelEvent($model, $this->getContainer()));
         $this->getDispatcher()->dispatch($model->getEventPrefix() . '_after_save', new ModelEvent($model, $this->getContainer()));
         return $model;
@@ -64,7 +64,7 @@ abstract class ModelManager implements ModelManagerInterface
     /**
      *	This is basic save function. Child model can overwrite this.
      */
-    protected function _save($model, $flush=true) {
+    protected function persist($model, $flush=true) {
         $this->em->persist($model);
         if ($flush) {
             $this->em->flush();
