@@ -3,6 +3,7 @@
 namespace ArtesanIO\ArtesanusBundle\Model;
 
 use ArtesanIO\ArtesanusBundle\Model\ModelManagerInterface;
+use Doctrine\ORM\EntityManager;
 
 abstract class ModelManager implements ModelManagerInterface
 {

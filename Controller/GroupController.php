@@ -4,8 +4,6 @@ namespace ArtesanIO\ArtesanusBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use ArtesanIO\ACLBundle\Form\GroupType;
-
 
 class GroupController extends Controller
 {
