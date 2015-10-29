@@ -11,7 +11,7 @@ class RolesController extends Controller
     {
         $roles = $this->get('artesanus.roles_manager')->getRoles();
 
-        return $this->render('ArtesanusBundle:Roles:roles.html.twig', array(
+        return $this->render('ArtesanusBundle:ACL:roles.html.twig', array(
             'roles' => $roles
         ));
     }
@@ -29,7 +29,7 @@ class RolesController extends Controller
             return $this->redirect($this->generateUrl('role', array('id' => $role->getId())));
         }
 
-        return $this->render('ArtesanusBundle:Roles:roles-crear.html.twig', array(
+        return $this->render('ArtesanusBundle:ACL:roles-crear.html.twig', array(
             'role_form' => $roleForm->createView()
         ));
     }
@@ -47,7 +47,7 @@ class RolesController extends Controller
             return $this->redirect($this->generateUrl('role', array('id' => $role->getId())));
         }
 
-        return $this->render('ArtesanusBundle:Roles:role.html.twig', array(
+        return $this->render('ArtesanusBundle:ACL:role.html.twig', array(
             'role' => $role,
             'role_form' => $roleForm->createView(),
         ));

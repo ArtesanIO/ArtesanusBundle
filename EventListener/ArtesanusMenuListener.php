@@ -13,7 +13,7 @@ class ArtesanusMenuListener
     {
         $menu = $event->getMenu();
 
-        $menu->addChild('ACL', array('route' => 'usuarios'));
+        $menu->addChild('ACL', array('route' => 'artesanus_console_acl_users'));
     }
 }
 

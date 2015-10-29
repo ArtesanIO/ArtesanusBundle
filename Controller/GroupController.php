@@ -13,7 +13,7 @@ class GroupController extends Controller
     {
         $grupos = $this->get('fos_user.group_manager')->findGroups();
 
-        return $this->render('ArtesanusBundle:Grupos:grupos.html.twig', array(
+        return $this->render('ArtesanusBundle:ACL:groups.html.twig', array(
             'grupos' => $grupos
         ));
     }
@@ -36,8 +36,8 @@ class GroupController extends Controller
             return $this->redirect($this->generateUrl('grupo', array('id' => $group->getId())));
         }
 
-        return $this->render('ArtesanusBundle:Grupos:grupos-crear.html.twig', array(
-            'grupo_form' => $groupForm->createView()
+        return $this->render('ArtesanusBundle:ACL:groups-new.html.twig', array(
+            'group_form' => $groupForm->createView()
         ));
     }
 
@@ -59,9 +59,9 @@ class GroupController extends Controller
 
         }
 
-        return $this->render('ArtesanusBundle:Grupos:grupo.html.twig', array(
-            'grupo'            => $group,
-            'grupo_form'       => $groupForm->createView(),
+        return $this->render('ArtesanusBundle:ACL:group.html.twig', array(
+            'group'            => $group,
+            'group_form'       => $groupForm->createView(),
         ));
     }
 }

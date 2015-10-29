@@ -1,5 +1,0 @@
-fos_user_profile_edit:
-    path:     /profile
-    defaults: { _controller: ArtesanusBundle:Profile:profile, type: profile }
-    requirements:
-        type: profile

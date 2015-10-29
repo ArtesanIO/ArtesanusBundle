@@ -1,15 +1,15 @@
 {% extends 'ArtesanusBundle::acl.html.twig' %}
 
 
-{% block artesanus_section_subtitle %}{{ 'admin.subtitles.acl.users'|trans({}, 'admin') }}{% endblock %}
+{% block artesanus_section_subtitle %}{{ 'artesanus.subtitles.acl.users'|trans({}, 'artesanus') }}{% endblock %}
 
 {% block artesanus_section_body %}
 
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>#</th>
-            <th>Usuario</th>
+            <th>User</th>
             <th>Last Login</th>
             <th></th>
         </tr>
@@ -17,25 +17,25 @@
     <tfoot>
         <tr>
             <th>#</th>
-            <th>Usuario</th>
+            <th>User</th>
             <th>Last Login</th>
             <th></th>
         </tr>
     </tfoot>
     <tbody>
-        {% for usuario in usuarios %}
+        {% for user in users %}
         <tr>
-            <td>{{ usuario.id }}</td>
-            <td>{{ usuario.name }}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
             <td>
-                {{ usuario.lastLogin|date() }}
+                {{ user.lastLogin|date() }}
             </td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a href="{{ path('usuario', {id: usuario.username }) }}" class="btn btn-default">
+                    <a href="{{ path('artesanus_console_acl_user', {id: user.username }) }}" class="btn btn-default">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
-                    <a href="{{ path('user_delete', {id: usuario.id }) }}" type="button" class="btn btn-default btn-delete">
+                    <a href="{{ path('artesanus_console_acl_users_delete', {id: user.id }) }}" type="button" class="btn btn-default btn-delete">
                         <span class="glyphicon glyphicon-trash"></span>
                     </a>
                 </div>

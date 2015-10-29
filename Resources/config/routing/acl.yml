@@ -1,39 +1,35 @@
-usuarios:
+artesanus_console_acl_users:
     path:     /users
     defaults: { _controller: ArtesanusBundle:User:users }
 
-usuarios_crear:
+artesanus_console_acl_users_new:
     path:     /users/new
     defaults: { _controller: ArtesanusBundle:User:new }
 
-user_delete:
+artesanus_console_acl_users_delete:
     path:     /user-delete/{id}
     defaults: { _controller: ArtesanusBundle:User:delete }
 
-usuario:
+artesanus_console_acl_user:
     path:     /user/{id}
     defaults: { _controller: ArtesanusBundle:User:user }
 
-grupos:
+artesanus_console_acl_groups:
     path:     /groups
     defaults: { _controller: ArtesanusBundle:Group:groups }
 
-grupos_crear:
+artesanus_console_acl_groups_new:
     path:     /groups/new
     defaults: { _controller: ArtesanusBundle:Group:new }
 
-grupo:
+artesanus_console_acl_group:
     path:     /group/{id}
     defaults: { _controller: ArtesanusBundle:Group:group }
 
-roles:
+artesanus_console_acl_roles:
     path:     /roles
     defaults: { _controller: ArtesanusBundle:Roles:roles }
 
-roles_crear:
-    path:     /roles/crear
-    defaults: { _controller: ArtesanusBundle:Roles:crear }
-
-role:
+artesanus_console_acl_role:
     path:     /role/{id}
     defaults: { _controller: ArtesanusBundle:Roles:role }

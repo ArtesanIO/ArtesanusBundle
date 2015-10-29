@@ -9,12 +9,10 @@ class UserController extends Controller
 {
     public function usersAction()
     {
-
-
         $users = $this->get('artesanus.user_manager')->findAll();
 
-        return $this->render('ArtesanusBundle:Usuarios:usuarios.html.twig', array(
-            'usuarios' => $users
+        return $this->render('ArtesanusBundle:ACL:users.html.twig', array(
+            'users' => $users
         ));
     }
 
@@ -35,8 +33,8 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('usuario', array('id' => $user->getUsername())));
         }
 
-        return $this->render('ArtesanusBundle:Usuarios:usuarios-crear.html.twig', array(
-            'usuario_form' => $userForm->createView()
+        return $this->render('ArtesanusBundle:ACL:users-new.html.twig', array(
+            'user_form' => $userForm->createView()
         ));
     }
 
@@ -70,9 +68,9 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('usuario', array('id' => $user->getUsername())));
         }
 
-        return $this->render('ArtesanusBundle:Usuarios:usuario.html.twig', array(
-            'usuario_form' => $form->createView(),
-            'usuario_password_form' => $usuarioPasswordForm->createView()
+        return $this->render('ArtesanusBundle:ACL:user.html.twig', array(
+            'user_form' => $form->createView(),
+            'user_password_form' => $usuarioPasswordForm->createView()
         ));
     }
 

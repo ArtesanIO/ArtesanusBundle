@@ -1,12 +1,11 @@
-artesanus:
-    resource: "@ArtesanusBundle/Resources/config/routing/all.yml"
-    prefix: /artesanus
+artesanus_console:
+    resource: "@ArtesanusBundle/Resources/config/routing/console.yml"
+    prefix: /console
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-artesanus_front_user_profile:
-    path:     /user-profile
-    defaults: { _controller: ArtesanusBundle:Profile:profile, type: user-profile }
+artesanus_profile:
+    path:     /profile
+    defaults: { _controller: ArtesanusBundle:Profile:profile }
     requirements:
-        type: user-profile
