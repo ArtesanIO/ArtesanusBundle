@@ -56,7 +56,7 @@ class UserManager extends ModelManager
     public function save($model, $flus = true)
     {
         $model->setPassword($this->encoder->setUserPassword($model, $model->getPassword()));
-        $this->_save($model);
+        $this->persist($model);
     }
 
     protected function persist($model, $flus = true)
