@@ -83,6 +83,6 @@ class UserController extends Controller
         $userManager->deleteUser($user);
 
         $this->get('artesanus.flashers')->add('warning','Usuario eliminado');
-        return $this->redirect($this->generateUrl('usuarios'));
+        return $this->redirect($this->generateUrl('artesanus_console_acl_users_delete'));
     }
 }
