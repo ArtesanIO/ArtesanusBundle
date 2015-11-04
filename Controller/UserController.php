@@ -52,7 +52,7 @@ class UserController extends Controller
 
             $userManager->updateUser($user);
             $this->get('artesanus.flashers')->add('info','Usuario actualizado');
-            return $this->redirect($this->generateUrl('usuario', array('id' => $user->getUsername())));
+            return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getUsername())));
         }
 
         $formFactory = $this->get('fos_user.change_password.form.factory');
@@ -65,7 +65,7 @@ class UserController extends Controller
         if ($usuarioPasswordForm->isValid()) {
             $userManager->updateUser($user);
             $this->get('artesanus.flashers')->add('info','Contraseña actualizada');
-            return $this->redirect($this->generateUrl('usuario', array('id' => $user->getUsername())));
+            return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getUsername())));
         }
 
         return $this->render('ArtesanusBundle:ACL:user.html.twig', array(
