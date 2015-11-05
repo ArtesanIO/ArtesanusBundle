@@ -15,8 +15,7 @@
     ],
     "require": {
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "knplabs/knp-menu-bundle": "~2",
-        "braincrafted/bootstrap-bundle": "^2.1"
+        "knplabs/knp-menu-bundle": "~2"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^2.2",
