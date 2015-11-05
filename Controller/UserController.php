@@ -30,7 +30,7 @@ class UserController extends Controller
         if ($userForm->isValid()) {
             $userManager->updateUser($user);
             $this->get('artesanus.flashers')->add('info','Usuario creado');
-            return $this->redirect($this->generateUrl('usuario', array('id' => $user->getUsername())));
+            return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getUsername())));
         }
 
         return $this->render('ArtesanusBundle:ACL:users-new.html.twig', array(
@@ -83,6 +83,6 @@ class UserController extends Controller
         $userManager->deleteUser($user);
 
         $this->get('artesanus.flashers')->add('warning','Usuario eliminado');
-        return $this->redirect($this->generateUrl('artesanus_console_acl_users_delete'));
+        return $this->redirect($this->generateUrl('artesanus_console_acl_users'));
     }
 }
