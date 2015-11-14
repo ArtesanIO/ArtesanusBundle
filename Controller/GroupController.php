@@ -31,7 +31,7 @@ class GroupController extends Controller
 
             $groupManager->addRoles($group, $groupForm);
 
-            return $this->redirect($this->generateUrl('grupo', array('id' => $group->getId())));
+            return $this->redirect($this->generateUrl('artesanus_console_acl_group', array('id' => $group->getId())));
         }
 
         return $this->render('ArtesanusBundle:ACL:groups-new.html.twig', array(

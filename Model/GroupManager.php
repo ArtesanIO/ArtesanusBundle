@@ -36,7 +36,7 @@ class GroupManager
 
     public function save($model)
     {
-        $this->_save($model);
+        $this->persist($model);
     }
 
     protected function persist($model)
@@ -48,6 +48,42 @@ class GroupManager
     public function update()
     {
         $this->em->flush();
+    }
+
+    public function rolesOriginal($model)
+    {
+        $original = new ArrayCollection();
+
+        foreach($model->getRoles() as $role){
+            $original->add($role);
+        }
+
+        return $original;
+    }
+
+    public function updateRoles($original, $model)
+    {
+        foreach($original as $o){
+            if(false === $model->getRoles()->contains($o)){
+                $this->em->remove($o);
+            }
+        }
+
+        foreach($model->getRoles() as $role){
+            $model->addRole($role);
+        }
+
+        $this->em->flush();
+    }
+
+    public function addRoles($model, $form)
+    {
+        $model->setRoles(array());
+        foreach($form->get('roles')->getData() as $role){
+            $model->addRole($role);
+        }
+
+        $this->update();
     }
 
 }
