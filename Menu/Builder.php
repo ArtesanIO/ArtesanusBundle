@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class Builder extends ContainerAware
 {
-    public function mainMenu(FactoryInterface $factory, array $options)
+    public function consoleMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root', array('childrenAttributes' => array('class' => 'nav navbar-nav')));
 
