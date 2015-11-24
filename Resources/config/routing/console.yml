@@ -1,3 +1,7 @@
 artesanus_console_acl:
     resource: "@ArtesanusBundle/Resources/config/routing/acl.yml"
     prefix: /acl
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
