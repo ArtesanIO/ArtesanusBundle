@@ -14,6 +14,7 @@ class ArtesanusMenuListener
         $menu = $event->getMenu();
 
         $menu->addChild('ACL', array('route' => 'artesanus_console_acl_users'));
+        $menu->addChild('APIDoc', array('route' => 'nelmio_api_doc_index'));
     }
 }
 
