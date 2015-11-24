@@ -9,7 +9,10 @@ class UserController extends Controller
 {
     public function usersAction()
     {
-        $users = $this->get('artesanus.user_manager')->findAll();
+
+        $userManager = $this->get('fos_user.user_manager');
+
+        $users = $userManager->findUsers();
 
         return $this->render('ArtesanusBundle:ACL:users.html.twig', array(
             'users' => $users

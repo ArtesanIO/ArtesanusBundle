@@ -30,6 +30,7 @@ class GroupController extends Controller
             $this->get('artesanus.group_manager')->save($group);
 
             $groupManager->addRoles($group, $groupForm);
+            $this->get('artesanus.flashers')->add('info','Grupo creado');
 
             return $this->redirect($this->generateUrl('artesanus_console_acl_group', array('id' => $group->getId())));
         }
@@ -50,8 +51,9 @@ class GroupController extends Controller
         if($groupForm->isValid()){
 
             $groupManager->addRoles($group, $groupForm);
+            $this->get('artesanus.flashers')->add('info','Grupo actualizado');
 
-            return $this->redirect($this->generateUrl('grupo', array('id' => $group->getId())));
+            return $this->redirect($this->generateUrl('artesanus_console_acl_group', array('id' => $group->getId())));
 
         }
 

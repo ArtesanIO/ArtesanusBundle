@@ -22,7 +22,9 @@ interface ModelManagerInterface
 
     public function getClass();
 
-    public function find($id);
+    public function findOneBy($array = array());
+
+    public function findAll();
 
     public function isDebug();
 }
