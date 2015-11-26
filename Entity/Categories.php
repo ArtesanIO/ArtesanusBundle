@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Categories
  *
- * @ORM\Table()
+ * @ORM\Table(name="artesanus_categories")
  * @ORM\Entity(repositoryClass="ArtesanIO\ArtesanusBundle\Entity\CategoriesRepository")
  */
 class Categories
@@ -131,7 +131,7 @@ class Categories
     /**
      * Get files
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFiles()
     {

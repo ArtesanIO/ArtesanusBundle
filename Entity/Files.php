@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Files
  *
- * @ORM\Table()
+ * @ORM\Table(name="artesanus_files")
  * @ORM\Entity(repositoryClass="ArtesanIO\ArtesanusBundle\Entity\FilesRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -255,7 +255,7 @@ class Files
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
