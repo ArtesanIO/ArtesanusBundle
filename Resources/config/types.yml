@@ -39,3 +39,8 @@ services:
             - @security.context
         tags:
             - { name: form.type, alias: artesanus_profile_type }
+
+    artesanus.files_type:
+        class: ArtesanIO\ArtesanusBundle\Form\FilesType
+        tags:
+            - { name: form.type, alias: artesanus_files_type }

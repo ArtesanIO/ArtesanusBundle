@@ -54,11 +54,11 @@ abstract class ModelManager implements ModelManagerInterface
      * @return BaseModel
      */
     public function save($model, $flush= true) {
-        $this->getDispatcher()->dispatch('model_before_save', new ModelEvent($model, $this->getContainer()));
-        $this->getDispatcher()->dispatch($model->getEventPrefix() . '_before_save', new ModelEvent($model, $this->getContainer()));
+        //$this->getDispatcher()->dispatch('model_before_save', new ModelEvent($model, $this->getContainer()));
+        //$this->getDispatcher()->dispatch($model->getEventPrefix() . '_before_save', new ModelEvent($model, $this->getContainer()));
         $this->_save($model, $flush);
-        $this->getDispatcher()->dispatch('model_after_save', new ModelEvent($model, $this->getContainer()));
-        $this->getDispatcher()->dispatch($model->getEventPrefix() . '_after_save', new ModelEvent($model, $this->getContainer()));
+        //$this->getDispatcher()->dispatch('model_after_save', new ModelEvent($model, $this->getContainer()));
+        //$this->getDispatcher()->dispatch($model->getEventPrefix() . '_after_save', new ModelEvent($model, $this->getContainer()));
         return $model;
     }
     /**
@@ -76,11 +76,11 @@ abstract class ModelManager implements ModelManagerInterface
      * @param BaseModel $model
      */
     public function delete($model, $flush = true) {
-        $this->getDispatcher()->dispatch('model_before_delete', new ModelEvent($model, $this->getContainer()));
-        $this->getDispatcher()->dispatch($model->getEventPrefix() . '_before_delete', new ModelEvent($model, $this->getContainer()));
+        //$this->getDispatcher()->dispatch('model_before_delete', new ModelEvent($model, $this->getContainer()));
+        //$this->getDispatcher()->dispatch($model->getEventPrefix() . '_before_delete', new ModelEvent($model, $this->getContainer()));
         $this->_delete($model, $flush);
-        $this->getDispatcher()->dispatch('model_after_delete', new ModelEvent($model, $this->getContainer()));
-        $this->getDispatcher()->dispatch($model->getEventPrefix() . '_after_delete', new ModelEvent($model, $this->getContainer()));
+        //$this->getDispatcher()->dispatch('model_after_delete', new ModelEvent($model, $this->getContainer()));
+        //$this->getDispatcher()->dispatch($model->getEventPrefix() . '_after_delete', new ModelEvent($model, $this->getContainer()));
     }
     /**
      * Remove model.

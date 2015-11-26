@@ -19,3 +19,11 @@ services:
             - @artesanus.roles
         calls:
             - [setContainer, ['@service_container']]
+
+    artesanus.files_manager:
+        class: ArtesanIO\ArtesanusBundle\Model\FilesManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - ArtesanIO\ArtesanusBundle\Entity\Files
+        calls:
+            - [setContainer, ['@service_container']]

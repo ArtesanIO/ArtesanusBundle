@@ -5,3 +5,11 @@ artesanus_console_acl:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+artesanus_console_storage:
+    path:     /storage
+    defaults: { _controller: ArtesanusBundle:Storage:files }
+
+artesanus_console_storage_files_remove:
+    path:     /storage/files/{id}/remove
+    defaults: { _controller: ArtesanusBundle:Storage:filesRemove }

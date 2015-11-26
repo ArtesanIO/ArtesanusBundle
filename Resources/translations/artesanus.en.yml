@@ -4,10 +4,12 @@ artesanus:
         menus: Menus
         routing: Routing
         media: Media
+        storage: Storage
 
     subtitles:
         acl.users: Users
         acl.groups: Groups
         acl.roles: Roles
+        storage.files: Files
     buttons:
         save: Save
