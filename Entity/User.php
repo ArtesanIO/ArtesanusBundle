@@ -6,6 +6,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use FOS\UserBundle\Model\GroupInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="ArtesanIO\ArtesanusBundle\Entity\UserRepository")
@@ -17,6 +18,7 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"users"})
      */
     protected $id;
 
@@ -24,6 +26,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @Groups({"users"})
      */
     private $name;
 
