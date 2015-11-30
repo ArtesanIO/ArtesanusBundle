@@ -22,7 +22,17 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('admin_path')->defaultValue('/admin')->end()
+                ->arrayNode('cartero')
+                    ->children()
+                        ->scalarNode('subject')->end()
+                        ->arrayNode('from')
+                            ->children()
+                                ->scalarNode('email')->end()
+                                ->scalarNode('host')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 

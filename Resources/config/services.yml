@@ -55,7 +55,9 @@ services:
 
     artesanus.cartero:
         class:  ArtesanIO\ArtesanusBundle\Utils\Cartero
-        arguments:  [@mailer]
+        arguments:
+            - @mailer
+            - @service_container
 
     artesanus.slugger:
         class: ArtesanIO\ArtesanusBundle\Utils\Slugger

@@ -20,11 +20,22 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = new Configuration();
+
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('artesanus.cartero.subject', $config['cartero']['subject']);
+        $container->setParameter('artesanus.cartero.from.email', $config['cartero']['from']['email']);
+        $container->setParameter('artesanus.cartero.from.host', $config['cartero']['from']['host']);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('managers.yml');
         $loader->load('parameters.yml');
         $loader->load('services.yml');
         $loader->load('types.yml');
+
+
+
     }
 
     public function prepend(ContainerBuilder $container)
