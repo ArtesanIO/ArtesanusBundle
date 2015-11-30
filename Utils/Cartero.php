@@ -27,7 +27,7 @@ class Cartero
     {
         $message = \Swift_Message::newInstance()
             ->setContentType($this->contentType)
-            ->setSubject($this->subject = $subject)
+            ->setSubject((null === $subject) ? $this->subject : $subject)
             ->setFrom($this->from)
             ->setTo($mail)
             ->setBody($body);
