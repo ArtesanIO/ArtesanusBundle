@@ -9,10 +9,6 @@ class UserController extends Controller
 {
     public function usersAction()
     {
-        $cartero = $this->get('artesanus.cartero');
-
-        $cartero->msn('cristianangulonova@hotmail.com','enviando un mensaje desde cartero');
-        
         $userManager = $this->get('fos_user.user_manager');
 
         $users = $userManager->findUsers();
