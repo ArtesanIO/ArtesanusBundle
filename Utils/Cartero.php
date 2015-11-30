@@ -6,17 +6,17 @@ use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 /**
  * Clase (capa) encargada de abstraer el envío de datos vía email en la aplicación
  */
- 
+
 class Cartero
 {
     private $container;
 
     public function __construct(\Swift_Mailer $mailer, Container $container)
     {
-      $this->mailer = $mailer;
-      $this->contentType = 'text/html';
-      $this->subject = $container->getParameter('artesanus.cartero.subject');
-      $this->from = array($container->getParameter('artesanus.cartero.from.email') => $container->getParameter('artesanus.cartero.from.host'));
+        $this->mailer = $mailer;
+        $this->contentType = 'text/html';
+        $this->subject = $container->getParameter('artesanus.cartero.subject');
+        $this->from = array($container->getParameter('artesanus.cartero.from.email') => $container->getParameter('artesanus.cartero.from.host'));
     }
 
     public function msn($mail, $body, $subject = null)
