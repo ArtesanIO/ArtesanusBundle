@@ -2,9 +2,11 @@
 
 namespace ArtesanIO\ArtesanusBundle\Utils;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+
 /**
  * Clase (capa) encargada de abstraer el envío de datos vía email en la aplicación
  */
+ 
 class Cartero
 {
     private $container;

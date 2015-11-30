@@ -20,21 +20,21 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('artesanus');
 
-        $rootNode
-            ->children()
-                ->arrayNode('cartero')
-                    ->children()
-                        ->scalarNode('subject')->end()
-                        ->arrayNode('from')
-                            ->children()
-                                ->scalarNode('email')->end()
-                                ->scalarNode('host')->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
-            ->end()
-        ;
+        // $rootNode
+        //     ->children()
+        //         ->arrayNode('cartero')
+        //             ->children()
+        //                 ->scalarNode('subject')->end()
+        //                 ->arrayNode('from')
+        //                     ->children()
+        //                         ->scalarNode('email')->end()
+        //                         ->scalarNode('host')->end()
+        //                     ->end()
+        //                 ->end()
+        //             ->end()
+        //         ->end()
+        //     ->end()
+        // ;
 
         return $treeBuilder;
     }
