@@ -1,12 +1,4 @@
 services:
-
-    artesanus.user_manager:
-        class: ArtesanIO\ArtesanusBundle\Model\UserManager
-        arguments:
-            - @doctrine.orm.entity_manager
-            - ArtesanIO\ArtesanusBundle\Entity\User
-            - @artesanio.encoder
-
     artesanus.group_manager:
         class: ArtesanIO\ArtesanusBundle\Model\GroupManager
         arguments:
