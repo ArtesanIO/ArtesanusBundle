@@ -13,7 +13,7 @@ class ArtesanusRolesListener implements EventSubscriberInterface
     {
         $roles = $event->getRoles();
         $roles->createRole(array('ROLE_ADMIN', array('role' => 'Admin', 'description' => 'User Admin', 'login_route_success' => 'artesanus_console_acl_users')));
-        $roles->createRole(array('ROLE_AUTHENTICATED', array('role' => 'Authenticated', 'description' => 'User Authenticated', 'login_route_success' => 'artesanus_front_user_profile')));
+        $roles->createRole(array('ROLE_USER', array('role' => 'User', 'description' => 'User Registered', 'login_route_success' => 'artesanus_front_user_profile')));
     }
 
     public static function getSubscribedEvents()

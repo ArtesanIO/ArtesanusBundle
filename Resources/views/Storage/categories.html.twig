@@ -1,15 +1,15 @@
 {% extends 'ArtesanusBundle::storage.html.twig' %}
 
 
-{% block artesanus_section_subtitle %}{{ 'artesanus.subtitles.storage.files'|trans({}, 'artesanus') }}{% endblock %}
+{% block artesanus_section_subtitle %}{{ 'artesanus.subtitles.storage.categories'|trans({}, 'artesanus') }}{% endblock %}
 
 {% block artesanus_section_body %}
 
 <div class="col-lg-3">
     <div class="panel panel-default">
         <div class="panel-body">
-            <form class="" action="" method="post" {{ form_enctype(files_form) }}>
-                {{ form_widget(files_form) }}
+            <form class="" action="" method="post"}}>
+                {{ form_widget(category_form) }}
                 <button type="submit" class="btn btn-default">
                     Guardar
                 </button>
@@ -23,27 +23,28 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>File</th>
                 <th>Category</th>
-                <th>Type</th>
+                <th>Slug</th>
+                <th>Description</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            {% for file in files %}
+            {% for category in categories %}
             <tr>
-                <td>{{ file.id }}</td>
-                <td>{{ file.name }}</td>
-                <td>{{ file.categories.category }}</td>
-                <td>{{ file.type }}</td>
+                <td>{{ category.id }}</td>
+                <td>{{ category.category }}</td>
+                <td>{{ category.slug }}</td>
+                <td>{{ category.description }}</td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <a href="{{ app.request.getSchemeAndHttpHost() }}/uploads/{{ file.categories.slug }}/{{ file.path }}" class="btn btn-default" target="_blank">
-                            <span class="glyphicon glyphicon-new-window"></span>
+                        <a href="{{ path('artesanus_console_storage_category', {id: category.id }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-edit"></span>
                         </a>
-                        <a href="{{ path('artesanus_console_storage_files_remove', {id: file.id }) }}" type="button" class="btn btn-default">
+                        <a {% if category.files|length !='' %} class="btn btn-default disabled" {% else %} href="{{ path('artesanus_console_storage_categories_remove', {id: category.id }) }}" class="btn btn-default" {% endif %} >
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
+
                     </div>
 
                 </td>

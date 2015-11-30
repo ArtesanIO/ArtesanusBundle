@@ -15,7 +15,6 @@ class ArtesanusMenuListener
 
         $menu->addChild('ACL', array('route' => 'artesanus_console_acl_users'));
         $menu->addChild('Storage Media', array('route' => 'artesanus_console_storage'));
-        $menu->addChild('APIDoc', array('route' => 'nelmio_api_doc_index'));
     }
 }
 

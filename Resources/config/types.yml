@@ -44,3 +44,8 @@ services:
         class: ArtesanIO\ArtesanusBundle\Form\FilesType
         tags:
             - { name: form.type, alias: artesanus_files_type }
+
+    artesanus.categories_type:
+        class: ArtesanIO\ArtesanusBundle\Form\CategoriesType
+        tags:
+            - { name: form.type, alias: artesanus_categories_type }

@@ -11,5 +11,6 @@ artesanus:
         acl.groups: Groups
         acl.roles: Roles
         storage.files: Files
+        storage.categories: Categories
     buttons:
         save: Save

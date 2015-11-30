@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class FilesType extends AbstractType
+class CategoriesType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,14 +15,8 @@ class FilesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('categories', 'entity', array(
-                'class' => 'ArtesanusBundle:Categories',
-                'property' => 'category',
-                'expanded' => false,
-                'empty_value' => '--Seleccione una Categoría--',
-            ))
-            ->add('file')
+            ->add('category')
+            ->add('description')
         ;
     }
 
@@ -32,8 +26,7 @@ class FilesType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ArtesanIO\ArtesanusBundle\Entity\Files',
-            'csrf_protection' => false,
+            'data_class' => 'ArtesanIO\ArtesanusBundle\Entity\Categories'
         ));
     }
 
@@ -42,6 +35,6 @@ class FilesType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_files_type';
+        return 'artesanus_categories_type';
     }
 }

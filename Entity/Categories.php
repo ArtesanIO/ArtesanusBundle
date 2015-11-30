@@ -34,6 +34,14 @@ class Categories
     /**
      * @var string
      *
+     * @ORM\Column(name="slug", type="string", length=255)
+     * @Groups({"categories"})
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      * @Groups({"categories"})
      */
@@ -140,5 +148,28 @@ class Categories
     public function getFiles()
     {
         return $this->files;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Categories
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

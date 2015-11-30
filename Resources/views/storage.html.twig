@@ -8,4 +8,12 @@
 {% endblock %}
 
 {% block artesanus_seccion_navbar %}
+<div class="btn-group btn-group-sm">
+    <a href="{{ path('artesanus_console_storage') }}" type="button" class="btn btn-default">
+        Storage
+    </a>
+    <a href="{{ path('artesanus_console_storage_categories') }}" type="button" class="btn btn-default">
+        Categories
+    </a>
+</div>
 {% endblock %}

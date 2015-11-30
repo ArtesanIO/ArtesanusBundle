@@ -27,3 +27,11 @@ services:
             - ArtesanIO\ArtesanusBundle\Entity\Files
         calls:
             - [setContainer, ['@service_container']]
+
+    artesanus.categories_manager:
+        class: ArtesanIO\ArtesanusBundle\Model\CategoriesManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - ArtesanIO\ArtesanusBundle\Entity\Categories
+        calls:
+            - [setContainer, ['@service_container']]

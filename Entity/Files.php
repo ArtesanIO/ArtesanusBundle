@@ -170,7 +170,7 @@ class Files
 
     protected function getUploadDir()
     {
-        return 'storage/files';
+        return 'uploads/'.$this->getCategories()->getSlug();
     }
 
     /**
