@@ -9,7 +9,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 
 class Cartero
 {
+    private $mailer;
     private $container;
+    private $contentType;
+    private $subject;
+    private $from;
 
     public function __construct(\Swift_Mailer $mailer, Container $container)
     {
