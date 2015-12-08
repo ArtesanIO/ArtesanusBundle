@@ -28,6 +28,12 @@ abstract class ModelManager implements ModelManagerInterface
         $this->class = $metadata->name;
 
     }
+
+    public function getRepository()
+    {
+        return $this->repositoy;
+    }
+
     public function setContainer($container) {
         $this->container = $container;
     }
@@ -104,19 +110,6 @@ abstract class ModelManager implements ModelManagerInterface
      */
     public function getClass() {
         return $this->class;
-    }
-    /**
-     * @return BaseModel
-     */
-    public function findOneBy($array = array()) {
-        return $this->repository->findOneBy($array);
-    }
-
-    /**
-     * @return BaseModel
-     */
-    public function findAll() {
-        return $this->repository->findAll();
     }
 
     public function isDebug() {

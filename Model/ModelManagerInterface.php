@@ -10,6 +10,8 @@ interface ModelManagerInterface
 
     public function getContainer();
 
+    public function getRepositoy();
+
     public function getDispatcher();
 
     public function create();
@@ -21,10 +23,6 @@ interface ModelManagerInterface
     public function reload($model);
 
     public function getClass();
-
-    public function findOneBy($array = array());
-
-    public function findAll();
 
     public function isDebug();
 }
