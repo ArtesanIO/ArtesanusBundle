@@ -10,7 +10,7 @@ interface ModelManagerInterface
 
     public function getContainer();
 
-    public function getRepositoy();
+    public function getRepository();
 
     public function getDispatcher();
 
