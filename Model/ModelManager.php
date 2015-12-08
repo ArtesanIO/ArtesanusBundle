@@ -31,7 +31,7 @@ abstract class ModelManager implements ModelManagerInterface
 
     public function getRepository()
     {
-        return $this->repositoy;
+        return $this->repository;
     }
 
     public function setContainer($container) {
