@@ -26,8 +26,3 @@ class ModelEvent extends Event
         return $this->container;
     }
 }
-
-
-
-
-?>
