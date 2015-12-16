@@ -2,7 +2,8 @@
 
 namespace ArtesanIO\ArtesanusBundle\Model;
 
-use ArtesanIO\ArtesanusBundle\Model\ModelEvent;
+use ArtesanIO\ArtesanusBundle\ArtesanusEvents;
+use ArtesanIO\ArtesanusBundle\Event\ModelEvent;
 use ArtesanIO\ArtesanusBundle\Model\ModelManagerInterface;
 use Doctrine\ORM\EntityManager;
 
@@ -26,7 +27,13 @@ abstract class ModelManager implements ModelManagerInterface
         $this->repository = $this->em->getRepository($class);
         $metadata = $this->em->getClassMetadata($class);
         $this->class = $metadata->name;
+    }
 
+    private function getEventPrefix()
+    {
+        $prefix = explode('\\', $this->class);
+
+        return strtolower(array_pop($prefix));
     }
 
     public function getRepository()
@@ -59,12 +66,14 @@ abstract class ModelManager implements ModelManagerInterface
      * @param boolean $flush
      * @return BaseModel
      */
-    public function save($model, $flush= true) {
-        //$this->getDispatcher()->dispatch('model_before_save', new ModelEvent($model, $this->getContainer()));
-        //$this->getDispatcher()->dispatch($model->getEventPrefix() . '_before_save', new ModelEvent($model, $this->getContainer()));
+    public function save($model, $flush= true)
+    {
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_save.event', new ModelEvent($model, $this->getContainer()));
+
         $this->_save($model, $flush);
-        //$this->getDispatcher()->dispatch('model_after_save', new ModelEvent($model, $this->getContainer()));
-        //$this->getDispatcher()->dispatch($model->getEventPrefix() . '_after_save', new ModelEvent($model, $this->getContainer()));
+
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_save.event', new ModelEvent($model, $this->getContainer()));
+
         return $model;
     }
     /**
@@ -82,11 +91,12 @@ abstract class ModelManager implements ModelManagerInterface
      * @param BaseModel $model
      */
     public function delete($model, $flush = true) {
-        //$this->getDispatcher()->dispatch('model_before_delete', new ModelEvent($model, $this->getContainer()));
-        //$this->getDispatcher()->dispatch($model->getEventPrefix() . '_before_delete', new ModelEvent($model, $this->getContainer()));
+
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_delete.event', new ModelEvent($model, $this->getContainer()));
+
         $this->_delete($model, $flush);
-        //$this->getDispatcher()->dispatch('model_after_delete', new ModelEvent($model, $this->getContainer()));
-        //$this->getDispatcher()->dispatch($model->getEventPrefix() . '_after_delete', new ModelEvent($model, $this->getContainer()));
+
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_delete.event', new ModelEvent($model, $this->getContainer()));
     }
     /**
      * Remove model.

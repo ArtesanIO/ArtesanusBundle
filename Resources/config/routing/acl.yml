@@ -18,6 +18,10 @@ artesanus_console_acl_groups:
     path:     /groups
     defaults: { _controller: ArtesanusBundle:Group:groups }
 
+grupos:
+    path:     /grupos
+    defaults: { _controller: ArtesanusBundle:Group:grupos }
+
 artesanus_console_acl_groups_new:
     path:     /groups/new
     defaults: { _controller: ArtesanusBundle:Group:new }

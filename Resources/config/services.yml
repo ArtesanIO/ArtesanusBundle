@@ -61,3 +61,8 @@ services:
 
     artesanus.slugger:
         class: ArtesanIO\ArtesanusBundle\Utils\Slugger
+
+    files.listener:
+        class: ArtesanIO\ArtesanusBundle\EventListener\FilesListener
+        tags:
+          - { name: kernel.event_listener, event: files.model_before_save.event, method: onBeforeFiles, priority: 4096 }

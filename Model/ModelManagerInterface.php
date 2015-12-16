@@ -5,7 +5,6 @@ namespace ArtesanIO\ArtesanusBundle\Model;
 
 interface ModelManagerInterface
 {
-
     public function setContainer($container);
 
     public function getContainer();

@@ -57,6 +57,13 @@ class Files
      */
     private $categories;
 
+    private $eventPrefix;
+
+    public function __construct()
+    {
+        $this->eventPrefix = 'files';
+    }
+
     /**
      * Sets file.
      *
@@ -263,5 +270,10 @@ class Files
     public function getType()
     {
         return $this->type;
+    }
+
+    public function getEventPrefix()
+    {
+        return $this->eventPrefix;
     }
 }

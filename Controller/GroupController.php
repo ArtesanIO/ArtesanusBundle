@@ -62,4 +62,17 @@ class GroupController extends Controller
             'group_form'       => $groupForm->createView(),
         ));
     }
+
+    public function gruposAction()
+    {
+
+        $filesManager = $this->get('artesanus.files_manager');
+
+        $file = $filesManager->create();
+
+        $filesManager->save($file);
+
+        return $this->render('ArtesanusBundle:ACL:grupos.html.twig');
+
+    }
 }
