@@ -34,11 +34,11 @@
             <tr>
                 <td>{{ file.id }}</td>
                 <td>{{ file.name }}</td>
-                <td>{{ file.categories.category }}</td>
+                <td>{{ file.categories.category|default('Uncategorized') }}</td>
                 <td>{{ file.type }}</td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <a href="{{ app.request.getSchemeAndHttpHost() }}/uploads/{{ file.categories.slug }}/{{ file.path }}" class="btn btn-default" target="_blank">
+                        <a href="{{ app.request.getSchemeAndHttpHost() }}/uploads/{{ file.categories.slug|default('Uncategorized') }}/{{ file.path }}" class="btn btn-default" target="_blank">
                             <span class="glyphicon glyphicon-new-window"></span>
                         </a>
                         <a href="{{ path('artesanus_console_storage_files_remove', {id: file.id }) }}" type="button" class="btn btn-default">

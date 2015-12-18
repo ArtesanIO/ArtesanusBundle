@@ -13,7 +13,7 @@ class StorageController extends Controller
 
         $filesManager = $this->get('artesanus.files_manager');
 
-        $files = $filesManager->findAll();
+        $files = $filesManager->getRepository()->findAll();
 
         $file = $filesManager->create();
 
@@ -51,7 +51,7 @@ class StorageController extends Controller
 
         $categoriesManager = $this->get('artesanus.categories_manager');
 
-        $categories = $categoriesManager->findAll();
+        $categories = $categoriesManager->getRepository()->findAll();
 
         $category = $categoriesManager->create();
 
