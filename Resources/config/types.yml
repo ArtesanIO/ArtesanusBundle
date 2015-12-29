@@ -11,8 +11,6 @@ services:
 
     artesanus.group_type:
         class: ArtesanIO\ArtesanusBundle\Form\GroupType
-        arguments:
-            - @artesanus.roles_manager
         tags:
             - { name: form.type, alias: artesanus_group_type }
 

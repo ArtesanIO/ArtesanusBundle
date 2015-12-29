@@ -4,27 +4,34 @@
 
 
 {% block artesanus_section_body %}
+
+{% import "ArtesanusBundle::Components/buttons.html.twig" as btn %}
+
 <table class="table">
     <thead>
         <tr>
             <th>Role</th>
             <th>Role Key</th>
-            <th>Description</th>
+            <th></th>
         </tr>
     </thead>
     <tfoot>
         <tr>
             <th>Role</th>
             <th>Role Key</th>
-            <th>Description</th>
+            <th></th>
         </tr>
     </tfoot>
     <tbody>
         {% for role in roles %}
         <tr>
             <td>{{ role.role }}</td>
-            <td>{{ role.key }}</td>
-            <td>{{ role.description }}</td>
+            <td>{{ role.roleKey }}</td>
+            <td class="text-right">
+                <a class="btn btn-default" href="{{ path('artesanus_console_acl_role', { id: role.id }) }}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

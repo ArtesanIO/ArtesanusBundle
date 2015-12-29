@@ -4,12 +4,19 @@
 
 
 {% block artesanus_section_body %}
-    <form class="form" action="" method="post" novalidate>
-        {{ form_widget(role_form) }}
-        <div class="btn-group btn-group-sm">
-            <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-floppy-disk"></span> Guardar
-            </button>
-        </div>
-    </form>
+
+{% embed "ArtesanusBundle::Components/col.html.twig" with { 'large': 4 }%}
+
+    {% block col %}
+        {% embed "ArtesanusBundle::Components/form.html.twig" %}
+
+            {% block form %}
+                {{ form_widget(roles_form) }}
+            {% endblock %}
+
+        {% endembed %}
+    {% endblock %}
+
+{% endembed %}
+
 {% endblock %}

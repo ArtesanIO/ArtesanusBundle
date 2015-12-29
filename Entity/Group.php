@@ -27,4 +27,8 @@ class Group extends BaseGroup
     {
         return $this->id;
     }
+
+    public function __construct()
+    {
+    }
 }

@@ -1,0 +1,38 @@
+{%- macro button(text, type, class, icon = null, htmlAttributes = null, name = null) -%}
+    <button type="{{ type|default('button') }}" name="{{ name }}" class="btn btn-{{ class|default('default') }}" {{ htmlAttributes }}>
+        {% if icon %}<i class="glyphicon glyphicon-{{ icon }}"></i> {% endif %} {{ text }}
+    </button>
+
+{%- endmacro -%}
+
+{%- macro submit(text = 'Guardar', type="submit", class = "primary", icon = "save") -%}
+    {% import _self as btns %}
+    {{ btns.button(text, type, class, icon) }}
+{%- endmacro -%}
+
+{%- macro btn_delete() -%}
+    <td class="text-right">
+        <button type="button" class="btn btn-default delete-collection" onclick="deleteCollection(this);">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+    </td>
+{%- endmacro -%}
+
+{%- macro save_add() -%}
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">
+            Guardar
+        </button>
+        <button type="button" class="btn btn-default add-collection">
+            <span class="glyphicon glyphicon-plus"></span> Agregar
+        </button>
+    </div>
+{%- endmacro -%}
+
+{%- macro modal(text = 'Modal', htmlAttributes = null, class = 'default', icon = null) -%}
+    {% import _self as btns %}
+
+    {{ dump(htmlAttributes) }}
+
+    {{ btns.button(text, null, class, icon ) }}
+{%- endmacro -%}

@@ -4,11 +4,14 @@ services:
         arguments:
             - @doctrine.orm.entity_manager
             - ArtesanIO\ArtesanusBundle\Entity\Group
+        calls:
+            - [setContainer, ['@service_container']]
 
     artesanus.roles_manager:
         class: ArtesanIO\ArtesanusBundle\Model\RolesManager
         arguments:
-            - @artesanus.roles
+            - @doctrine.orm.entity_manager
+            - ArtesanIO\ArtesanusBundle\Entity\Roles
         calls:
             - [setContainer, ['@service_container']]
 

@@ -21,7 +21,7 @@ class GroupController extends Controller
 
         $groupManager = $this->get('artesanus.group_manager');
 
-        $group = $groupManager->getClass();
+        $group = $groupManager->create();
 
         $groupForm = $this->createForm('artesanus_group_type', $group)->handleRequest($request);
 
@@ -29,7 +29,7 @@ class GroupController extends Controller
 
             $this->get('artesanus.group_manager')->save($group);
 
-            $groupManager->addRoles($group, $groupForm);
+            //$groupManager->addRoles($group, $groupForm);
             $this->get('artesanus.flashers')->add('info','Grupo creado');
 
             return $this->redirect($this->generateUrl('artesanus_console_acl_group', array('id' => $group->getId())));

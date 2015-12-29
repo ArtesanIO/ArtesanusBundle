@@ -10,20 +10,19 @@ use ArtesanIO\ArtesanusBundle\Form\EventListener\GroupSubscriber;
 
 class GroupType extends AbstractType
 {
-    protected $roles;
-
-    public function __construct(RolesManager $roles)
-    {
-        $this->roles = $roles;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventSubscriber(new GroupSubscriber($this->roles));
+
+        $builder
+            ->add('name')
+            ->add('roles')
+        ;
+
+        $builder->addEventSubscriber(new GroupSubscriber());
     }
 
     /**

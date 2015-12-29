@@ -1,0 +1,7 @@
+
+{% import "ArtesanusBundle::Components/buttons.html.twig" as btn %}
+
+<form class="{{ class|default('') }}" action="{{ action|default('')}}" method="{{ method|default('post') }}">
+    {% block form %}{% endblock %}
+    {{ btn.submit() }}
+</form>

@@ -34,6 +34,18 @@ artesanus_console_acl_roles:
     path:     /roles
     defaults: { _controller: ArtesanusBundle:Roles:roles }
 
+artesanus_console_acl_roles_new:
+    path:     /roles/new
+    defaults: { _controller: ArtesanusBundle:Roles:new }
+
+artesanus_console_acl_roles_delete:
+    path:     /roles/delete
+    defaults: { _controller: ArtesanusBundle:Roles:delete }
+
+artesanus_console_acl_role:
+    path:     /role/{id}
+    defaults: { _controller: ArtesanusBundle:Roles:role }
+
 artesanus_console_acl_role:
     path:     /role/{id}
     defaults: { _controller: ArtesanusBundle:Roles:role }

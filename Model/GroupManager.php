@@ -8,7 +8,3 @@ use ArtesanIO\ArtesanusBundle\Model\ModelManager;
 class GroupManager extends ModelManager
 {
 }
-
-
-
-?>

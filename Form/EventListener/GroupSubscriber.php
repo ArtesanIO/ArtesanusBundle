@@ -9,12 +9,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class GroupSubscriber implements EventSubscriberInterface
 {
-    protected $roles;
-
-    public function __construct($roles)
-    {
-        $this->roles = $roles;
-    }
 
     public static function getSubscribedEvents()
     {
@@ -36,8 +30,8 @@ class GroupSubscriber implements EventSubscriberInterface
         $form
             ->add('name')
             ->add('roles','choice', array(
-                'choices'   => $this->roles->roles(),
-                'data'      => $data->getRoles(),
+                'choices'   => array(1 => 1),//$this->roles->roles(),
+                //'data'      => $data->getRoles(),
                 'expanded'  => true,
                 'multiple'  => true
             ))

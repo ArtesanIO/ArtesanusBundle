@@ -17,6 +17,9 @@ services:
         tags:
             - { name: form.type, alias: artesanio_user_group }
 
+    artesanus.group_subscriber:
+        class: ArtesanIO\ArtesanusBundle\Form\EventListener\GroupSubscriber
+
     artesanus.nav_menu.listener:
         class: ArtesanIO\ArtesanusBundle\EventListener\ArtesanusMenuListener
         tags:
