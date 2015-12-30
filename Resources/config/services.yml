@@ -1,4 +1,10 @@
 services:
+
+    artesanus.users_provider:
+        class: ArtesanIO\ArtesanusBundle\Utils\UsersProvider
+        calls:
+            - [setContainer, ['@service_container']]
+
     artesanio.encoder:
         class:  ArtesanIO\ArtesanusBundle\Utils\Encoder
         arguments:

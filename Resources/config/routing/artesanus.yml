@@ -2,10 +2,9 @@ artesanus_console:
     resource: "@ArtesanusBundle/Resources/config/routing/console.yml"
     prefix: /console
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+artesanus_login:
+    path:     /login
+    defaults: { _controller: ArtesanusBundle:Login:login }
 
-artesanus_front_user_profile:
-    path:     /profile
-    defaults: { _controller: ArtesanusBundle:Profile:profile }
-    requirements:
+login_check:
+    pattern:   /login_check
