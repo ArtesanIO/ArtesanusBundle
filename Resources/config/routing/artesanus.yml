@@ -8,3 +8,10 @@ artesanus_login:
 
 login_check:
     pattern:   /login_check
+
+artesanus_logout:
+    path:   /logout
+
+artesanus_register:
+    path:     /register
+    defaults: { _controller: ArtesanusBundle:User:register }

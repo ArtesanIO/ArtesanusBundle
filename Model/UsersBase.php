@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtesanIO\ArtesanusBundle\Entity;
+namespace ArtesanIO\ArtesanusBundle\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
@@ -12,17 +12,37 @@ abstract class UsersBase implements UserInterface, \Serializable, EquatableInter
     private $salt;
     private $roles;
 
-    // public function __construct($username, $password, $salt, array $roles)
-    // {
-    //     $this->username = $username;
-    //     $this->password = $password;
-    //     $this->salt = $salt;
-    //     $this->roles = $roles;
-    // }
+    public function __construct($username, $password, $salt, array $roles)
+    {
+        $this->username = $username;
+        $this->password = $password;
+        $this->salt = $salt;
+        $this->roles = $roles;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
 
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 
     public function getPassword()
@@ -30,14 +50,14 @@ abstract class UsersBase implements UserInterface, \Serializable, EquatableInter
         return $this->password;
     }
 
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    }
+
     public function getSalt()
     {
         return $this->salt;
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
     }
 
     public function eraseCredentials()
@@ -46,7 +66,7 @@ abstract class UsersBase implements UserInterface, \Serializable, EquatableInter
 
     public function isEqualTo(UserInterface $user)
     {
-        if (!$user instanceof WebserviceUser) {
+        if (!$user instanceof UsersBase) {
                 return false;
         }
 

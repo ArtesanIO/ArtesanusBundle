@@ -23,23 +23,26 @@ class UsersProvider implements UserProviderInterface
         return $this->container;
     }
 
-    public function loadUserByUsername($username)
+    public function loadUserByUsername($user)
     {
-        // make a call to your webservice here
-        //$userData = ...
-        // pretend it returns an array on success, false if there is no user
-        echo "<pre>";print_r($username);exit();
-        if ($userData) {
-            $password = '...';
+        try{
+            $userManager = $this->container->get('artesanus.users_manager');
+            $user = $userManager->getRepository()->findUsernameOrEmail($user);
+            //$users = new Users($user->getUsername(), $user->getPassword(), $user->getSalt(), $user->getRoles());
 
-            // ...
+            // $users->setUsername($user->getUsername());
+            // $users->setPassword($user->getPassword());
+            // $users->setSalt($user->getSalt());
+            // $users->setRoles($user->getRoles());
+            //
+            // return $users;
+            
+            return new Users($user->getUsername(), $user->getPassword(), $user->getSalt(), $user->getRoles());
 
-            return new Users($username, $password, $salt, $roles);
+        }catch (NoResultException $e){
+            throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
         }
 
-        throw new UsernameNotFoundException(
-            sprintf('Username "%s" does not exist.', $username)
-        );
     }
 
     public function refreshUser(UserInterface $user)
@@ -55,6 +58,6 @@ class UsersProvider implements UserProviderInterface
 
     public function supportsClass($class)
     {
-        return $class === 'ArtesanusBundle\Entity\Users';
+        return $class === 'ArtesanIO\ArtesanusBundle\Entity\Users';
     }
 }

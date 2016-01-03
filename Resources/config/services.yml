@@ -5,7 +5,7 @@ services:
         calls:
             - [setContainer, ['@service_container']]
 
-    artesanio.encoder:
+    artesanus.encoder:
         class:  ArtesanIO\ArtesanusBundle\Utils\Encoder
         arguments:
             - @security.encoder_factory

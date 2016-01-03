@@ -2,11 +2,30 @@
 
 namespace ArtesanIO\ArtesanusBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class UserController extends Controller
 {
+
+    public function registerAction()
+    {
+        $usersManager = $this->get('artesanus.users_manager');
+        $user = $usersManager->create();
+
+        $user->setUsername('cristian');
+        $user->setEmail('cristian@cristian.com');
+
+        $encoder = $this->get('artesanus.encoder');
+
+        $user->setPassword($encoder->encoder($user, 'cristian'));
+
+        $usersManager->save($user);
+
+        return new Response('Creado');
+    }
+
     public function usersAction()
     {
         $userManager = $this->get('fos_user.user_manager');

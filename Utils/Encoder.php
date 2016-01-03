@@ -25,7 +25,7 @@ public function __construct(EncoderFactory $encoderFactory)
  * @param UserInterface $user
  * @param string $plaintextPassword
  */
-public function setUserPassword(UserInterface $user, $plaintextPassword)
+public function encoder(UserInterface $user, $plaintextPassword)
 {
   $hash = $this->encoderFactory->getEncoder($user)->encodePassword($plaintextPassword,   $user->getSalt());
 

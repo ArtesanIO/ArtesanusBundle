@@ -3,19 +3,16 @@
 namespace ArtesanIO\ArtesanusBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Users
- *
  * @ORM\Table(name="artesanus_users")
  * @ORM\Entity(repositoryClass="ArtesanIO\ArtesanusBundle\Entity\UsersRepository")
  */
-class Users extends UsersBase
+class Users implements UserInterface, \Serializable
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -24,41 +21,89 @@ class Users extends UsersBase
     /**
      * @var string
      *
-     * @ORM\Column(name="user", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    private $user;
+    private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @ORM\Column(type="string", length=25, unique=true)
      */
     private $username;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(type="string", length=64)
      */
     private $password;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(type="string", length=60, unique=true)
      */
     private $email;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="active", type="boolean")
+     * @ORM\Column(name="is_active", type="boolean")
      */
-    private $active;
+    private $isActive;
 
-    public function __construct()
+    public function __construct($username, $password, $salt, array $roles)
     {
-        $this->active = true;
+        $this->username = $username;
+        $this->password = $password;
+        $this->salt = $salt;
+        $this->roles = $roles;
+        $this->isActive = true;
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid(null, true));
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_ADMIN');
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 
     /**
@@ -69,29 +114,6 @@ class Users extends UsersBase
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user
-     *
-     * @param string $user
-     * @return Users
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return string
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
@@ -108,16 +130,6 @@ class Users extends UsersBase
     }
 
     /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
      * Set password
      *
      * @param string $password
@@ -128,16 +140,6 @@ class Users extends UsersBase
         $this->password = $password;
 
         return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
     }
 
     /**
@@ -164,25 +166,48 @@ class Users extends UsersBase
     }
 
     /**
-     * Set active
+     * Set isActive
      *
-     * @param string $active
+     * @param boolean $isActive
      * @return Users
      */
-    public function setActive($active)
+    public function setIsActive($isActive)
     {
-        $this->active = $active;
+        $this->isActive = $isActive;
 
         return $this;
     }
 
     /**
-     * Get active
+     * Get isActive
      *
-     * @return string
+     * @return boolean
      */
-    public function getActive()
+    public function getIsActive()
     {
-        return $this->active;
+        return $this->isActive;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Users
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

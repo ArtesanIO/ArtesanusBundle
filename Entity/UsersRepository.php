@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class UsersRepository extends EntityRepository
 {
+
+    public function findUsernameOrEmail($user)
+    {
+        try {
+            return $this->getEntityManager()->createQuery(
+                'SELECT u FROM ArtesanusBundle:Users u
+                 WHERE u.username = :user
+                 OR u.email = :user
+                '
+            )
+            ->setParameter('user', $user)
+            ->getSingleResult();
+
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }
