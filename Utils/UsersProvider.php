@@ -36,7 +36,7 @@ class UsersProvider implements UserProviderInterface
             // $users->setRoles($user->getRoles());
             //
             // return $users;
-            
+
             return new Users($user->getUsername(), $user->getPassword(), $user->getSalt(), $user->getRoles());
 
         }catch (NoResultException $e){
