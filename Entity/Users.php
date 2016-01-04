@@ -204,7 +204,7 @@ class Users implements UserInterface, \Serializable
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
