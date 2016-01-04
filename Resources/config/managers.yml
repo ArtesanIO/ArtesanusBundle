@@ -8,11 +8,11 @@ services:
         calls:
             - [setContainer, ['@service_container']]
 
-    artesanus.group_manager:
-        class: ArtesanIO\ArtesanusBundle\Model\GroupManager
+    artesanus.groups_manager:
+        class: ArtesanIO\ArtesanusBundle\Model\GroupsManager
         arguments:
             - @doctrine.orm.entity_manager
-            - ArtesanIO\ArtesanusBundle\Entity\Group
+            - ArtesanIO\ArtesanusBundle\Entity\Groups
         calls:
             - [setContainer, ['@service_container']]
 

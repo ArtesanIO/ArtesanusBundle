@@ -1,4 +1,4 @@
-ArtesanIO\ArtesanusBundle\Entity\User:
+ArtesanIO\ArtesanusBundle\Entity\Users:
     admin:
         username: admin
         name: Admin

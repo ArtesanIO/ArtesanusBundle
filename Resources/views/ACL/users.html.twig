@@ -28,11 +28,11 @@
             <td>{{ user.id }}</td>
             <td>{{ user.name }}</td>
             <td>
-                {{ user.lastLogin|date() }}
+                {{ user.lastLogin|default()|date() }}
             </td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a href="{{ path('artesanus_console_acl_user', {id: user.username }) }}" class="btn btn-default">
+                    <a href="{{ path('artesanus_console_acl_user', {id: user.id }) }}" class="btn btn-default">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
                     <a href="{{ path('artesanus_console_acl_users_delete', {id: user.id }) }}" type="button" class="btn btn-default btn-delete">

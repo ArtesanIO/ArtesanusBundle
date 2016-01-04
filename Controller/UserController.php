@@ -28,9 +28,9 @@ class UserController extends Controller
 
     public function usersAction()
     {
-        $userManager = $this->get('fos_user.user_manager');
+        $userManager = $this->get('artesanus.users_manager');
 
-        $users = $userManager->findUsers();
+        $users = $userManager->getRepository()->findAll();
 
         return $this->render('ArtesanusBundle:ACL:users.html.twig', array(
             'users' => $users
@@ -61,37 +61,35 @@ class UserController extends Controller
 
     public function userAction(Request $request, $id)
     {
-        $userManager = $this->get('fos_user.user_manager');
+        $usersManager = $this->get('artesanus.users_manager');
 
-        $user = $userManager->findUserByUsername($id);
+        $user = $usersManager->getRepository()->findOneBy(array('id' => $id));
 
-        $form = $this->createForm('artesanus_user_type', $user);
+        $userForm = $this->createForm('artesanus_users_type', $user)->handleRequest($request);
 
-        $form->handleRequest($request);
+        if($userForm->isValid()){
 
-        if($form->isValid()){
-
-            $userManager->updateUser($user);
+            $usersManager->save($user);
             $this->get('artesanus.flashers')->add('info','Usuario actualizado');
-            return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getUsername())));
+            return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getId())));
         }
 
-        $formFactory = $this->get('fos_user.change_password.form.factory');
-
-        $usuarioPasswordForm = $formFactory->createForm();
-        $usuarioPasswordForm->setData($user);
-
-        $usuarioPasswordForm->handleRequest($request);
-
-        if ($usuarioPasswordForm->isValid()) {
-            $userManager->updateUser($user);
-            $this->get('artesanus.flashers')->add('info','Contraseña actualizada');
-            return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getUsername())));
-        }
+        // $formFactory = $this->get('fos_user.change_password.form.factory');
+        //
+        // $usuarioPasswordForm = $formFactory->createForm();
+        // $usuarioPasswordForm->setData($user);
+        //
+        // $usuarioPasswordForm->handleRequest($request);
+        //
+        // if ($usuarioPasswordForm->isValid()) {
+        //     $userManager->updateUser($user);
+        //     $this->get('artesanus.flashers')->add('info','Contraseña actualizada');
+        //     return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getUsername())));
+        // }
 
         return $this->render('ArtesanusBundle:ACL:user.html.twig', array(
-            'user_form' => $form->createView(),
-            'user_password_form' => $usuarioPasswordForm->createView()
+            'user_form' => $userForm->createView(),
+            //'user_password_form' => $usuarioPasswordForm->createView()
         ));
     }
 

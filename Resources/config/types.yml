@@ -1,18 +1,18 @@
 services:
-    artesanio.usuarios_type:
-        class: ArtesanIO\ArtesanusBundle\Form\UsuariosType
+    artesanus.users_type:
+        class: ArtesanIO\ArtesanusBundle\Form\UsersType
         tags:
-            - { name: form.type, alias: artesanio_acl_usuarios }
+            - { name: form.type, alias: artesanus_users_type }
 
     artesanio.usuarios_password_type:
         class: ArtesanIO\ArtesanusBundle\Form\UsuariosPasswordType
         tags:
             - { name: form.type, alias: artesanio_acl_usuarios_password }
 
-    artesanus.group_type:
-        class: ArtesanIO\ArtesanusBundle\Form\GroupType
+    artesanus.groups_type:
+        class: ArtesanIO\ArtesanusBundle\Form\GroupsType
         tags:
-            - { name: form.type, alias: artesanus_group_type }
+            - { name: form.type, alias: artesanus_groups_type }
 
     artesanio.grupo_roles_type:
         class: ArtesanIO\ArtesanusBundle\Form\GrupoRolesType

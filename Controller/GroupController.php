@@ -9,10 +9,12 @@ class GroupController extends Controller
 {
     public function groupsAction()
     {
-        $grupos = $this->get('fos_user.group_manager')->findGroups();
+        $groupsManager = $this->get('artesanus.groups_manager');
+
+        $groups = $groupsManager->getRepository()->findAll();
 
         return $this->render('ArtesanusBundle:ACL:groups.html.twig', array(
-            'grupos' => $grupos
+            'groups' => $groups
         ));
     }
 

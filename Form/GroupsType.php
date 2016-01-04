@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use ArtesanIO\ArtesanusBundle\Model\RolesManager;
 use ArtesanIO\ArtesanusBundle\Form\EventListener\GroupSubscriber;
 
-class GroupType extends AbstractType
+class GroupsType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -31,7 +31,7 @@ class GroupType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ArtesanIO\ArtesanusBundle\Entity\Group'
+            'data_class' => 'ArtesanIO\ArtesanusBundle\Entity\Groups'
         ));
     }
 
@@ -40,6 +40,6 @@ class GroupType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_group_type';
+        return 'artesanus_groups_type';
     }
 }

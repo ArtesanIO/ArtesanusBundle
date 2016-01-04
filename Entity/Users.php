@@ -24,4 +24,67 @@ class Users extends UsersBase
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Groups")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     */
+
+    private $groups;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Users
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set groups
+     *
+     * @param \ArtesanIO\ArtesanusBundle\Entity\Groups $groups
+     * @return Users
+     */
+    public function setGroups(\ArtesanIO\ArtesanusBundle\Entity\Groups $groups = null)
+    {
+        $this->groups = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \ArtesanIO\ArtesanusBundle\Entity\Groups 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
 }

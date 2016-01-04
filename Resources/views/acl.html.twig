@@ -3,25 +3,25 @@
 
 {% block artesanus_section_title %}
 
-    {{ 'artesanus.titles.acl'|trans({}, 'artesanus') }}
+    {{ 'artesanus.titles.acl'|trans({}, 'ArtesanusBundle') }}
 
 {% endblock %}
 
 {% block artesanus_seccion_navbar %}
     <a href="{{ path('artesanus_console_acl_users') }}" class="btn btn-default">
-        {{ 'artesanus.subtitles.acl.users'|trans({}, 'artesanus') }}
+        {{ 'artesanus.subtitles.acl.users'|trans({}, 'ArtesanusBundle') }}
     </a>
     <a href="{{ path('artesanus_console_acl_users_new') }}" class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
     </a>
     <a href="{{ path('artesanus_console_acl_groups') }}" class="btn btn-default">
-        {{ 'artesanus.subtitles.acl.groups'|trans({}, 'artesanus') }}
+        {{ 'artesanus.subtitles.acl.groups'|trans({}, 'ArtesanusBundle') }}
     </a>
     <a href="{{ path('artesanus_console_acl_groups_new') }}" class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
     </a>
     <a href="{{ path('artesanus_console_acl_roles') }}" class="btn btn-default">
-        {{ 'artesanus.subtitles.acl.roles'|trans({}, 'artesanus') }}
+        {{ 'artesanus.subtitles.acl.roles'|trans({}, 'ArtesanusBundle') }}
     </a>
     <a href="{{ path('artesanus_console_acl_roles_new') }}" class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
