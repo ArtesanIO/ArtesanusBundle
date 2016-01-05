@@ -6,9 +6,8 @@ use ArtesanIO\ArtesanusBundle\Form\EventListener\UsersSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use ArtesanIO\ArtesanusBundle\Form\EventListener\UserSubscriber;
 
-class UsersType extends AbstractType
+class UsersPasswordType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,15 +16,6 @@ class UsersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
             $builder
-                ->add('groups','entity', array(
-                    'class' => 'ArtesanusBundle:Groups',
-                    'property' => 'name',
-                    'empty_value' => 'artesanus.form.empty_value',
-                    'translation_domain' => 'ArtesanusBundle',
-                ))
-                ->add('name')
-                ->add('email')
-                ->add('username')
                 ->add('password','repeated', array(
                     'type' => 'password',
                     'invalid_message' => 'Los password no coinciden',
@@ -35,8 +25,6 @@ class UsersType extends AbstractType
                     'second_options' => array('label' => 'Repita Password'),
                   ))
             ;
-
-            $builder->addEventSubscriber(new UsersSubscriber());
     }
 
     /**
@@ -54,6 +42,6 @@ class UsersType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_users_type';
+        return 'artesanus_users_password_type';
     }
 }

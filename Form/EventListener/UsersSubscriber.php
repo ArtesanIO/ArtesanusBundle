@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class UserSubscriber implements EventSubscriberInterface
+class UsersSubscriber implements EventSubscriberInterface
 {
 
     public static function getSubscribedEvents()
@@ -29,12 +29,13 @@ class UserSubscriber implements EventSubscriberInterface
 
         if(!$data->getId()){
             $form
-            ->add('plainPassword', 'repeated', array(
+            ->add('password','repeated', array(
                 'type' => 'password',
-                'options' => array('translation_domain' => 'FOSUserBundle'),
-                'first_options' => array('label' => 'form.password'),
-                'second_options' => array('label' => 'form.password_confirmation'),
-                'invalid_message' => 'fos_user.password.mismatch',
+                'invalid_message' => 'Los password no coinciden',
+                'options' => array('attr' => array('class' => 'password-field')),
+                'required' => true,
+                'first_options'  => array('label' => 'Password'),
+                'second_options' => array('label' => 'Repita Password'),
             ));
         }
     }

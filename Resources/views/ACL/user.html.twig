@@ -2,44 +2,26 @@
 
 {% block artesanus_section_subtitulo %}Usuario{% endblock %}
 
-
-
 {% block artesanus_section_body %}
 
+{% embed "ArtesanusBundle::Components/col.html.twig" with { 'large': 4 }%}
+    {% block col %}
+        {% embed "ArtesanusBundle::Components/form.html.twig" %}
+            {% block form %}
+                {{ form_widget(user_form) }}
+            {% endblock %}
+        {% endembed %}
+    {% endblock %}
+{% endembed %}
 
-<div class="col-lg-4">
-
-    <div class="panel panel-default">
-      <div class="panel-body">
-          <form class="form" action="" method="post" novalidate>
-              {{ form_widget(user_form) }}
-              <div class="btn-group btn-group-sm">
-                  <button type="submit" class="btn btn-default">
-                      <span class="glyphicon glyphicon-floppy-disk"></span> {{ 'artesanus.buttons.save'|trans({}, 'artesanus') }}
-                  </button>
-              </div>
-          </form>
-      </div>
-    </div>
-
-</div>
-
-<div class="col-lg-4">
-    <div class="panel panel-default">
-      <div class="panel-body">
-          <form class="form" action="" method="post" novalidate>
-              {# form_widget(user_password_form) #}
-              <div class="btn-group btn-group-sm">
-                  <button type="submit" class="btn btn-default">
-                      <span class="glyphicon glyphicon-{{ 'artesanus.icons.save'|trans({}, 'artesanus') }}"></span> {{ 'admin.buttons.save'|trans({}, 'admin') }}
-                  </button>
-              </div>
-          </form>
-      </div>
-    </div>
-</div>
-
-
-
+{% embed "ArtesanusBundle::Components/col.html.twig" with { 'large': 4 }%}
+    {% block col %}
+        {% embed "ArtesanusBundle::Components/form.html.twig" %}
+            {% block form %}
+                {{ form_widget(user_password_form) }}
+            {% endblock %}
+        {% endembed %}
+    {% endblock %}
+{% endembed %}
 
 {% endblock %}

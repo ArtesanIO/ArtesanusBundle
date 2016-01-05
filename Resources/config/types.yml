@@ -4,10 +4,10 @@ services:
         tags:
             - { name: form.type, alias: artesanus_users_type }
 
-    artesanio.usuarios_password_type:
-        class: ArtesanIO\ArtesanusBundle\Form\UsuariosPasswordType
+    artesanus.users_password_type:
+        class: ArtesanIO\ArtesanusBundle\Form\UsersPasswordType
         tags:
-            - { name: form.type, alias: artesanio_acl_usuarios_password }
+            - { name: form.type, alias: artesanus_users_password_type }
 
     artesanus.groups_type:
         class: ArtesanIO\ArtesanusBundle\Form\GroupsType

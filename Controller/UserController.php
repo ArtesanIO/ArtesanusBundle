@@ -39,19 +39,20 @@ class UserController extends Controller
 
     public function newAction(Request $request)
     {
-        $userManager = $this->get('fos_user.user_manager');
+        $usersManager = $this->get('artesanus.users_manager');
 
-        $user = $userManager->createUser();
-        $user->setEnabled(true);
+        $user = $usersManager->create();
 
-        $userForm = $this->createForm('artesanus_user_type', $user);
-
-        $userForm->handleRequest($request);
+        $userForm = $this->createForm('artesanus_users_type', $user)->handleRequest($request);
 
         if ($userForm->isValid()) {
-            $userManager->updateUser($user);
-            $this->get('artesanus.flashers')->add('info','Usuario creado');
-            return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getUsername())));
+
+            $user->setPassword($this->get('artesanus.encoder')->encoder($user, $user->getPassword()));
+            $usersManager->save($user);
+
+            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.created', array(), 'ArtesanusBundle'));
+
+            return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getId())));
         }
 
         return $this->render('ArtesanusBundle:ACL:users-new.html.twig', array(
@@ -74,22 +75,21 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getId())));
         }
 
-        // $formFactory = $this->get('fos_user.change_password.form.factory');
-        //
-        // $usuarioPasswordForm = $formFactory->createForm();
-        // $usuarioPasswordForm->setData($user);
-        //
-        // $usuarioPasswordForm->handleRequest($request);
-        //
-        // if ($usuarioPasswordForm->isValid()) {
-        //     $userManager->updateUser($user);
-        //     $this->get('artesanus.flashers')->add('info','Contraseña actualizada');
-        //     return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getUsername())));
-        // }
+        $userPasswordForm =  $this->createForm('artesanus_users_password_type', $user)->handleRequest($request);
+
+        if($userPasswordForm->isValid()){
+
+            $user->setPassword($this->get('artesanus.encoder')->encoder($user, $user->getPassword()));
+            $usersManager->save($user);
+
+            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.updated', array(), 'ArtesanusBundle'));
+
+            return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getId())));
+        }
 
         return $this->render('ArtesanusBundle:ACL:user.html.twig', array(
             'user_form' => $userForm->createView(),
-            //'user_password_form' => $usuarioPasswordForm->createView()
+            'user_password_form' => $userPasswordForm->createView()
         ));
     }
 

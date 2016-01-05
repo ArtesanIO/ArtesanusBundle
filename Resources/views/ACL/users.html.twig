@@ -1,49 +1,29 @@
 {% extends 'ArtesanusBundle::acl.html.twig' %}
 
-
-{% block artesanus_section_subtitle %}{{ 'artesanus.subtitles.acl.users'|trans({}, 'artesanus') }}{% endblock %}
+{% block artesanus_section_subtitle %}{{ 'artesanus.subtitles.acl.users'|trans({}, 'ArtesanusBundle') }}{% endblock %}
 
 {% block artesanus_section_body %}
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>User</th>
-            <th>Last Login</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th>#</th>
-            <th>User</th>
-            <th>Last Login</th>
-            <th></th>
-        </tr>
-    </tfoot>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>
-                {{ user.lastLogin|default()|date() }}
-            </td>
-            <td class="text-right">
-                <div class="btn-group">
-                    <a href="{{ path('artesanus_console_acl_user', {id: user.id }) }}" class="btn btn-default">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-                    <a href="{{ path('artesanus_console_acl_users_delete', {id: user.id }) }}" type="button" class="btn btn-default btn-delete">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                </div>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-
+    {% embed "ArtesanusBundle::Components/table.html.twig" with { 'rows': ['#','Users','',''] }%}
+        {% block tbody %}
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>
+                    {{ user.lastLogin|default()|date() }}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <a href="{{ path('artesanus_console_acl_user', {id: user.id }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a href="{{ path('artesanus_console_acl_users_delete', {id: user.id }) }}" type="button" class="btn btn-default btn-delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
 {% endblock %}
