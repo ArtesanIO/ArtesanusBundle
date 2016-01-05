@@ -1,0 +1,21 @@
+{% macro btn_delete() %}
+
+    <td class="text-right">
+        <button type="button" class="btn btn-default delete-collection" onclick="deleteCollection(this);">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+    </td>
+
+{% endmacro %}
+
+{% macro groups_roles(role) %}
+    <tr>
+        <td>
+            {{ form_widget(role.roles) }}
+        </td>
+        <td>
+            {% import _self as btn %}
+            {{ btn.btn_delete() }}
+        </td>
+    </tr>
+{% endmacro %}

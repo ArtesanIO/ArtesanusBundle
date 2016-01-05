@@ -20,40 +20,43 @@ class GroupController extends Controller
 
     public function newAction(Request $request)
     {
+        $groupsManager = $this->get('artesanus.groups_manager');
 
-        $groupManager = $this->get('artesanus.group_manager');
+        $group = $groupsManager->create();
 
-        $group = $groupManager->create();
-
-        $groupForm = $this->createForm('artesanus_group_type', $group)->handleRequest($request);
+        $groupForm = $this->createForm('artesanus_groups_type', $group)->handleRequest($request);
 
         if($groupForm->isValid()){
 
-            $this->get('artesanus.group_manager')->save($group);
+            $groupsManager->save($group);
 
-            //$groupManager->addRoles($group, $groupForm);
-            $this->get('artesanus.flashers')->add('info','Grupo creado');
+            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.created', array(), 'ArtesanusBundle'));
 
             return $this->redirect($this->generateUrl('artesanus_console_acl_group', array('id' => $group->getId())));
         }
 
-        return $this->render('ArtesanusBundle:ACL:groups-new.html.twig', array(
+        return $this->render('ArtesanusBundle:ACL:group.html.twig', array(
             'group_form' => $groupForm->createView()
         ));
     }
 
     public function groupAction(Request $request, $id)
     {
-        $groupManager = $this->get('artesanus.group_manager');
+        $groupsManager = $this->get('artesanus.groups_manager');
 
-        $group = $groupManager->find($id);
+        $group = $groupsManager->getRepository()->findOneBy(array('id' => $id));
 
-        $groupForm = $this->createForm('artesanus_group_type', $group)->handleRequest($request);
+        $rolesOriginals = $groupsManager->rolesOriginals($group);
+
+        $groupForm = $this->createForm('artesanus_groups_type', $group)->handleRequest($request);
 
         if($groupForm->isValid()){
 
-            $groupManager->addRoles($group, $groupForm);
-            $this->get('artesanus.flashers')->add('info','Grupo actualizado');
+            $groupsManager->rolesUpdate($group, $rolesOriginals);
+
+            $groupsManager->save($group);
+
+            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.updated', array(), 'ArtesanusBundle'));
 
             return $this->redirect($this->generateUrl('artesanus_console_acl_group', array('id' => $group->getId())));
 

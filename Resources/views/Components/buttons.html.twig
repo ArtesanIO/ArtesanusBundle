@@ -5,7 +5,7 @@
 
 {%- endmacro -%}
 
-{%- macro submit(text = 'Guardar', type="submit", class = "primary", icon = "save") -%}
+{%- macro submit(text = 'Guardar', type="submit", class = "primary", icon = "floppy-disk") -%}
     {% import _self as btns %}
     {{ btns.button(text, type, class, icon) }}
 {%- endmacro -%}

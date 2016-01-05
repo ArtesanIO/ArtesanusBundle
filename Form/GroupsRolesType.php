@@ -5,10 +5,8 @@ namespace ArtesanIO\ArtesanusBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use ArtesanIO\ArtesanusBundle\Model\RolesManager;
-use ArtesanIO\ArtesanusBundle\Form\EventListener\GroupSubscriber;
 
-class GroupsType extends AbstractType
+class GroupsRolesType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,18 +14,14 @@ class GroupsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
-            ->add('name')
-            ->add('roles', 'collection', array(
-                'type' => 'artesanus_groups_roles_type',
-                'by_reference' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
+            ->add('roles','entity', array(
+                'class' => 'ArtesanusBundle:Roles',
+                'property' => 'role',
+                'empty_value' => 'artesanus.form.empty_value',
+                'translation_domain' => 'ArtesanusBundle',
             ))
         ;
-
-        //$builder->addEventSubscriber(new GroupSubscriber());
     }
 
     /**
@@ -36,7 +30,7 @@ class GroupsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ArtesanIO\ArtesanusBundle\Entity\Groups'
+            'data_class' => 'ArtesanIO\ArtesanusBundle\Entity\GroupsRoles'
         ));
     }
 
@@ -45,6 +39,6 @@ class GroupsType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_groups_type';
+        return 'artesanus_groups_roles_type';
     }
 }

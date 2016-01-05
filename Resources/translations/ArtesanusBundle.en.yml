@@ -16,4 +16,9 @@ artesanus:
         save: Save
 
     form:
-        empty_value: '--Select--'
+        empty_value: '--Choose--'
+
+    msn_flash:
+        created: 'Created'
+        updated: 'Updated'
+        delete: 'Delete'

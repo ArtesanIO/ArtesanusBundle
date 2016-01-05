@@ -22,7 +22,7 @@
         {% for group in groups %}
         <tr>
             <td>{{ group.id }}</td>
-            <td>{{ group.group }}</td>
+            <td>{{ group.name }}</td>
             <td class="text-right">
                 <div class="btn-group">
                     <a href="{{ path('artesanus_console_acl_group', {id: group.id }) }}" class="btn btn-default">
