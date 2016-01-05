@@ -1,0 +1,9 @@
+{%- macro _rows(type = 'thead', _rows) -%}
+
+<{{ type }}>
+    <tr>
+        {% for row in _rows %}<th>{{ row }}</th>{% endfor %}
+    </tr>
+</{{ type }}>
+
+{%- endmacro -%}

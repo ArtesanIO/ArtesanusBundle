@@ -1,42 +1,28 @@
 {% extends 'ArtesanusBundle::acl.html.twig' %}
 
-{% block artesanus_section_subtitle %}Grupos{% endblock %}
+{% block artesanus_section_subtitle %}
+    {{ 'artesanus.subtitles.acl.groups'|trans({}, 'ArtesanusBundle') }}
+{% endblock %}
 
 {% block artesanus_section_body %}
-<table class="table">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>{{ 'artesanus.subtitles.acl.groups'|trans({}, 'ArtesanusBundle') }}</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th>#</th>
-            <th>{{ 'artesanus.subtitles.acl.groups'|trans({}, 'ArtesanusBundle') }}</th>
-            <th></th>
-        </tr>
-    </tfoot>
-    <tbody>
-        {% for group in groups %}
-        <tr>
-            <td>{{ group.id }}</td>
-            <td>{{ group.name }}</td>
-            <td class="text-right">
-                <div class="btn-group">
-                    <a href="{{ path('artesanus_console_acl_group', {id: group.id }) }}" class="btn btn-default">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                </div>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-
+    {% embed "ArtesanusBundle::Components/table.html.twig" with { 'rows': ['#','Groups',''] }%}
+        {% block tbody %}
+            {% for group in groups %}
+                <tr>
+                    <td>{{ group.id }}</td>
+                    <td>{{ group.name }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <a href="{{ path('artesanus_console_acl_group', {id: group.id }) }}" class="btn btn-default">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
 {% endblock %}

@@ -33,7 +33,7 @@ class RolesController extends Controller
             return $this->redirect($this->generateUrl('artesanus_console_acl_role', array('id' => $roles->getId())));
         }
 
-        return $this->render('ArtesanusBundle:ACL:roles-new.html.twig', array(
+        return $this->render('ArtesanusBundle:ACL:role.html.twig', array(
             'roles_form' => $rolesForm->createView()
         ));
     }

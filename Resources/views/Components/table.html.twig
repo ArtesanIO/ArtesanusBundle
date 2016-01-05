@@ -1,23 +1,11 @@
-{% set _body = block('body')   %}
+{% import "ArtesanusBundle::Components/tables.html.twig" as table %}
 
-{%- macro _rows(type = 'thead', _rows) -%}
-
-<{{ type }}>
-    <tr>
-        {% for row in _rows %}<th>{{ row }}</th>{% endfor %}
-    </tr>
-</{{ type }}>
-
-{%- endmacro -%}
+{% set _tbody = block('tbody')   %}
 
 <table class="table table-{{ type|default('condensed') }}">
 
-    {% import _self as _rows %}
-
-    {{ _rows._rows('thead', rows ) }}
-
-    {% if _body is not empty %}<tbody>{% block body %}{% endblock %}</tbody>{% endif %}
-
-    {{ _rows._rows('tfoot', rows ) }}
-
+    {{ table._rows('thead', rows ) }}
+    {% if _tbody is not empty %}<tbody>{% block tbody %}{% endblock %}</tbody>{% endif %}
+    {{ table._rows('tfoot', rows ) }}
+    
 </table>
