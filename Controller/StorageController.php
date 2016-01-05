@@ -79,14 +79,14 @@ class StorageController extends Controller
 
         $categoriesManager = $this->get('artesanus.categories_manager');
 
-        $category = $categoriesManager->findOneBy(array('id' => $id));
+        $category = $categoriesManager->getRepository()->findOneBy(array('id' => $id));
 
         $categoryForm = $this->createForm('artesanus_categories_type', $category)->handleRequest($request);
 
         if($categoryForm->isValid()){
             $categoriesManager->save($category);
             $this->get('artesanus.flashers')->add('info','Categoría creada');
-            return $this->redirect($this->generateUrl('artesanus_console_storage_categories'));
+            return $this->redirect($this->generateUrl('artesanus_console_storage_category', array('id' => $category->getId())));
         }
 
         return $this->render('ArtesanusBundle:Storage:category.html.twig', array(
