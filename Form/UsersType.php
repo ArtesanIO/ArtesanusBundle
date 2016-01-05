@@ -26,14 +26,6 @@ class UsersType extends AbstractType
                 ->add('name')
                 ->add('email')
                 ->add('username')
-                ->add('password','repeated', array(
-                    'type' => 'password',
-                    'invalid_message' => 'Los password no coinciden',
-                    'options' => array('attr' => array('class' => 'password-field')),
-                    'required' => true,
-                    'first_options'  => array('label' => 'Password'),
-                    'second_options' => array('label' => 'Repita Password'),
-                  ))
             ;
 
             $builder->addEventSubscriber(new UsersSubscriber());

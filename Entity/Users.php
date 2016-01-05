@@ -81,10 +81,23 @@ class Users extends UsersBase
     /**
      * Get groups
      *
-     * @return \ArtesanIO\ArtesanusBundle\Entity\Groups 
+     * @return \ArtesanIO\ArtesanusBundle\Entity\Groups
      */
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    public function getRoles()
+    {
+
+        $roles = [];
+
+        foreach($this->getGroups()->getRoles() as $role)
+        {
+            $roles[$role->getRoles()->getRoleKey()] = $role->getRoles()->getRoleKey();
+        }
+
+        return $roles;
     }
 }
