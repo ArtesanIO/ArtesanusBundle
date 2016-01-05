@@ -3,12 +3,12 @@
 
 {% block artesanus_section_title %}
 
-    {{ 'artesanus.titles.storage'|trans({}, 'artesanus') }}
+    {{ 'artesanus.titles.storage'|trans({}, 'ArtesanusBundle') }}
 
 {% endblock %}
 
 {% block artesanus_seccion_navbar %}
-<div class="btn-group btn-group-sm">
+<div class="btn-group">
     <a href="{{ path('artesanus_console_storage') }}" type="button" class="btn btn-default">
         Storage
     </a>

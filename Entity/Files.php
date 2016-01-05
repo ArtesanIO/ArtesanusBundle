@@ -5,7 +5,6 @@ namespace ArtesanIO\ArtesanusBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Files
@@ -22,7 +21,6 @@ class Files
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"categories"})
      */
     private $id;
 
@@ -30,7 +28,6 @@ class Files
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
-     * @Groups({"categories"})
      */
     private $name;
 

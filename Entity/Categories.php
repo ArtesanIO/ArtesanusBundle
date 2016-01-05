@@ -3,7 +3,6 @@
 namespace ArtesanIO\ArtesanusBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Categories
@@ -19,7 +18,6 @@ class Categories
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"categories"})
      */
     private $id;
 
@@ -27,7 +25,6 @@ class Categories
      * @var string
      *
      * @ORM\Column(name="category", type="string", length=255)
-     * @Groups({"categories"})
      */
     private $category;
 
@@ -35,7 +32,6 @@ class Categories
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255)
-     * @Groups({"categories"})
      */
     private $slug;
 
@@ -43,7 +39,6 @@ class Categories
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Groups({"categories"})
      */
     private $description;
 
@@ -166,7 +161,7 @@ class Categories
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
