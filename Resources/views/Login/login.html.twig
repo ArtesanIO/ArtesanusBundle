@@ -1,25 +1,27 @@
+{% extends 'ArtesanusBundle::security.html.twig' %}
+
+{% trans_default_domain 'ArtesanusBundle' %}
+
+{% block artesanus_security %}
 {% if error %}
     <div>{{ error.message }}</div>
 {% endif %}
 
-
 <form action="{{ path('login_check') }}" method="post">
 
-    <input type="hidden" name="_csrf_token"
-        value="{{ csrf_token('authenticate') }}"
-    >
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    <div class="form-group">
+      <label for="username">{{ 'artesanus.security.username'|trans }}</label>
+      <input type="text" class="form-control" id="" name="_username" value="{{ last_username }}" required=""/>
+    </div>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
-
-    {#
-        añade lo siguiente si quieres redirigir al usuario a una
-        URL concreta después del login (explicado más adelante)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
-
-    <button type="submit">login</button>
+    <div class="form-group">
+      <label for="">{{ 'artesanus.security.password'|trans }}</label>
+      <input type="password" class="form-control" id="" name="_password"  required=""/>
+    </div>
+    {{ btn.submmit() }}
 </form>
+
+
+{% endblock %}

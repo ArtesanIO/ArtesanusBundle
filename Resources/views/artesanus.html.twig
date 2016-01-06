@@ -10,19 +10,9 @@
         {% block artesanus_css %}{% endblock %}
     </head>
     <body>
+        
+        {% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}
         {% block artesanus %}{% endblock %}
-
-        <div id="wrap-artesanus-body">
-
-            {{ flashers() }}
-
-            {% block artesanus_section_body %}
-                <div id="wrap-artesanus-security">
-                    {{ block('fos_user_content')}}
-                </div>
-            {% endblock %}
-        </div>
-
         {% include 'ArtesanusBundle::includes/footer-navbar.html.twig' %}
 
         <script src="{{ asset('bower/jquery/dist/jquery.min.js') }}" charset="utf-8"></script>

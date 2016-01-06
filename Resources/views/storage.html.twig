@@ -1,5 +1,4 @@
-{% extends 'ArtesanusBundle::admin.html.twig' %}
-
+{% extends 'ArtesanusBundle::console.html.twig' %}
 
 {% block artesanus_section_title %}
 
@@ -8,12 +7,14 @@
 {% endblock %}
 
 {% block artesanus_seccion_navbar %}
-<div class="btn-group">
-    <a href="{{ path('artesanus_console_storage') }}" type="button" class="btn btn-default">
-        Storage
-    </a>
-    <a href="{{ path('artesanus_console_storage_categories') }}" type="button" class="btn btn-default">
-        Categories
-    </a>
-</div>
+
+    <div class="btn-group">
+        <a href="{{ path('artesanus_console_storage') }}" type="button" class="btn btn-default">
+            Storage
+        </a>
+        <a href="{{ path('artesanus_console_storage_categories') }}" type="button" class="btn btn-default">
+            Categories
+        </a>
+    </div>
+    
 {% endblock %}

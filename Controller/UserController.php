@@ -71,7 +71,7 @@ class UserController extends Controller
         if($userForm->isValid()){
 
             $usersManager->save($user);
-            $this->get('artesanus.flashers')->add('info','Usuario actualizado');
+            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.updated', array(), 'ArtesanusBundle'));
             return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getId())));
         }
 

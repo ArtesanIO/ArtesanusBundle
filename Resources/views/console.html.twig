@@ -1,8 +1,6 @@
-{% extends 'ArtesanusBundle::layout.html.twig' %}
+{% extends 'ArtesanusBundle::artesanus.html.twig' %}
 
 {% block artesanus %}
-
-{% block artesanus_navbar %}
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -36,17 +34,21 @@
 </nav>
 
 
-{% endblock %}
-
     <div id="content-wrap">
+        {{ flashers() }}
         <div class="page-header">
             <h3>{% block artesanus_section_title %}{% endblock %} <small>{% block artesanus_section_subtitle %}{% endblock %}</small></h3>
-            <hr>
-            <div class="btn-group">
-                {% block artesanus_seccion_navbar %}{% endblock %}
-                {% include 'ArtesanusBundle::includes/acl-navbar.html.twig' %}
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="btn-group">
+                    {% block artesanus_seccion_navbar %}{% endblock %}
+                    {% include 'ArtesanusBundle::includes/acl-navbar.html.twig' %}
+                </div>
             </div>
         </div>
+        {% block artesanus_section_body %}{% endblock %}
     </div>
+
 
 {% endblock %}

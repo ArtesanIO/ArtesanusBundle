@@ -13,7 +13,7 @@ artesanus:
         storage.files: Files
         storage.categories: Categories
     buttons:
-        save: Save
+        submmit: Submmit
 
     form:
         empty_value: '--Choose--'
@@ -22,3 +22,7 @@ artesanus:
         created: 'Created'
         updated: 'Updated'
         delete: 'Delete'
+
+    security:
+        username: Username
+        password: Password

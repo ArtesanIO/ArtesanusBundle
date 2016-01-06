@@ -1,3 +1,5 @@
+{% trans_default_domain 'ArtesanusBundle' %}
+
 {%- macro button(text, type, class, icon = null, htmlAttributes = null, name = null) -%}
     <button type="{{ type|default('button') }}" name="{{ name }}" class="btn btn-{{ class|default('default') }}" {{ htmlAttributes }}>
         {% if icon %}<i class="glyphicon glyphicon-{{ icon }}"></i> {% endif %} {{ text }}
@@ -5,7 +7,7 @@
 
 {%- endmacro -%}
 
-{%- macro submit(text = 'Guardar', type="submit", class = "primary", icon = "floppy-disk") -%}
+{%- macro submmit(text = 'Submmit', type="submit", class = "primary", icon = "send") -%}
     {% import _self as btns %}
     {{ btns.button(text, type, class, icon) }}
 {%- endmacro -%}
