@@ -14,13 +14,18 @@ class UserController extends Controller
         $usersManager = $this->get('artesanus.users_manager');
         $user = $usersManager->create();
 
-        $user->setUsername('cristian');
-        $user->setEmail('cristian@cristian.com');
+        $user->setUsername('admin');
+        $user->setEmail('admin@cristian.com');
 
         $encoder = $this->get('artesanus.encoder');
 
-        $user->setPassword($encoder->encoder($user, 'cristian'));
+        $user->setPassword($encoder->encoder($user, 'admin'));
 
+        $groupsManager = $this->get('artesanus.groups_manager');
+
+        $groups = $groupsManager->getRepository()->findOneBy(array('name' => 'Admin'));
+
+        $user->setGroups($groups);
         $usersManager->save($user);
 
         return new Response('Creado');

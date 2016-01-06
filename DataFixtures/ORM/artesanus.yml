@@ -1,29 +1,18 @@
-ArtesanIO\ArtesanusBundle\Entity\Users:
-    admin:
-        username: admin
-        name: Admin
-        email: admin@admin.com
-        password: admin
-        enabled: 1
-        roles: [ROLE_ADMIN]
+ArtesanIO\ArtesanusBundle\Entity\Roles:
+    admin_role:
+        role: Admin
+        roleKey: ROLE_ADMIN
+    user_role:
+        role: User
+        roleKey: ROLE_USER
 
-    user:
-        username: user
+ArtesanIO\ArtesanusBundle\Entity\Groups:
+    admin_group:
+        name: Admin
+    user_group:
         name: User
-        email: user@user.com
-        password: user
-        enabled: 1
-        roles: [ROLE_REGISTERED]
-    # user1:
-    #     username: admin
-    #     name: Admin
-    #     email: admin@admin.com
-    #     password: admin
-    #     enabled: 1
-    #
-    # user{2..3}:
-    #     username: <characterName()>
-    #     name: <name()>
-    #     email: <email()>
-    #     password: user
-    #     enabled: 1
+
+ArtesanIO\ArtesanusBundle\Entity\GroupsRoles:
+    admin_groups_roles:
+        groups: @admin_group
+        roles: @admin_role
