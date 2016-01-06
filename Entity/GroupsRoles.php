@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * GroupsRoles
  *
- * @ORM\Table()
+ * @ORM\Table(name="artesanus_groups_roles")
  * @ORM\Entity(repositoryClass="ArtesanIO\ArtesanusBundle\Entity\GroupsRolesRepository")
  */
 class GroupsRoles
