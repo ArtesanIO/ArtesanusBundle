@@ -28,11 +28,6 @@ abstract class UsersBase implements UserInterface, \Serializable
      */
     protected $isActive;
 
-    /**
-     * @ORM\Column(name="last_login", type="datetime")
-     */
-    protected $lastLogin;
-
     public function __construct()
     {
         $this->isActive = true;
@@ -60,16 +55,6 @@ abstract class UsersBase implements UserInterface, \Serializable
     public function getRoles()
     {
         return array('ROLE_ADMIN');
-    }
-
-    public function setLastLogin($lastLogin)
-    {
-        $this->lastLogin = $lastLogin;
-    }
-
-    public function getLastLogin()
-    {
-        return $this->lastLogin;
     }
 
     public function eraseCredentials()
