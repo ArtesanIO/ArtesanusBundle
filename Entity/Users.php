@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ArtesanIO\ArtesanusBundle\Model\UsersBase;
 
 /**
- * @ORM\Table(name="artesanus_users")
+ * @ORM\Table(name="artesanus_user")
  * @ORM\Entity(repositoryClass="ArtesanIO\ArtesanusBundle\Entity\UsersRepository")
  */
 class Users extends UsersBase
