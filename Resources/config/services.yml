@@ -2,8 +2,8 @@ services:
 
     artesanus.users_provider:
         class: ArtesanIO\ArtesanusBundle\Utils\UsersProvider
-        calls:
-            - [setContainer, ['@service_container']]
+        arguments:
+            - @artesanus.users_manager
 
     artesanus.encoder:
         class:  ArtesanIO\ArtesanusBundle\Utils\Encoder

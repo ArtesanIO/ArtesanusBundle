@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
-class LoginController extends Controller
+class SecurityController extends Controller
 {
     public function loginAction(Request $request)
     {
@@ -23,7 +23,7 @@ class LoginController extends Controller
         }
 
         return $this->render(
-            'ArtesanusBundle:Login:login.html.twig',
+            'ArtesanusBundle:Security:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $session->get(SecurityContext::LAST_USERNAME),

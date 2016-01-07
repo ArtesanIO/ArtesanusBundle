@@ -11,29 +11,23 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 class UsersProvider implements UserProviderInterface
 {
 
-    private $container;
+    private $usersManager;
 
-    public function setContainer($container)
+    public function __construct($usersManager)
     {
-        $this->container = $container;
-    }
-
-    public function getContainer()
-    {
-        return $this->container;
+        $this->usersManager = $usersManager;
     }
 
     public function loadUserByUsername($user)
     {
-        try{
-            $userManager = $this->container->get('artesanus.users_manager');
 
-            return $userManager->getRepository()->findUsernameOrEmail($user);
+        $user = $this->usersManager->getRepository()->findUsernameOrEmail($user);
 
-        }catch (NoResultException $e){
-            throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
+        if(!$user){
+            throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $user));
         }
 
+        return $user;
     }
 
     public function refreshUser(UserInterface $user)

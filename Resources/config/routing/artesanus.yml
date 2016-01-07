@@ -2,16 +2,16 @@ artesanus_console:
     resource: "@ArtesanusBundle/Resources/config/routing/console.yml"
     prefix: /console
 
-artesanus_login:
+artesanus_security_login:
     path:     /login
-    defaults: { _controller: ArtesanusBundle:Login:login }
+    defaults: { _controller: ArtesanusBundle:Security:login }
 
-login_check:
+artesanus_security_login_check:
     pattern:   /login_check
 
-artesanus_logout:
+artesanus_security_logout:
     path:   /logout
 
-artesanus_register:
+artesanus_security_register:
     path:     /register
     defaults: { _controller: ArtesanusBundle:User:register }
