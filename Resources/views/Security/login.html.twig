@@ -1,27 +1,21 @@
 {% extends 'ArtesanusBundle::security.html.twig' %}
 
-{% trans_default_domain 'ArtesanusBundle' %}
-
 {% block artesanus_security %}
 {% if error %}
     <div>{{ error.message }}</div>
 {% endif %}
-
-<form action="{{ path('artesanus_security_login_check') }}" method="post">
-
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-    <div class="form-group">
-      <label for="username">{{ 'artesanus.security.username'|trans }}</label>
-      <input type="text" class="form-control" id="" name="_username" value="{{ last_username }}" required=""/>
-    </div>
-
-    <div class="form-group">
-      <label for="">{{ 'artesanus.security.password'|trans }}</label>
-      <input type="password" class="form-control" id="" name="_password"  required=""/>
-    </div>
-    {{ btn.submmit() }}
-</form>
-
-
+    {% embed "ArtesanusBundle::Components/form.html.twig" with { action: 'artesanus_security_login_check'}%}
+        {% block form %}
+            {% trans_default_domain 'ArtesanusBundle' %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="form-group">
+              <label for="username">{{ 'artesanus.security.username'|trans }}</label>
+              <input type="text" class="form-control" id="" name="_username" value="{{ last_username }}" required=""/>
+            </div>
+            <div class="form-group">
+              <label for="">{{ 'artesanus.security.password'|trans }}</label>
+              <input type="password" class="form-control" id="" name="_password"  required=""/>
+            </div>
+        {% endblock %}
+    {% endembed %}
 {% endblock %}
