@@ -30,8 +30,6 @@ class GroupController extends Controller
 
             $groupsManager->save($group);
 
-            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.created', array(), 'ArtesanusBundle'));
-
             return $this->redirect($this->generateUrl('artesanus_console_acl_group', array('id' => $group->getId())));
         }
 
@@ -55,9 +53,6 @@ class GroupController extends Controller
             $groupsManager->rolesUpdate($group, $rolesOriginals);
 
             $groupsManager->save($group);
-
-            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.updated', array(), 'ArtesanusBundle'));
-
             return $this->redirect($this->generateUrl('artesanus_console_acl_group', array('id' => $group->getId())));
 
         }
@@ -68,16 +63,14 @@ class GroupController extends Controller
         ));
     }
 
-    public function gruposAction()
+    public function deleteAction($id)
     {
+        $groupsManager = $this->get('artesanus.groups_manager');
 
-        $filesManager = $this->get('artesanus.files_manager');
+        $group = $groupsManager->getRepository()->findOneBy(array('id' => $id));
 
-        $file = $filesManager->create();
+        $groupsManager->delete($group);
 
-        $filesManager->save($file);
-
-        return $this->render('ArtesanusBundle:ACL:grupos.html.twig');
-
+        return $this->redirect($this->generateUrl('artesanus_console_acl_groups'));
     }
 }

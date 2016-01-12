@@ -26,6 +26,10 @@ artesanus_console_acl_groups_new:
     path:     /groups/new
     defaults: { _controller: ArtesanusBundle:Group:new }
 
+artesanus_console_acl_groups_delete:
+    path:     /groups/delete/{id}
+    defaults: { _controller: ArtesanusBundle:Group:delete }
+
 artesanus_console_acl_group:
     path:     /group/{id}
     defaults: { _controller: ArtesanusBundle:Group:group }
@@ -39,7 +43,7 @@ artesanus_console_acl_roles_new:
     defaults: { _controller: ArtesanusBundle:Roles:new }
 
 artesanus_console_acl_roles_delete:
-    path:     /roles/delete
+    path:     /roles/delete/{id}
     defaults: { _controller: ArtesanusBundle:Roles:delete }
 
 artesanus_console_acl_role:

@@ -20,7 +20,8 @@ class FilesType extends AbstractType
                 'class' => 'ArtesanusBundle:Categories',
                 'property' => 'category',
                 'expanded' => false,
-                'empty_value' => '--Seleccione una Categoría--',
+                'empty_value' => 'artesanus.form.empty_value',
+                'translation_domain' => 'ArtesanusBundle',
             ))
             ->add('file')
         ;

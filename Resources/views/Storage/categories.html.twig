@@ -30,7 +30,7 @@
                                 <a href="{{ path('artesanus_console_storage_category', {id: category.id }) }}" class="btn btn-default">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>
-                                <a {% if category.files|length !='' %} class="btn btn-default disabled" {% else %} href="{{ path('artesanus_console_storage_categories_remove', {id: category.id }) }}" class="btn btn-default" {% endif %} >
+                                <a {% if category.files|length !='' %} class="btn btn-default disabled" {% else %} href="{{ path('artesanus_console_storage_categories_delete', {id: category.id }) }}" class="btn btn-default" {% endif %} >
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </a>
                             </div>

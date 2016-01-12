@@ -26,8 +26,6 @@ class GroupsType extends AbstractType
                 'allow_delete' => true,
             ))
         ;
-
-        //$builder->addEventSubscriber(new GroupSubscriber());
     }
 
     /**

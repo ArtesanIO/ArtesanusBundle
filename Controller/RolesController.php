@@ -48,14 +48,25 @@ class RolesController extends Controller
 
         if($rolesForm->isValid()){
 
-            $this->get('artesanus.roles_manager')->update();
+            $this->get('artesanus.roles_manager')->save($role);
 
-            return $this->redirect($this->generateUrl('role', array('id' => $role->getId())));
+            return $this->redirect($this->generateUrl('artesanus_console_acl_role', array('id' => $role->getId())));
         }
 
         return $this->render('ArtesanusBundle:ACL:role.html.twig', array(
             'role' => $role,
             'roles_form' => $rolesForm->createView(),
         ));
+    }
+
+    public function deleteAction($id)
+    {
+        $rolesManager = $this->get('artesanus.roles_manager');
+
+        $role = $rolesManager->getRepository()->findOneBy(array('id' => $id));
+
+        $rolesManager->delete($role);
+
+        return $this->redirect($this->generateUrl('artesanus_console_acl_roles'));
     }
 }

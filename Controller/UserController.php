@@ -51,12 +51,8 @@ class UserController extends Controller
         $userForm = $this->createForm('artesanus_users_type', $user)->handleRequest($request);
 
         if ($userForm->isValid()) {
-
             $user->setPassword($this->get('artesanus.encoder')->encoder($user, $user->getPassword()));
             $usersManager->save($user);
-
-            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.created', array(), 'ArtesanusBundle'));
-
             return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getId())));
         }
 
@@ -76,7 +72,6 @@ class UserController extends Controller
         if($userForm->isValid()){
 
             $usersManager->save($user);
-            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.updated', array(), 'ArtesanusBundle'));
             return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getId())));
         }
 
@@ -86,9 +81,6 @@ class UserController extends Controller
 
             $user->setPassword($this->get('artesanus.encoder')->encoder($user, $user->getPassword()));
             $usersManager->save($user);
-
-            $this->get('artesanus.flashers')->add('info',$this->get('translator')->trans('artesanus.msn_flash.updated', array(), 'ArtesanusBundle'));
-
             return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getId())));
         }
 
@@ -100,13 +92,12 @@ class UserController extends Controller
 
     public function deleteAction($id)
     {
-        $userManager = $this->get('fos_user.user_manager');
+        $usersManager = $this->get('artesanus.users_manager');
 
-        $user = $userManager->findUserBy(array('id' => $id));
+        $user = $usersManager->getRepository()->findOneBy(array('id' => $id));
 
-        $userManager->deleteUser($user);
+        $usersManager->delete($user);
 
-        $this->get('artesanus.flashers')->add('warning','Usuario eliminado');
         return $this->redirect($this->generateUrl('artesanus_console_acl_users'));
     }
 }

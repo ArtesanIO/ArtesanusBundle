@@ -16,9 +16,9 @@
                             <a href="{{ path('artesanus_console_acl_group', {id: group.id }) }}" class="btn btn-default">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </a>
-                            <button type="button" class="btn btn-default">
+                            <a href="{{ path('artesanus_console_acl_groups_delete', {id: group.id }) }}" type="button" class="btn btn-default btn-delete">
                                 <span class="glyphicon glyphicon-trash"></span>
-                            </button>
+                            </a>
                         </div>
                     </td>
                 </tr>

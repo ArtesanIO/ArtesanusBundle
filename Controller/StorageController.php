@@ -21,7 +21,6 @@ class StorageController extends Controller
 
         if($fileForm->isValid()){
             $filesManager->save($file);
-            $this->get('artesanus.flashers')->add('info','Archivo guardado');
             return $this->redirect($this->generateUrl('artesanus_console_storage'));
         }
 
@@ -36,11 +35,9 @@ class StorageController extends Controller
 
         $filesManager = $this->get('artesanus.files_manager');
 
-        $files = $filesManager->findOneBy(array('id' => $id));
+        $files = $filesManager->getRepository()->findOneBy(array('id' => $id));
 
         $filesManager->delete($files);
-
-        $this->get('artesanus.flashers')->add('danger','Archivo removido');
 
         return $this->redirect($this->generateUrl('artesanus_console_storage'));
 
@@ -64,7 +61,6 @@ class StorageController extends Controller
             $category->setSlug($slug);
 
             $categoriesManager->save($category);
-            $this->get('artesanus.flashers')->add('info','Categoría creada');
             return $this->redirect($this->generateUrl('artesanus_console_storage_categories'));
         }
 
@@ -85,7 +81,6 @@ class StorageController extends Controller
 
         if($categoryForm->isValid()){
             $categoriesManager->save($category);
-            $this->get('artesanus.flashers')->add('info','Categoría creada');
             return $this->redirect($this->generateUrl('artesanus_console_storage_category', array('id' => $category->getId())));
         }
 
@@ -94,19 +89,15 @@ class StorageController extends Controller
         ));
     }
 
-    public function categoriesRemoveAction($id, Request $request)
+    public function deleteAction($id, Request $request)
     {
-
         $categoriesManager = $this->get('artesanus.categories_manager');
 
-        $category = $categoriesManager->findOneBy(array('id' => $id));
+        $category = $categoriesManager->getRepository()->findOneBy(array('id' => $id));
 
         $categoriesManager->delete($category);
 
-        $this->get('artesanus.flashers')->add('danger','Categoría removida');
-
         return $this->redirect($this->generateUrl('artesanus_console_storage_categories'));
-
     }
 
 }

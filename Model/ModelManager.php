@@ -18,7 +18,6 @@ use Doctrine\ORM\EntityManager;
 
 abstract class ModelManager implements ModelManagerInterface
 {
-
     protected $em;
     protected $class;
     protected $repository;
@@ -92,6 +91,7 @@ abstract class ModelManager implements ModelManagerInterface
         $this->em->persist($model);
         if ($flush) {
             $this->em->flush();
+            $this->container->get("session")->getFlashBag()->add('info', $this->getFlashSave());
         }
     }
     /**
@@ -114,6 +114,8 @@ abstract class ModelManager implements ModelManagerInterface
         $this->em->remove($model);
         if ($flush) {
             $this->em->flush();
+
+            $this->container->get("session")->getFlashBag()->add('danger', $this->getFlashRemove());
         }
     }
     /**
@@ -127,11 +129,24 @@ abstract class ModelManager implements ModelManagerInterface
      *
      * @return string
      */
-    public function getClass() {
+    public function getClass()
+    {
         return $this->class;
     }
 
-    public function isDebug() {
+    public function isDebug()
+    {
         return $this->container->get('kernel')->isDebug();
     }
+
+    public function getFlashSave()
+    {
+        return $this->container->get('translator')->trans('artesanus.msn_flash.saved', array(), 'ArtesanusBundle');
+    }
+
+    public function getFlashRemove()
+    {
+        return $this->container->get('translator')->trans('artesanus.msn_flash.removed', array(), 'ArtesanusBundle');
+    }
+
 }

@@ -19,9 +19,8 @@ artesanus:
         empty_value: '--Choose--'
 
     msn_flash:
-        created: 'Created'
-        updated: 'Updated'
-        delete: 'Delete'
+        saved: 'Saved'
+        removed: 'Removed'
 
     security:
         username: Username

@@ -11,9 +11,15 @@
                 <td>{{ role.role }}</td>
                 <td>{{ role.roleKey }}</td>
                 <td class="text-right">
-                    <a class="btn btn-default" href="{{ path('artesanus_console_acl_role', { id: role.id }) }}">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </a>
+                    <div class="btn-group">
+                        <a class="btn btn-default" href="{{ path('artesanus_console_acl_role', { id: role.id }) }}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a href="{{ path('artesanus_console_acl_roles_delete', {id: role.id }) }}" type="button" class="btn btn-default btn-delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </div>
+
                 </td>
             </tr>
             {% endfor %}

@@ -18,6 +18,6 @@ artesanus_console_storage_category:
     path:     /storage/category/{id}
     defaults: { _controller: ArtesanusBundle:Storage:category }
 
-artesanus_console_storage_categories_remove:
-    path:     /storage/categories/{id}/remove
-    defaults: { _controller: ArtesanusBundle:Storage:categoriesRemove }
+artesanus_console_storage_categories_delete:
+    path:     /storage/categories/{id}/delete
+    defaults: { _controller: ArtesanusBundle:Storage:delete }
