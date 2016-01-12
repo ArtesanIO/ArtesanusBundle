@@ -1,7 +1,6 @@
-
 {% import "ArtesanusBundle::Components/buttons.html.twig" as btn %}
 
-<form class="{{ class|default('') }}" action="{% if action is defined %} {{ path(action) }} {% endif %} " method="{{ method|default('post') }}">
+<form class="{{ class|default('form') }}" action="{% if action is defined %} {{ path(action) }} {% endif %} " method="{{ method|default('post') }}" {% if novalidate is defined %} novalidate {% endif %}>
     {% block form %}{% endblock %}
-    {{ btn.submmit() }}
+    {{ btn.submit() }}
 </form>

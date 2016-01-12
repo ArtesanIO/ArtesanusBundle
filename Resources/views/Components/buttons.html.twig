@@ -7,7 +7,7 @@
 
 {%- endmacro -%}
 
-{%- macro submmit(text = 'Submmit', type="submit", class = "primary", icon = "send") -%}
+{%- macro submit(text = 'Submmit', type="submit", class = "primary", icon = "send") -%}
     {% import _self as btns %}
     {{ btns.button(text, type, class, icon) }}
 {%- endmacro -%}
