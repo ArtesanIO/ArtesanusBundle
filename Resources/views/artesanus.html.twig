@@ -10,15 +10,13 @@
         {% block artesanus_css %}{% endblock %}
     </head>
     <body>
-        
+
         {% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}
         {% block artesanus %}{% endblock %}
         {% include 'ArtesanusBundle::includes/footer-navbar.html.twig' %}
 
         <script src="{{ asset('bower/jquery/dist/jquery.min.js') }}" charset="utf-8"></script>
         <script src="{{ asset('bower/bootstrap/dist/js/bootstrap.min.js') }}" charset="utf-8"></script>
-        <script src="{{ asset('bower/alertifyjs/dist/js/alertify.js') }}" charset="utf-8"></script>
-        <script src="//cdn.ckeditor.com/4.5.4/basic/ckeditor.js"></script>
         <script src="{{ asset('bundles/artesanus/js/app.js') }}" charset="utf-8"></script>
 
         {% block artesanus_js %}{% endblock %}

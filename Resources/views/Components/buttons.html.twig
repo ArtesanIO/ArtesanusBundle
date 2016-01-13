@@ -34,7 +34,5 @@
 {%- macro modal(text = 'Modal', htmlAttributes = null, class = 'default', icon = null) -%}
     {% import _self as btns %}
 
-    {{ dump(htmlAttributes) }}
-
     {{ btns.button(text, null, class, icon ) }}
 {%- endmacro -%}
