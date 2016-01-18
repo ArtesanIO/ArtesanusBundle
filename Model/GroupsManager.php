@@ -21,7 +21,7 @@ class GroupsManager extends ModelManager
     {
         foreach($original as $i){
             if(false === $model->getRoles()->contains($i)){
-                $this->em->remove($i);
+                $this->em()->remove($i);
             }
         }
     }

@@ -15,6 +15,7 @@ class UsersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
             $builder
+                ->add('active')
                 ->add('groups','entity', array(
                     'class' => 'ArtesanusBundle:Groups',
                     'property' => 'name',

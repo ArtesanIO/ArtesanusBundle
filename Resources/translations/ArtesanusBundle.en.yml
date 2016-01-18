@@ -19,7 +19,7 @@ artesanus:
         empty_value: '--Choose--'
 
     msn_flash:
-        created: 'Created'
+        saved: 'Saved'
         updated: 'Updated'
         removed: 'Removed'
 

@@ -63,8 +63,11 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
      * @return BaseModel
      */
     public function create() {
-        $class = $this->getClass();
-        return new $class;
+
+        $class = $this->em()->getClassMetadata($this->class);
+
+        return new $class->name;
+
     }
     /**
      * Persist the model
@@ -73,24 +76,15 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
      * @param boolean $flush
      * @return BaseModel
      */
-    public function save($model, $flush = true)
+    public function save($model, $flush = true, $saveOrUpdate = false)
     {
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_save.event', new ModelEvent($model, $this->container));
+        $saveOrUpdate = ($saveOrUpdate) ? 'update': 'save';
 
-        $this->persist($model, $flush, array('style' => 'warning', 'msn' =>$this->getFlashCreate()));
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_'.$saveOrUpdate.'.event', new ModelEvent($model, $this->container));
 
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_save.event', new ModelEvent($model, $this->container));
+        $this->persist($model, $flush);
 
-        return $model;
-    }
-
-    public function update($model, $flush = true)
-    {
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_update.event', new ModelEvent($model, $this->container));
-
-        $this->persist($model, $flush, array('style' => 'info', 'msn' =>$this->getFlashUpdate()));
-
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_update.event', new ModelEvent($model, $this->container));
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_'.$saveOrUpdate.'.event', new ModelEvent($model, $this->container));
 
         return $model;
     }
@@ -102,10 +96,7 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         $this->em()->persist($model);
         if ($flush) {
             $this->em()->flush();
-
-            if($flash){
-                $this->container->get("session")->getFlashBag()->add($flash['style'], $flash['msn']);
-            }
+            $this->container->get("session")->getFlashBag()->add('info', $this->getFlashSave());
         }
     }
     /**
@@ -137,29 +128,15 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
     public function reload($model) {
         $this->em->refresh($model);
     }
-    /**
-     * Returns the user's fully qualified class name.
-     *
-     * @return string
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
 
     public function isDebug()
     {
         return $this->get('kernel')->isDebug();
     }
 
-    public function getFlashCreate()
+    public function getFlashSave()
     {
-        return $this->container->get('translator')->trans('artesanus.msn_flash.created', array(), 'ArtesanusBundle');
-    }
-
-    public function getFlashUpdate()
-    {
-        return $this->container->get('translator')->trans('artesanus.msn_flash.update', array(), 'ArtesanusBundle');
+        return $this->container->get('translator')->trans('artesanus.msn_flash.saved', array(), 'ArtesanusBundle');
     }
 
     public function getFlashRemove()
