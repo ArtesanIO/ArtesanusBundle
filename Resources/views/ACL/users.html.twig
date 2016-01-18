@@ -3,6 +3,11 @@
 {% block artesanus_section_subtitle %}{{ 'artesanus.subtitles.acl.users'|trans({}, 'ArtesanusBundle') }}{% endblock %}
 
 {% block artesanus_section_body %}
+
+    {% embed "ArtesanusBundle::Components/col-panel.html.twig" %}
+
+    {% endembed %}
+
     {% embed "ArtesanusBundle::Components/table.html.twig" with { 'rows': ['#','Users','',''] }%}
         {% block tbody %}
             {% for user in users %}

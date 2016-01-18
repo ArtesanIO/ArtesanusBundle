@@ -1,3 +1,5 @@
-<div class="col-{{ type|default('lg') }}-{{ large|default('12') }}">
-    {% block col %}{% endblock %}
+{% set _col = block('col') %}
+
+<div class="{{ class|default('col-lg-12') }}">
+    {% if _col is not empty %}{% block col %}{% endblock %}{% endif %}
 </div>
