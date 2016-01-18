@@ -1,5 +1,8 @@
 services:
 
+    artesanus.algo:
+        class: ArtesanIO\ArtesanusBundle\Utils\Algo
+
     artesanus.users_provider:
         class: ArtesanIO\ArtesanusBundle\Utils\UsersProvider
         arguments:

@@ -15,13 +15,11 @@ use ArtesanIO\ArtesanusBundle\ArtesanusEvents;
 use ArtesanIO\ArtesanusBundle\Event\ModelEvent;
 use ArtesanIO\ArtesanusBundle\Model\ModelManagerInterface;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-abstract class ModelManager implements ModelManagerInterface
+abstract class ModelManager extends ContainerAware implements ModelManagerInterface
 {
-    protected $em;
     protected $class;
-    protected $repository;
-    protected $container;
 
     /**
      * Constructor.
@@ -29,12 +27,14 @@ abstract class ModelManager implements ModelManagerInterface
      * @param EntityManager  $em
      * @param string   $class
      */
-    public function __construct(EntityManager $em, $class) {
+    public function __construct(EntityManager $em, $class)
+    {
+        $this->class = $class;
+    }
 
-        $this->em = $em;
-        $this->repository = $this->em->getRepository($class);
-        $metadata = $this->em->getClassMetadata($class);
-        $this->class = $metadata->name;
+    public function em()
+    {
+        return $this->get('doctrine.orm.entity_manager');
     }
 
     private function getEventPrefix()
@@ -46,18 +46,18 @@ abstract class ModelManager implements ModelManagerInterface
 
     public function getRepository()
     {
-        return $this->repository;
+        return $this->em()->getRepository($this->class);
     }
 
-    public function setContainer($container) {
-        $this->container = $container;
+    protected function get($id)
+    {
+        return $this->container->get($id);
     }
-    public function getContainer() {
-        return $this->container;
-    }
+
     public function getDispatcher() {
-        return $this->getContainer()->get('event_dispatcher');
+        return $this->get('event_dispatcher');
     }
+
     /**
      * Create model object
      *
@@ -74,24 +74,39 @@ abstract class ModelManager implements ModelManagerInterface
      * @param boolean $flush
      * @return BaseModel
      */
-    public function save($model, $flush= true)
+    public function save($model, $flush = true)
     {
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_save.event', new ModelEvent($model, $this->getContainer()));
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_save.event', new ModelEvent($model, $this->container));
 
-        $this->_save($model, $flush);
+        $this->persist($model, $flush, array('style' => 'warning', 'msn' =>$this->getFlashCreate()));
 
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_save.event', new ModelEvent($model, $this->getContainer()));
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_save.event', new ModelEvent($model, $this->container));
 
         return $model;
     }
+
+    public function update($model, $flush = true)
+    {
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_update.event', new ModelEvent($model, $this->container));
+
+        $this->persist($model, $flush, array('style' => 'info', 'msn' =>$this->getFlashUpdate()));
+
+        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_update.event', new ModelEvent($model, $this->container));
+
+        return $model;
+    }
+
     /**
      *	This is basic save function. Child model can overwrite this.
      */
-    protected function _save($model, $flush=true) {
-        $this->em->persist($model);
+    protected function persist($model, $flush = true, $flash = array()) {
+        $this->em()->persist($model);
         if ($flush) {
-            $this->em->flush();
-            $this->container->get("session")->getFlashBag()->add('info', $this->getFlashSave());
+            $this->em()->flush();
+
+            if($flash){
+                $this->container->get("session")->getFlashBag()->add($flash['style'], $flash['msn']);
+            }
         }
     }
     /**
@@ -103,18 +118,17 @@ abstract class ModelManager implements ModelManagerInterface
 
         $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_delete.event', new ModelEvent($model, $this->getContainer()));
 
-        $this->_delete($model, $flush);
+        $this->remove($model, $flush);
 
         $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_delete.event', new ModelEvent($model, $this->getContainer()));
     }
     /**
      * Remove model.
      */
-    public function _delete($model, $flush = true) {
-        $this->em->remove($model);
+    public function remove($model, $flush = true) {
+        $this->em()->remove($model);
         if ($flush) {
-            $this->em->flush();
-
+            $this->em()->flush();
             $this->container->get("session")->getFlashBag()->add('danger', $this->getFlashRemove());
         }
     }
@@ -136,12 +150,17 @@ abstract class ModelManager implements ModelManagerInterface
 
     public function isDebug()
     {
-        return $this->container->get('kernel')->isDebug();
+        return $this->get('kernel')->isDebug();
     }
 
-    public function getFlashSave()
+    public function getFlashCreate()
     {
-        return $this->container->get('translator')->trans('artesanus.msn_flash.saved', array(), 'ArtesanusBundle');
+        return $this->container->get('translator')->trans('artesanus.msn_flash.created', array(), 'ArtesanusBundle');
+    }
+
+    public function getFlashUpdate()
+    {
+        return $this->container->get('translator')->trans('artesanus.msn_flash.update', array(), 'ArtesanusBundle');
     }
 
     public function getFlashRemove()
