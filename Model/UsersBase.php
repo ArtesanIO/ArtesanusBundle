@@ -41,7 +41,6 @@ abstract class UsersBase implements UserInterface, \Serializable
 
     public function getSalt()
     {
-        return $this->salt;
     }
 
     public function getPassword()

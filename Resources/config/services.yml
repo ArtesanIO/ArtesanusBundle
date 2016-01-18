@@ -1,8 +1,5 @@
 services:
 
-    artesanus.algo:
-        class: ArtesanIO\ArtesanusBundle\Utils\Algo
-
     artesanus.users_provider:
         class: ArtesanIO\ArtesanusBundle\Utils\UsersProvider
         arguments:
@@ -73,11 +70,6 @@ services:
 
     artesanus.slugger:
         class: ArtesanIO\ArtesanusBundle\Utils\Slugger
-
-    files.listener:
-        class: ArtesanIO\ArtesanusBundle\EventListener\FilesListener
-        tags:
-          - { name: kernel.event_listener, event: files.model_before_save.event, method: onBeforeFiles, priority: 4096 }
 
     artesanus.data_fixtures:
         class: ArtesanIO\ArtesanusBundle\DataFixtures\ORM\ArtesanusLoader

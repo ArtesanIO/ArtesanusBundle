@@ -10,7 +10,6 @@ services:
     artesanus.groups_manager:
         class: ArtesanIO\ArtesanusBundle\Model\GroupsManager
         arguments:
-            - @doctrine.orm.entity_manager
             - ArtesanIO\ArtesanusBundle\Entity\Groups
         calls:
             - [setContainer, ['@service_container']]
@@ -18,7 +17,6 @@ services:
     artesanus.roles_manager:
         class: ArtesanIO\ArtesanusBundle\Model\RolesManager
         arguments:
-            - @doctrine.orm.entity_manager
             - ArtesanIO\ArtesanusBundle\Entity\Roles
         calls:
             - [setContainer, ['@service_container']]
@@ -26,7 +24,6 @@ services:
     artesanus.files_manager:
         class: ArtesanIO\ArtesanusBundle\Model\FilesManager
         arguments:
-            - @doctrine.orm.entity_manager
             - ArtesanIO\ArtesanusBundle\Entity\Files
         calls:
             - [setContainer, ['@service_container']]
@@ -34,7 +31,6 @@ services:
     artesanus.categories_manager:
         class: ArtesanIO\ArtesanusBundle\Model\CategoriesManager
         arguments:
-            - @doctrine.orm.entity_manager
             - ArtesanIO\ArtesanusBundle\Entity\Categories
         calls:
             - [setContainer, ['@service_container']]
