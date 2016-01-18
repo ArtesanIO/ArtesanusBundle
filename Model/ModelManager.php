@@ -11,7 +11,6 @@
 
 namespace ArtesanIO\ArtesanusBundle\Model;
 
-use ArtesanIO\ArtesanusBundle\ArtesanusEvents;
 use ArtesanIO\ArtesanusBundle\Event\ModelEvent;
 use ArtesanIO\ArtesanusBundle\Model\ModelManagerInterface;
 use Doctrine\ORM\EntityManager;
@@ -27,7 +26,7 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
      * @param EntityManager  $em
      * @param string   $class
      */
-    public function __construct(EntityManager $em, $class)
+    public function __construct($class)
     {
         $this->class = $class;
     }

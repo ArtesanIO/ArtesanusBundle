@@ -19,8 +19,9 @@ class Cartero
     {
         $this->mailer = $mailer;
         $this->contentType = 'text/html';
-        $this->subject = $container->getParameter('artesanus.cartero.subject');
-        $this->from = array($container->getParameter('artesanus.cartero.from.email') => $container->getParameter('artesanus.cartero.from.host'));
+        $this->container = $container;
+        $this->subject = $this->container->getParameter('artesanus.cartero.subject');
+        $this->from = array($this->container->getParameter('artesanus.cartero.from.email') => $this->container->getParameter('artesanus.cartero.from.host'));
     }
 
     public function msn($mail, $body, $subject = null)

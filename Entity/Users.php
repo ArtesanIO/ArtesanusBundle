@@ -100,4 +100,27 @@ class Users extends UsersBase
 
         return $roles;
     }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Users
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
 }

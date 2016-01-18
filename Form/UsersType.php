@@ -6,7 +6,6 @@ use ArtesanIO\ArtesanusBundle\Form\EventListener\UsersSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use ArtesanIO\ArtesanusBundle\Form\EventListener\UserSubscriber;
 
 class UsersType extends AbstractType
 {
@@ -27,8 +26,6 @@ class UsersType extends AbstractType
                 ->add('email')
                 ->add('username')
             ;
-
-            $builder->addEventSubscriber(new UsersSubscriber());
     }
 
     /**

@@ -3,8 +3,7 @@ services:
     artesanus.users_manager:
         class: ArtesanIO\ArtesanusBundle\Model\UsersManager
         arguments:
-            - @doctrine.orm.entity_manager
-            - ArtesanIO\ArtesanusBundle\Entity\Users
+            - ArtesanusBundle:Users
         calls:
             - [setContainer, ['@service_container']]
 

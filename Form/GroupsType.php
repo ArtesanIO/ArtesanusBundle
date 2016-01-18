@@ -5,8 +5,6 @@ namespace ArtesanIO\ArtesanusBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use ArtesanIO\ArtesanusBundle\Model\RolesManager;
-use ArtesanIO\ArtesanusBundle\Form\EventListener\GroupSubscriber;
 
 class GroupsType extends AbstractType
 {

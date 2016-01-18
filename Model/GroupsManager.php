@@ -3,12 +3,10 @@
 namespace ArtesanIO\ArtesanusBundle\Model;
 
 use Doctrine\ORM\EntityManager;
-use ArtesanIO\ArtesanusBundle\Model\ModelManager;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class GroupsManager extends ModelManager
 {
-
     public function rolesOriginals($model)
     {
         $collections = new ArrayCollection();

@@ -24,15 +24,14 @@ abstract class UsersBase implements UserInterface, \Serializable
     protected $email;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(name="active", type="boolean")
      */
-    protected $isActive;
+    protected $active;
 
     public function __construct()
     {
         $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
+        $this->salt = md5(uniqid(null, true));
     }
 
     public function getUsername()
@@ -42,9 +41,7 @@ abstract class UsersBase implements UserInterface, \Serializable
 
     public function getSalt()
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
-        return null;
+        return $this->salt;
     }
 
     public function getPassword()
@@ -145,25 +142,25 @@ abstract class UsersBase implements UserInterface, \Serializable
     }
 
     /**
-     * Set isActive
+     * Set active
      *
-     * @param boolean $isActive
-     * @return Users
+     * @param boolean $active
+     * @return boolean
      */
-    public function setIsActive($isActive)
+    public function setActive($active)
     {
-        $this->isActive = $isActive;
+        $this->active = $active;
 
         return $this;
     }
 
     /**
-     * Get isActive
+     * Get active
      *
      * @return boolean
      */
-    public function getIsActive()
+    public function getActive()
     {
-        return $this->isActive;
+        return $this->active;
     }
 }
