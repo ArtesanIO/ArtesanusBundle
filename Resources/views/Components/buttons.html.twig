@@ -1,6 +1,7 @@
 {% trans_default_domain 'ArtesanusBundle' %}
 
 {%- macro button(text, type, class, icon = null, htmlAttributes = null, name = null) -%}
+
     <button type="{{ type|default('button') }}" name="{{ name }}" class="btn btn-{{ class|default('default') }}" {{ htmlAttributes }}>
         {% if icon %}<i class="glyphicon glyphicon-{{ icon }}"></i> {% endif %} {{ text }}
     </button>
@@ -31,8 +32,8 @@
     </div>
 {%- endmacro -%}
 
-{%- macro modal(text = 'Modal', htmlAttributes = null, class = 'default', icon = null) -%}
+{%- macro modal(text, target, class = null, icon = null) -%}
     {% import _self as btns %}
 
-    {{ btns.button(text, null, class, icon ) }}
+    {{ btns.button(text, 'button', class, icon, ('data-toggle=modal data-target=#' ~ target)) }}
 {%- endmacro -%}

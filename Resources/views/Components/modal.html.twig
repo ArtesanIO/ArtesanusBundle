@@ -1,0 +1,24 @@
+
+{% set _title = block('title') %}
+{% set _body = block('body') %}
+
+<div class="modal fade {% if type is defined %} bs-example-modal-{{ type }} {% endif %}" id="{{ id|default('modal')}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog {% if type is defined %} modal-{{ type }} {% endif %}" role="document">
+        <div class="modal-content">
+            {% if _title is not empty %}
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    {{ _title|raw }}
+                </h4>
+            </div>
+            {% endif %}
+            <div class="modal-body">
+                {% if _body is not empty %}{{ _body|raw }}{% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+    </div>
+  </div>
+</div>
