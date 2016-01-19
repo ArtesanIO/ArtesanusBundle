@@ -1,19 +1,16 @@
 {% trans_default_domain 'ArtesanusBundle' %}
 
-{%- macro button(text, type, class, icon = null, htmlAttributes = null, name = null) -%}
-
-    <button type="{{ type|default('button') }}" name="{{ name }}" class="btn btn-{{ class|default('default') }}" {{ htmlAttributes }}>
+{%- macro button(text, type, class, icon = null, htmlAttributes = null, name = null, value = null) -%}
+    <button type="{{ type|default('button') }}" name="{{ name }}" class="btn btn-{{ class|default('default') }}" {{ htmlAttributes }} value="{{ value }}">
         {% if icon %}<i class="glyphicon glyphicon-{{ icon }}"></i> {% endif %} {{ text }}
     </button>
-
 {%- endmacro -%}
 
-{%- macro submit(text = 'Submit', name= null, class = "primary", icon = "send") -%}
+{%- macro submit(text = 'Submit', name= null, class = "primary", value = null, icon = "send") -%}
     {% import _self as btns %}
 
     {% set type="submit" %}
-
-    {{ btns.button(text, type, class, icon,'', name) }}
+    {{ btns.button(text, type, class, icon,'', name, value) }}
 {%- endmacro -%}
 
 {%- macro btn_delete() -%}

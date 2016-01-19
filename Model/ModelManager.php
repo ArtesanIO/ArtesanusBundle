@@ -15,6 +15,7 @@ use ArtesanIO\ArtesanusBundle\Event\ModelEvent;
 use ArtesanIO\ArtesanusBundle\Model\ModelManagerInterface;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 abstract class ModelManager extends ContainerAware implements ModelManagerInterface
 {
@@ -142,6 +143,32 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
     public function getFlashRemove()
     {
         return $this->container->get('translator')->trans('artesanus.msn_flash.removed', array(), 'ArtesanusBundle');
+    }
+
+    public function redirectTo($request, $parameters = null, $status = 302)
+    {
+        $submitAction = 'edit';
+
+        if($request->request->get('new')){
+            $submitAction = 'new';
+            $parameters = array();
+        }
+
+        if($request->request->get('close')){
+            $submitAction = 'close';
+            $parameters = array();
+        }
+
+        return new RedirectResponse($this->container->get('router')->generate($this->submitActionRoutes()[$submitAction], $parameters), $status);
+    }
+
+    public function submitActionRoutes()
+    {
+        return array(
+            'edit' => 'artesanus_console_acl_user',
+            'new' => 'artesanus_console_acl_users_new',
+            'close' => 'artesanus_console_acl_users'
+        );
     }
 
 }

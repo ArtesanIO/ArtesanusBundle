@@ -25,4 +25,6 @@ interface ModelManagerInterface
     public function reload($model);
 
     public function isDebug();
+
+    public function redirectTo($request, $parameters);
 }
