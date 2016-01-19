@@ -8,9 +8,12 @@
 
 {%- endmacro -%}
 
-{%- macro submit(text = 'Submmit', type="submit", class = "primary", icon = "send") -%}
+{%- macro submit(text = 'Submit', name= null, class = "primary", icon = "send") -%}
     {% import _self as btns %}
-    {{ btns.button(text, type, class, icon) }}
+
+    {% set type="submit" %}
+
+    {{ btns.button(text, type, class, icon,'', name) }}
 {%- endmacro -%}
 
 {%- macro btn_delete() -%}

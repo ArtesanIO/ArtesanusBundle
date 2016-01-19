@@ -51,6 +51,7 @@ class UserController extends Controller
         $userForm = $this->createForm('artesanus_users_type', $user)->handleRequest($request);
 
         if ($userForm->isValid()) {
+            echo "<pre>";print_r($request);exit();
             $user->setPassword($this->get('artesanus.encoder')->encoder($user, $user->getPassword()));
             $usersManager->save($user);
             return $this->redirect($this->generateUrl('artesanus_console_acl_user', array('id' => $user->getId())));

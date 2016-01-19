@@ -2,5 +2,13 @@
 
 <form class="{{ class|default('form') }}" action="{% if action is defined %} {{ path(action) }} {% endif %} " method="{{ method|default('post') }}" {% if novalidate is defined %}{% if novalidate == true %}novalidate{% endif %}{% endif %}>
     {% block form %}{% endblock %}
-    {{ btn.submit() }}
+    <div class="btn-group">
+        {% if form is defined %}
+            {{ btn.submit('Save | Edit','edit') }}
+            {{ btn.submit('Save | New', 'new', 'default') }}
+            {{ btn.submit('Save | Close','close','default') }}
+        {% else %}
+            {{ btn.submit() }}
+        {% endif %}
+    </div>
 </form>
