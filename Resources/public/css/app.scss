@@ -1,0 +1,136 @@
+$primary: #5F97FB;
+$second: #282931;
+$third: #505050;
+$font-white: #f1f1f1;
+$btn-default: #dedede;
+$btn-primary: $second;
+$white: #F3F4F7;
+
+
+.btn-default{
+    background: $btn-default;
+}
+
+.btn-primary{
+    background: $btn-primary;
+}
+
+$primary-font: Helvetica, sans-serif;
+
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    background: $white;
+    font: $primary-font;
+}
+
+.navbar-default{
+    background-color: none;
+    border: none;
+    background: #dedede;
+}
+
+.nav .navbar-nav ul li a{
+    color: #505050;
+    font-weight: bold!important;
+}
+
+.navbar-brand{
+    background: $primary;
+    color: #f1f1f1!important;
+    padding: 15px 50px;
+}
+
+.navbar-brand:hover{
+    background: $primary;
+    color: #f1f1f1!important;
+}
+
+#section-header{
+    width: 100%;
+    float: left;
+    top: 50px;
+    position: relative;
+    background: $second;
+    color: white;
+}
+
+.section-header{
+    display: inline-block;
+    padding: 10px 50px;
+    box-sizing: border-box;
+}
+
+.section-header-title,
+.section-header-menu,
+.section-header-plus{
+    float: left;
+}
+
+.menu-section{
+    padding: 10px 0px 0px 12px;
+}
+
+.section-header-menu .menu-section li {
+    display: inline-block;
+}
+.section-header-menu .menu-section li a{
+    padding: 22px;
+    color: $font-white;
+}
+
+.section-header-menu .menu-section li:first-child a{
+    //border-left: 1px solid $third;
+}
+
+.menu-plus{
+    padding: 10px 0px 0px 0px;
+}
+
+.section-header-btn-plus .menu-plus li {
+    display: inline-block;
+    position: absolute;
+}
+
+.section-header-btn-plus .menu-plus li a{
+    padding: 22px;
+    color: $font-white;
+    background: $primary;
+    font-weight: bold;
+}
+
+#content-wrap{
+    padding: 150px 50px 0px
+}
+
+#wrap-artesanus-security{
+    width: 500px;
+    margin: auto;
+    margin-top: 13em;
+}
+
+#wrap-artesanus-body{
+    width: 100%;
+    float: left;
+    position: relative;
+    padding: 15px;
+    padding-bottom: 70px;
+}
+
+#artesanus-security{
+    width: 100%;
+    height: 100%;
+    float: left;
+    position: relative;
+    padding: 20px;
+    background: #dedede;
+}
+
+#security-wrap{
+    width: 500px;
+    margin: auto;
+    margin-top: 13em;
+}

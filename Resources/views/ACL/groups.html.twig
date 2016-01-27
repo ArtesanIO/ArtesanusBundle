@@ -4,6 +4,10 @@
     {{ 'artesanus.subtitles.acl.groups'|trans({}, 'ArtesanusBundle') }}
 {% endblock %}
 
+{% block artesanus_section_plus %}
+    {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:groupsNewMenu', {'template': 'ArtesanusBundle:Menu:knp_menu.html.twig'}) }}
+{% endblock %}
+
 {% block artesanus_section_body %}
     {% embed "ArtesanusBundle::Components/table.html.twig" with { 'rows': ['#','Groups',''] }%}
         {% block tbody %}

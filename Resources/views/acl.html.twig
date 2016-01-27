@@ -1,29 +1,9 @@
 {% extends 'ArtesanusBundle::console.html.twig' %}
 
-
 {% block artesanus_section_title %}
-
     {{ 'artesanus.titles.acl'|trans({}, 'ArtesanusBundle') }}
-
 {% endblock %}
 
-{% block artesanus_seccion_navbar %}
-    <a href="{{ path('artesanus_console_acl_users') }}" class="btn btn-default">
-        {{ 'artesanus.subtitles.acl.users'|trans({}, 'ArtesanusBundle') }}
-    </a>
-    <a href="{{ path('artesanus_console_acl_users_new') }}" class="btn btn-default">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
-    <a href="{{ path('artesanus_console_acl_groups') }}" class="btn btn-default">
-        {{ 'artesanus.subtitles.acl.groups'|trans({}, 'ArtesanusBundle') }}
-    </a>
-    <a href="{{ path('artesanus_console_acl_groups_new') }}" class="btn btn-default">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
-    <a href="{{ path('artesanus_console_acl_roles') }}" class="btn btn-default">
-        {{ 'artesanus.subtitles.acl.roles'|trans({}, 'ArtesanusBundle') }}
-    </a>
-    <a href="{{ path('artesanus_console_acl_roles_new') }}" class="btn btn-default">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
+{% block artesanus_section_menu %}
+    {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:aclMenu', {'template': 'ArtesanusBundle:Menu:knp_menu.html.twig'}) }}
 {% endblock %}
