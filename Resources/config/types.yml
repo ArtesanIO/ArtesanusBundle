@@ -43,10 +43,10 @@ services:
         tags:
             - { name: form.type, alias: artesanus_profile_type }
 
-    artesanus.files_type:
+    files_type:
         class: ArtesanIO\ArtesanusBundle\Form\FilesType
         tags:
-            - { name: form.type, alias: artesanus_files_type }
+            - { name: form.type, alias: files_type }
 
     artesanus.categories_type:
         class: ArtesanIO\ArtesanusBundle\Form\CategoriesType

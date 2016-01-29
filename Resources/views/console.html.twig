@@ -48,7 +48,9 @@
         {% block artesanus_section_menu %}{% endblock %}
     </div>
     <div class="section-header section-header-btn-plus">
-        {% block artesanus_section_plus %}{% endblock %}
+        {% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}
+
+        {{ btn.modal('Nuevo','myModal') }}
     </div>
 </div>
     <div id="content-wrap">

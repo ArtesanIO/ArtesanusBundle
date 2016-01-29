@@ -43,6 +43,6 @@ class FilesType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_files_type';
+        return 'files_type';
     }
 }
