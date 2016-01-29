@@ -24,11 +24,15 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
 
         $config = $this->processConfiguration($configuration, $configs);
 
-        if(isset($config["cartero"])){
-            $container->setParameter('artesanus.cartero.subject', $config['cartero']['subject']);
-            $container->setParameter('artesanus.cartero.from.email', $config['cartero']['from']['email']);
-            $container->setParameter('artesanus.cartero.from.host', $config['cartero']['from']['host']);
+        if(isset($config["managers"])){
+            $container->setParameter('artesanus.managers', $config['managers']);
         }
+
+        // if(isset($config["cartero"])){
+        //     $container->setParameter('artesanus.cartero.subject', $config['cartero']['subject']);
+        //     $container->setParameter('artesanus.cartero.from.email', $config['cartero']['from']['email']);
+        //     $container->setParameter('artesanus.cartero.from.host', $config['cartero']['from']['host']);
+        // }
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('managers.yml');

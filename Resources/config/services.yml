@@ -1,5 +1,17 @@
 services:
 
+    artesanus.managers:
+        class: ArtesanIO\ArtesanusBundle\Utils\ArtesanusManagers
+        calls:
+            - [setContainer, ['@service_container']]
+
+    artesanus.routes_managers:
+        class: ArtesanIO\ArtesanusBundle\Routing\RoutesManagers
+        tags:
+            - { name: routing.loader }
+        calls:
+            - [setContainer, ['@service_container']]
+
     artesanus.users_provider:
         class: ArtesanIO\ArtesanusBundle\Utils\UsersProvider
         arguments:

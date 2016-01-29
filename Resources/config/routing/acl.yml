@@ -2,6 +2,10 @@ artesanus_console_acl_users:
     path:     /users
     defaults: { _controller: ArtesanusBundle:User:users }
 
+files:
+    path:     /files
+    defaults: { _controller: ArtesanusBundle:User:users }
+
 artesanus_console_acl_users_new:
     path:     /users/new
     defaults: { _controller: ArtesanusBundle:User:new }

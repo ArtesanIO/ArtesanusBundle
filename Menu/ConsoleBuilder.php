@@ -6,9 +6,22 @@ use ArtesanIO\ArtesanusBundle\ArtesanusEvents;
 use ArtesanIO\ArtesanusBundle\Event\ArtesanusMenuEvent;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ConsoleBuilder extends ContainerAware
 {
+    protected $container;
+
+    public function setContainer(ContainerInterface $container = NULL)
+    {
+        $this->container = $container;
+    }
+
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
     public function consoleMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root', array('childrenAttributes' => array('class' => 'nav navbar-nav')));
@@ -26,11 +39,12 @@ class ConsoleBuilder extends ContainerAware
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
 
-		$menu->addChild('Projects', array('route' => 'artesanus_console_acl_users'))
-			->setAttribute('icon', 'icon-list');
+        foreach($this->itemsMainMenu($this->container->get('artesanus.managers')->getManagers()) as $i => $item){
 
-		$menu->addChild('Employees', array('route' => 'artesanus_console_acl_users'))
-			->setAttribute('icon', 'icon-group');
+            $menu->addChild($i, array('route' => $item['alias']))
+    			->setAttribute('icon', 'icon-list');
+        }
+
         return $menu;
     }
 
@@ -106,7 +120,27 @@ class ConsoleBuilder extends ContainerAware
 			->setAttribute('icon', 'icon-list');
         return $menu;
     }
+
+    public function itemsMainMenu($managers)
+    {
+        $menu = array();
+        $packages = array();
+
+        foreach($managers as $item){
+            if($item['package']){
+                $packages[$item['package']] = $item['package'];
+            }
+        }
+
+        foreach ($packages as $package) {
+            sort($managers);
+            foreach($managers as $item){
+                if($item['package'] == $package){
+                    $menu[$package] = $item;
+                }
+            }
+        }
+
+        return $menu;
+    }
 }
-
-
-?>
