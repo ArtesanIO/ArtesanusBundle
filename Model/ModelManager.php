@@ -37,7 +37,7 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         return $this->get('doctrine.orm.entity_manager');
     }
 
-    private function getEventPrefix()
+    private function entityPrefix()
     {
         $prefix = explode('\\', $this->class);
 
@@ -81,11 +81,11 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
     {
         $saveOrUpdate = ($saveOrUpdate) ? 'update': 'save';
 
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_'.$saveOrUpdate.'.event', new ModelEvent($model, $this->container));
+        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_before_'.$saveOrUpdate.'.event', new ModelEvent($model, $this->container));
 
         $this->persist($model, $flush);
 
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_'.$saveOrUpdate.'.event', new ModelEvent($model, $this->container));
+        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_after_'.$saveOrUpdate.'.event', new ModelEvent($model, $this->container));
 
         return $model;
     }
@@ -107,11 +107,11 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
      */
     public function delete($model, $flush = true) {
 
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_before_delete.event', new ModelEvent($model, $this->getContainer()));
+        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_before_delete.event', new ModelEvent($model, $this->getContainer()));
 
         $this->remove($model, $flush);
 
-        $this->getDispatcher()->dispatch($this->getEventPrefix() . '.model_after_delete.event', new ModelEvent($model, $this->getContainer()));
+        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_after_delete.event', new ModelEvent($model, $this->getContainer()));
     }
     /**
      * Remove model.
@@ -169,6 +169,31 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
             'new' => 'artesanus_console_acl_users_new',
             'close' => 'artesanus_console_acl_users'
         );
+    }
+
+    public function tableFields()
+    {
+        return array();
+    }
+
+    public function routeList()
+    {
+        return $this->entityPrefix();
+    }
+
+    public function routeNew()
+    {
+        return $this->entityPrefix().'_new';
+    }
+
+    public function routeEdit()
+    {
+        return $this->entityPrefix().'_edit';
+    }
+
+    public function routeDelete()
+    {
+        return $this->entityPrefix().'_delete';
     }
 
 }

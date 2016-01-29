@@ -4,9 +4,8 @@
     {% block form %}{% endblock %}
     <div class="btn-group">
         {% if actions is defined %}
-            {{ btn.submit('Save | Edit','edit','', 'edit') }}
-            {{ btn.submit('Save | New', 'new', 'default', 'new') }}
-            {{ btn.submit('Save | Close','close','default', 'close') }}
+            {{ btn.submit('Save','edit','', 'edit') }}
+            {{ btn.submit('Save & Close','close','default', 'close') }}
         {% else %}
             {{ btn.submit() }}
         {% endif %}

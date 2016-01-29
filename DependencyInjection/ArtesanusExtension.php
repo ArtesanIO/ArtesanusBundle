@@ -7,6 +7,8 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -26,6 +28,7 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
 
         if(isset($config["managers"])){
             $container->setParameter('artesanus.managers', $config['managers']);
+            $this->registerServices($container, $config["managers"]);
         }
 
         // if(isset($config["cartero"])){
@@ -58,5 +61,22 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
 
         $configs = $container->getExtensionConfig($this->getAlias());
         $this->processConfiguration(new Configuration(), $configs);
+    }
+
+    private function registerServices($container, $managers)
+    {
+        foreach($managers as $manager){
+            foreach($manager as $k => $m){
+                $prefix = explode('\\', $k);
+                $prefix = strtolower(end($prefix));
+
+                $container->setDefinition($prefix.'.manager', new Definition(
+                    $m['manager'], array($k)
+                    ))->addMethodCall('setContainer', array(
+                        new Reference('service_container')
+                    ))
+                ;
+            }
+        }
     }
 }

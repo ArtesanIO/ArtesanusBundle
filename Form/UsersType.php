@@ -43,6 +43,6 @@ class UsersType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_users_type';
+        return 'users_type';
     }
 }

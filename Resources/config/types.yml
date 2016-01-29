@@ -1,8 +1,8 @@
 services:
-    artesanus.users_type:
+    users_type:
         class: ArtesanIO\ArtesanusBundle\Form\UsersType
         tags:
-            - { name: form.type, alias: artesanus_users_type }
+            - { name: form.type, alias: users_type }
 
     artesanus.users_password_type:
         class: ArtesanIO\ArtesanusBundle\Form\UsersPasswordType
