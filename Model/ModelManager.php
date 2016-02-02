@@ -165,15 +165,15 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
     public function submitActionRoutes()
     {
         return array(
-            'edit' => 'artesanus_console_acl_user',
-            'new' => 'artesanus_console_acl_users_new',
-            'close' => 'artesanus_console_acl_users'
+            'edit' => $this->entityPrefix().'_edit',
+            'new' => $this->entityPrefix().'_new',
+            'close' => $this->entityPrefix()
         );
     }
 
     public function tableFields()
     {
-        return array();
+        return array('id');
     }
 
     public function routeList()

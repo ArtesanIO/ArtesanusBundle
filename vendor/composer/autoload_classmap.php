@@ -15,6 +15,7 @@ return array(
     'ArtesanIO\\ArtesanusBundle\\Controller\\SecurityController' => $baseDir . '/Controller/SecurityController.php',
     'ArtesanIO\\ArtesanusBundle\\Controller\\StorageController' => $baseDir . '/Controller/StorageController.php',
     'ArtesanIO\\ArtesanusBundle\\Controller\\UserController' => $baseDir . '/Controller/UserController.php',
+    'ArtesanIO\\ArtesanusBundle\\Controller\\UsersController' => $baseDir . '/Controller/UsersController.php',
     'ArtesanIO\\ArtesanusBundle\\DataFixtures\\ORM\\Dev\\ArtesanusLoader' => $baseDir . '/DataFixtures/ORM/ArtesanusLoader.php',
     'ArtesanIO\\ArtesanusBundle\\DependencyInjection\\ArtesanusExtension' => $baseDir . '/DependencyInjection/ArtesanusExtension.php',
     'ArtesanIO\\ArtesanusBundle\\DependencyInjection\\Configuration' => $baseDir . '/DependencyInjection/Configuration.php',

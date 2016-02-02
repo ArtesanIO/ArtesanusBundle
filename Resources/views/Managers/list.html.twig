@@ -6,23 +6,19 @@
     {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:usersNewMenu', {'template': 'ArtesanusBundle:Menu:knp_menu.html.twig'}) }}
 {% endblock %}
 
-
 {% block artesanus_section_body %}
 
-{% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}
+    {% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}
 
-{{ btn.modal('Nuevo','myModal') }}
-
-{% embed 'ArtesanusBundle::Components/modal.html.twig' with { id: 'myModal', type: 'sm'}%}
-    {% block title %}
-    {% embed "ArtesanusBundle::Components/form.html.twig" with { 'actions': true }%}
-        {% block form %}
-            {{ form_widget(entity_form) }}
+    {% embed 'ArtesanusBundle::Components/modal.html.twig' with { id: 'myModal', type: 'sm'}%}
+        {% block title %}
+        {% embed "ArtesanusBundle::Components/form.html.twig" with { 'actions': true, 'enctype': entity_form}%}
+            {% block form %}
+                {{ form_widget(entity_form) }}
+            {% endblock %}
+        {% endembed %}
         {% endblock %}
     {% endembed %}
-    {% endblock %}
-{% endembed %}
-
 
     {% embed "ArtesanusBundle::Components/table.html.twig" with { 'rows': fields }%}
         {% block tbody %}
@@ -42,7 +38,7 @@
                         <a href="{{ path(routes.edit, {id: entity.id }) }}" class="btn btn-default">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
-                        <a href="{{ path('artesanus_console_acl_users_delete', {id: entity.id }) }}" type="button" class="btn btn-default btn-delete">
+                        <a href="{{ path('users', {id: entity.id }) }}" type="button" class="btn btn-default btn-delete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </div>

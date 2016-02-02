@@ -99,4 +99,11 @@ body {
   margin: auto;
   margin-top: 13em; }
 
+.alert {
+  width: auto;
+  position: absolute;
+  z-index: 2003;
+  bottom: 0px;
+  left: 10px; }
+
 /*# sourceMappingURL=app.css.map */

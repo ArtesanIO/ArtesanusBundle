@@ -13,8 +13,6 @@ class ManagerController extends Controller
 
         $manager = $this->get($prefix.'.manager');
 
-        $routes = array('edit' => $manager->routeEdit(), 'delete' => $manager->routeDelete());
-
         $entity = $manager->create();
 
         $entities = $manager->getRepository()->findAll();
@@ -23,17 +21,15 @@ class ManagerController extends Controller
 
         if($entityForm->isValid()){
             $manager->save($entity);
-            $manager->redirectTo($request, array('id' => $entity->getId()));
+            return $manager->redirectTo($request, array('id' => $entity->getId()));
         }
 
-        return $this->render('ArtesanusBundle:Managers:list.html.twig',
-            array('entities' => $entities,'fields' => $manager->tableFields(), 'routes' => $routes, 'entity_form' => $entityForm->createView())
+        return $this->render('ArtesanusBundle:Managers:list.html.twig', array(
+            'entities' => $entities,
+            'fields' => $manager->tableFields(),
+            'routes' => array('edit' => $manager->routeEdit(), 'delete' => $manager->routeDelete()),
+            'entity_form' => $entityForm->createView())
         );
-    }
-
-    public function newAction()
-    {
-        exit('New');
     }
 
     public function editAction($id, Request $request)
@@ -51,11 +47,12 @@ class ManagerController extends Controller
 
         if($entityForm->isValid()){
             $manager->save($entity);
-            $manager->redirectTo($request, array('id' => $entity->getId()));
+            return $manager->redirectTo($request, array('id' => $entity->getId()));
         }
 
-        return $this->render('ArtesanusBundle:Managers:edit.html.twig',
-            array('entity' => $entity,'entity_form' => $entityForm->createView())
+        return $this->render('ArtesanusBundle:Managers:edit.html.twig', array(
+            'entity' => $entity,
+            'entity_form' => $entityForm->createView())
         );
     }
 

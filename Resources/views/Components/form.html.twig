@@ -1,6 +1,12 @@
 {% import "ArtesanusBundle::Components/buttons.html.twig" as btn %}
 
-<form class="{{ class|default('form') }}" action="{% if action is defined %} {{ path(action) }} {% endif %} " method="{{ method|default('post') }}" {% if novalidate is defined %}{% if novalidate == true %}novalidate{% endif %}{% endif %}>
+<form
+    class="{{ class|default('form') }}"
+    action="{% if action is defined %} {{ path(action) }} {% endif %} "
+    method="{{ method|default('post') }}" {% if novalidate is defined %}{% if novalidate == true %}novalidate{% endif %}{% endif %}
+    {% if enctype is defined %}{{ form_enctype(enctype) }}{% endif %}
+    >
+
     {% block form %}{% endblock %}
     <div class="btn-group">
         {% if actions is defined %}

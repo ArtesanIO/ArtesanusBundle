@@ -66,11 +66,11 @@ class ConsoleBuilder extends ContainerAware
 			->setAttribute('icon', 'icon-user')
             ->setAttribute('class', 'dropdown-toggle');
 
-		$menu['User']->addChild('Profile', array('route' => 'artesanus_console_acl_users'))
-			->setAttribute('icon', 'icon-edit');
-
-            $menu['User']->addChild('Logout', array('route' => 'artesanus_console_acl_users'))
-    			->setAttribute('icon', 'icon-edit');
+		// $menu['User']->addChild('Profile', array('route' => 'artesanus_console_acl_users'))
+		// 	->setAttribute('icon', 'icon-edit');
+        //
+        //     $menu['User']->addChild('Logout', array('route' => 'artesanus_console_acl_users'))
+    	// 		->setAttribute('icon', 'icon-edit');
 
         return $menu;
     }
@@ -78,16 +78,16 @@ class ConsoleBuilder extends ContainerAware
     public function aclMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
-    	$menu->setChildrenAttribute('class', 'menu-section');
-
-		$menu->addChild('Users', array('route' => 'artesanus_console_acl_users'))
-			->setAttribute('icon', 'icon-list');
-
-		$menu->addChild('Groups', array('route' => 'artesanus_console_acl_groups'))
-			->setAttribute('icon', 'icon-group');
-
-            $menu->addChild('Roles', array('route' => 'artesanus_console_acl_roles'))
-    			->setAttribute('icon', 'icon-list');
+    	// $menu->setChildrenAttribute('class', 'menu-section');
+        //
+		// $menu->addChild('Users', array('route' => 'artesanus_console_acl_users'))
+		// 	->setAttribute('icon', 'icon-list');
+        //
+		// $menu->addChild('Groups', array('route' => 'artesanus_console_acl_groups'))
+		// 	->setAttribute('icon', 'icon-group');
+        //
+        //     $menu->addChild('Roles', array('route' => 'artesanus_console_acl_roles'))
+    	// 		->setAttribute('icon', 'icon-list');
         return $menu;
     }
 
