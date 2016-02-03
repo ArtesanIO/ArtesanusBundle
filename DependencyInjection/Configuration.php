@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('managers')
+                ->arrayNode('entities')
                     ->normalizeKeys(false)
                     ->defaultValue(array())
                     ->info('The list of entities to manage in the administration zone.')

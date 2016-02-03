@@ -26,9 +26,9 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
 
         $config = $this->processConfiguration($configuration, $configs);
 
-        if(isset($config["managers"])){
-            $container->setParameter('artesanus.managers', $config['managers']);
-            $this->registerServices($container, $config["managers"]);
+        if(isset($config["entities"])){
+            $container->setParameter('artesanus.entities', $config['entities']);
+            $this->registerServices($container, $config["entities"]);
         }
 
         // if(isset($config["cartero"])){
@@ -63,20 +63,30 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
         $this->processConfiguration(new Configuration(), $configs);
     }
 
-    private function registerServices($container, $managers)
+    private function registerServices($container, $entities)
     {
-        foreach($managers as $manager){
-            foreach($manager as $k => $m){
-                $prefix = explode('\\', $k);
-                $prefix = strtolower(end($prefix));
+        foreach($entities as $entity){
 
-                $container->setDefinition($prefix.'.manager', new Definition(
-                    $m['manager'], array($k)
-                    ))->addMethodCall('setContainer', array(
-                        new Reference('service_container')
-                    ))
-                ;
-            }
+            $container->setDefinition($this->entityPrefix($entity), new Definition(
+                $this->entityManager($entity), array($entity)
+                ))->addMethodCall('setContainer', array(
+                    new Reference('service_container')
+                ))->addTag('artesanus.manager')
+            ;
         }
+    }
+
+    private function entityPrefix($entity)
+    {
+        $prefix = explode('\\', $entity);
+
+        return strtolower(end($prefix)).'_manager';
+    }
+
+    private function entityManager($entity)
+    {
+        $entityManager = str_replace('Entity', 'Model', $entity);
+
+        return $entityManager.'Manager';
     }
 }
