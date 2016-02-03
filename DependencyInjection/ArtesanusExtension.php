@@ -7,8 +7,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -28,7 +26,6 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
 
         if(isset($config["entities"])){
             $container->setParameter('artesanus.entities', $config['entities']);
-            $this->registerServices($container, $config["entities"]);
         }
 
         // if(isset($config["cartero"])){
@@ -61,31 +58,5 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
 
         $configs = $container->getExtensionConfig($this->getAlias());
         $this->processConfiguration(new Configuration(), $configs);
-    }
-
-    private function registerServices($container, $entities)
-    {
-        foreach($entities as $entity){
-            $container->setDefinition($this->entityPrefix($entity), new Definition(
-                $this->entityManager($entity), array($entity)
-                ))->addMethodCall('setContainer', array(
-                    new Reference('service_container')
-                ))->addTag('artesanus.manager')
-            ;
-        }
-    }
-
-    private function entityPrefix($entity)
-    {
-        $prefix = explode('\\', $entity);
-
-        return strtolower(end($prefix)).'.manager';
-    }
-
-    private function entityManager($entity)
-    {
-        $entityManager = str_replace('Entity', 'Model', $entity);
-
-        return $entityManager.'Manager';
     }
 }
