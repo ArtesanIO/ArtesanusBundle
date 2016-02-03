@@ -39,11 +39,11 @@ class ConsoleBuilder extends ContainerAware
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
 
-        foreach($this->itemsMainMenu($this->container->get('artesanus.managers')->getManagers()) as $i => $item){
-
-            $menu->addChild($i, array('route' => $item['alias']))
-    			->setAttribute('icon', 'icon-list');
-        }
+        // foreach($this->itemsMainMenu($this->container->get('artesanus.managers')->getManagers()) as $i => $item){
+        //
+        //     $menu->addChild($i, array('route' => $item['alias']))
+    	// 		->setAttribute('icon', 'icon-list');
+        // }
 
         return $menu;
     }
@@ -121,26 +121,26 @@ class ConsoleBuilder extends ContainerAware
         return $menu;
     }
 
-    public function itemsMainMenu($managers)
-    {
-        $menu = array();
-        $packages = array();
-
-        foreach($managers as $item){
-            if($item['package']){
-                $packages[$item['package']] = $item['package'];
-            }
-        }
-
-        foreach ($packages as $package) {
-            sort($managers);
-            foreach($managers as $item){
-                if($item['package'] == $package){
-                    $menu[$package] = $item;
-                }
-            }
-        }
-
-        return $menu;
-    }
+    // public function itemsMainMenu($managers)
+    // {
+    //     $menu = array();
+    //     $packages = array();
+    //
+    //     foreach($managers as $item){
+    //         if($item['package']){
+    //             $packages[$item['package']] = $item['package'];
+    //         }
+    //     }
+    //
+    //     foreach ($packages as $package) {
+    //         sort($managers);
+    //         foreach($managers as $item){
+    //             if($item['package'] == $package){
+    //                 $menu[$package] = $item;
+    //             }
+    //         }
+    //     }
+    //
+    //     return $menu;
+    // }
 }

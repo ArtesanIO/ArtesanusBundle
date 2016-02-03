@@ -66,7 +66,6 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
     private function registerServices($container, $entities)
     {
         foreach($entities as $entity){
-
             $container->setDefinition($this->entityPrefix($entity), new Definition(
                 $this->entityManager($entity), array($entity)
                 ))->addMethodCall('setContainer', array(
@@ -80,7 +79,7 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
     {
         $prefix = explode('\\', $entity);
 
-        return strtolower(end($prefix)).'_manager';
+        return strtolower(end($prefix)).'.manager';
     }
 
     private function entityManager($entity)

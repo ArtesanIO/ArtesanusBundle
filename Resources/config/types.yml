@@ -9,10 +9,10 @@ services:
         tags:
             - { name: form.type, alias: artesanus_users_password_type }
 
-    artesanus.groups_type:
+    groups_type:
         class: ArtesanIO\ArtesanusBundle\Form\GroupsType
         tags:
-            - { name: form.type, alias: artesanus_groups_type }
+            - { name: form.type, alias: groups_type }
 
     artesanus.groups_roles_type:
         class: ArtesanIO\ArtesanusBundle\Form\GroupsRolesType
@@ -24,10 +24,10 @@ services:
         tags:
             - { name: form.type, alias: artesanio_acl_grupo_roles }
 
-    artesanus.roles_type:
+    roles_type:
         class: ArtesanIO\ArtesanusBundle\Form\RolesType
         tags:
-            - { name: form.type, alias: artesanus_acl_roles }
+            - { name: form.type, alias: roles_type }
 
     artesanus.user_type:
         class: ArtesanIO\ArtesanusBundle\Form\UserType

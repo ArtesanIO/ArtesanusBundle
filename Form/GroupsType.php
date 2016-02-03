@@ -41,6 +41,6 @@ class GroupsType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_groups_type';
+        return 'groups_type';
     }
 }

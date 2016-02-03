@@ -9,8 +9,7 @@ use Symfony\Component\Routing\RouteCollection;
 class RoutesManagers extends Loader
 {
     private $loaded = false;
-
-    protected $container;
+    private $container;
 
     public function setContainer($container)
     {
@@ -25,21 +24,21 @@ class RoutesManagers extends Loader
 
         $routes = new RouteCollection();
 
-        foreach($this->container->get('artesanus.managers')->getManagers() as $item){
+        foreach($this->container->getParameter('artesanus.entities') as $item){
 
-            $routes->add($item['alias'], new Route($this->router($item), array(
+            $routes->add($this->entityPrefix($item), new Route($this->entityPrefix($item), array(
                 '_controller' => 'ArtesanusBundle:Manager:list',
             )));
 
-            $routes->add($item['alias'].'_new', new Route($this->router($item).'/new', array(
+            $routes->add($this->entityPrefix($item).'_new', new Route($this->entityPrefix($item).'/new', array(
                 '_controller' => 'ArtesanusBundle:Manager:new',
             )));
 
-            $routes->add($item['alias'].'_edit', new Route($this->router($item).'/{id}', array(
+            $routes->add($this->entityPrefix($item).'_edit', new Route($this->entityPrefix($item).'/{id}', array(
                 '_controller' => 'ArtesanusBundle:Manager:edit',
             )));
 
-            $routes->add($item['alias'].'_delete', new Route($this->router($item).'/delete', array(
+            $routes->add($this->entityPrefix($item).'_delete', new Route($this->entityPrefix($item).'/delete', array(
                 '_controller' => 'ArtesanusBundle:Manager:delete',
             )));
         }
@@ -55,5 +54,12 @@ class RoutesManagers extends Loader
     private function router($item)
     {
         return $item['alias'];
+    }
+
+    private function entityPrefix($entity)
+    {
+        $prefix = explode('\\', $entity);
+
+        return strtolower(end($prefix));
     }
 }

@@ -35,6 +35,6 @@ class RolesType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_acl_roles';
+        return 'roles_type';
     }
 }
