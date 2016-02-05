@@ -18,6 +18,7 @@ return array(
     'ArtesanIO\\ArtesanusBundle\\Controller\\UsersController' => $baseDir . '/Controller/UsersController.php',
     'ArtesanIO\\ArtesanusBundle\\DataFixtures\\ORM\\Dev\\ArtesanusLoader' => $baseDir . '/DataFixtures/ORM/ArtesanusLoader.php',
     'ArtesanIO\\ArtesanusBundle\\DependencyInjection\\ArtesanusExtension' => $baseDir . '/DependencyInjection/ArtesanusExtension.php',
+    'ArtesanIO\\ArtesanusBundle\\DependencyInjection\\Compiler\\ManagersCompilerPass' => $baseDir . '/DependencyInjection/Compiler/ManagersCompilerPass.php',
     'ArtesanIO\\ArtesanusBundle\\DependencyInjection\\Configuration' => $baseDir . '/DependencyInjection/Configuration.php',
     'ArtesanIO\\ArtesanusBundle\\Entity\\Categories' => $baseDir . '/Entity/Categories.php',
     'ArtesanIO\\ArtesanusBundle\\Entity\\CategoriesRepository' => $baseDir . '/Entity/CategoriesRepository.php',

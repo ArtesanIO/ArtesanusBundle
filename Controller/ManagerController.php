@@ -10,7 +10,7 @@ class ManagerController extends Controller
     public function listAction(Request $request)
     {
         $prefix = $request->get('_route');
-
+        
         $manager = $this->get($prefix.'.manager');
 
         $entity = $manager->create();
@@ -25,9 +25,9 @@ class ManagerController extends Controller
         }
 
         return $this->render('ArtesanusBundle:Managers:list.html.twig', array(
+            'entityPrefix' => $manager->entityPrefix(),
             'entities' => $entities,
             'fields' => $manager->tableFields(),
-            'routes' => array('edit' => $manager->routeEdit(), 'delete' => $manager->routeDelete()),
             'entity_form' => $entityForm->createView())
         );
     }

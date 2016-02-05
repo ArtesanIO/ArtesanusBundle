@@ -37,11 +37,11 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         return $this->get('doctrine.orm.entity_manager');
     }
 
-    private function entityPrefix()
+    public function entityPrefix()
     {
-        $prefix = explode('\\', $this->class);
+        $prefix = explode(':', $this->class);
 
-        return strtolower(array_pop($prefix));
+        return strtolower(end($prefix));
     }
 
     public function getRepository()

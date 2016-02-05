@@ -1,20 +1,47 @@
 services:
 
-    artesanus.users_manager:
+    users.manager:
+        class: ArtesanIO\ArtesanusBundle\Model\UsersManager
+        arguments:
+            - ArtesanusBundle:Users
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: artesanus.manager }
+
+    groups.manager:
+        class: ArtesanIO\ArtesanusBundle\Model\GroupsManager
+        arguments:
+            - ArtesanusBundle:Groups
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: artesanus.manager }
+
+    roles.manager:
+        class: ArtesanIO\ArtesanusBundle\Model\RolesManager
+        arguments:
+            - ArtesanusBundle:Roles
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: artesanus.manager }
+
+    users.manager:
         class: ArtesanIO\ArtesanusBundle\Model\UsersManager
         arguments:
             - ArtesanusBundle:Users
         calls:
             - [setContainer, ['@service_container']]
 
-    artesanus.groups_manager:
+    groups.manager:
         class: ArtesanIO\ArtesanusBundle\Model\GroupsManager
         arguments:
             - ArtesanIO\ArtesanusBundle\Entity\Groups
         calls:
             - [setContainer, ['@service_container']]
 
-    artesanus.roles_manager:
+    roles.manager:
         class: ArtesanIO\ArtesanusBundle\Model\RolesManager
         arguments:
             - ArtesanIO\ArtesanusBundle\Entity\Roles

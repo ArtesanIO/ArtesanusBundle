@@ -1,5 +1,4 @@
 services:
-
     artesanus.managers:
         class: ArtesanIO\ArtesanusBundle\Utils\ArtesanusManagers
         calls:
@@ -17,7 +16,7 @@ services:
     artesanus.users_provider:
         class: ArtesanIO\ArtesanusBundle\Utils\UsersProvider
         arguments:
-            - @artesanus.users_manager
+            - @users.manager
 
     artesanus.encoder:
         class:  ArtesanIO\ArtesanusBundle\Utils\Encoder
@@ -56,7 +55,7 @@ services:
     artesanus.loggin_success_handler:
         class: ArtesanIO\ArtesanusBundle\Utils\LoginSuccessHandler
         arguments:
-            - @artesanus.roles_manager
+            - @roles.manager
             - @router
             - @security.context
 
@@ -88,4 +87,4 @@ services:
     artesanus.data_fixtures:
         class: ArtesanIO\ArtesanusBundle\DataFixtures\ORM\ArtesanusLoader
         calls:
-            - [setUsersManager, ['@artesanus.users_manager']]
+            - [setUsersManager, ['@users.manager']]

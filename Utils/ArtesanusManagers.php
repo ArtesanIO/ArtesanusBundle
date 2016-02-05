@@ -14,7 +14,7 @@ class ArtesanusManagers extends ContainerAware
 
     public function addManager($manager)
     {
-        $this->managers[] = $manager;
+        $this->managers[] = $this->entityPrefix(get_class($manager));
     }
 
     public function getManagers()
@@ -22,7 +22,11 @@ class ArtesanusManagers extends ContainerAware
         return $this->managers;
     }
 
-    private function entityName($entity)
+    public function entityPrefix($manager)
     {
+        $prefix = explode('\\', $manager);
+        $prefix = end($prefix);
+        $prefix = str_replace('Manager', '', $prefix);
+        return strtolower($prefix);
     }
 }

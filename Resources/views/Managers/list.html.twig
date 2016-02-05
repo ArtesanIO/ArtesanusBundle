@@ -35,10 +35,10 @@
                 {% endfor %}
                 <td class="text-right">
                     <div class="btn-group">
-                        <a href="{{ path(routes.edit, {id: entity.id }) }}" class="btn btn-default">
+                        <a href="{{ path(entityPrefix ~ '_edit', {id: entity.id }) }}" class="btn btn-default">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
-                        <a href="{{ path('users', {id: entity.id }) }}" type="button" class="btn btn-default btn-delete">
+                        <a href="{{ path(entityPrefix, {id: entity.id }) }}" type="button" class="btn btn-default btn-delete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </div>

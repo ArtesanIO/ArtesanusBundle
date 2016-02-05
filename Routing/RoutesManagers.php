@@ -23,22 +23,21 @@ class RoutesManagers extends Loader
         }
 
         $routes = new RouteCollection();
+        foreach($this->container->get('artesanus.managers')->getManagers() as $item){
 
-        foreach($this->container->getParameter('artesanus.entities') as $item){
-
-            $routes->add($this->entityPrefix($item), new Route($this->entityPrefix($item), array(
+            $routes->add($item, new Route($item, array(
                 '_controller' => 'ArtesanusBundle:Manager:list',
             )));
 
-            $routes->add($this->entityPrefix($item).'_new', new Route($this->entityPrefix($item).'/new', array(
+            $routes->add($item.'_new', new Route($item.'/new', array(
                 '_controller' => 'ArtesanusBundle:Manager:new',
             )));
 
-            $routes->add($this->entityPrefix($item).'_edit', new Route($this->entityPrefix($item).'/{id}', array(
+            $routes->add($item.'_edit', new Route($item.'/{id}', array(
                 '_controller' => 'ArtesanusBundle:Manager:edit',
             )));
 
-            $routes->add($this->entityPrefix($item).'_delete', new Route($this->entityPrefix($item).'/delete', array(
+            $routes->add($item.'_delete', new Route($item.'/delete', array(
                 '_controller' => 'ArtesanusBundle:Manager:delete',
             )));
         }
@@ -49,17 +48,5 @@ class RoutesManagers extends Loader
     public function supports($resource, $type = null)
     {
         return 'extra' === $type;
-    }
-
-    private function router($item)
-    {
-        return $item['alias'];
-    }
-
-    private function entityPrefix($entity)
-    {
-        $prefix = explode('\\', $entity);
-
-        return strtolower(end($prefix));
     }
 }

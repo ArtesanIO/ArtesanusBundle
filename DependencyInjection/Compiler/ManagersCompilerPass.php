@@ -19,17 +19,9 @@ class ManagersCompilerPass implements CompilerPassInterface
             'artesanus.managers'
         );
 
-        $this->registerManagers($container, $container->getParameter('artesanus.entities'));
-
         $taggedServices = $container->findTaggedServiceIds(
             'artesanus.manager'
         );
-
-        $types = $container->findTaggedServiceIds(
-            'form.type'
-        );
-
-        //echo "<pre>";print_r($types);exit();
 
         foreach ($taggedServices as $id => $tags) {
             $definition->addMethodCall(
