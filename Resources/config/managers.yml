@@ -1,5 +1,4 @@
 services:
-
     users.manager:
         class: ArtesanIO\ArtesanusBundle\Model\UsersManager
         arguments:
@@ -7,7 +6,7 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags:
-            - { name: artesanus.manager }
+            - { name: artesanus.manager, package: ACL, prefix: console }
 
     groups.manager:
         class: ArtesanIO\ArtesanusBundle\Model\GroupsManager
@@ -16,7 +15,7 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags:
-            - { name: artesanus.manager }
+            - { name: artesanus.manager, package: ACL, prefix: console }
 
     roles.manager:
         class: ArtesanIO\ArtesanusBundle\Model\RolesManager
@@ -25,39 +24,22 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags:
-            - { name: artesanus.manager }
+            - { name: artesanus.manager, package: ACL, prefix: console }
 
-    users.manager:
-        class: ArtesanIO\ArtesanusBundle\Model\UsersManager
-        arguments:
-            - ArtesanusBundle:Users
-        calls:
-            - [setContainer, ['@service_container']]
-
-    groups.manager:
-        class: ArtesanIO\ArtesanusBundle\Model\GroupsManager
-        arguments:
-            - ArtesanIO\ArtesanusBundle\Entity\Groups
-        calls:
-            - [setContainer, ['@service_container']]
-
-    roles.manager:
-        class: ArtesanIO\ArtesanusBundle\Model\RolesManager
-        arguments:
-            - ArtesanIO\ArtesanusBundle\Entity\Roles
-        calls:
-            - [setContainer, ['@service_container']]
-
-    artesanus.files_manager:
+    files.manager:
         class: ArtesanIO\ArtesanusBundle\Model\FilesManager
         arguments:
-            - ArtesanIO\ArtesanusBundle\Entity\Files
+            - ArtesanusBundle:Files
         calls:
             - [setContainer, ['@service_container']]
+        tags:
+            - { name: artesanus.manager, package: ACL, prefix: console }
 
-    artesanus.categories_manager:
+    categories.manager:
         class: ArtesanIO\ArtesanusBundle\Model\CategoriesManager
         arguments:
-            - ArtesanIO\ArtesanusBundle\Entity\Categories
+            - ArtesanusBundle:Categories
         calls:
             - [setContainer, ['@service_container']]
+        tags:
+            - { name: artesanus.manager, package: ACL, prefix: console }

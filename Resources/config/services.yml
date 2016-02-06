@@ -41,6 +41,8 @@ services:
 
     artesanus.nav_menu.listener:
         class: ArtesanIO\ArtesanusBundle\EventListener\ArtesanusMenuListener
+        arguments:
+            - @artesanus.managers
         tags:
           - { name: kernel.event_listener, event: artesanus.navbar, method: onArtesanusNavBar }
 

@@ -66,11 +66,11 @@ class ConsoleBuilder extends ContainerAware
 			->setAttribute('icon', 'icon-user')
             ->setAttribute('class', 'dropdown-toggle');
 
-		// $menu['User']->addChild('Profile', array('route' => 'artesanus_console_acl_users'))
-		// 	->setAttribute('icon', 'icon-edit');
-        //
-        //     $menu['User']->addChild('Logout', array('route' => 'artesanus_console_acl_users'))
-    	// 		->setAttribute('icon', 'icon-edit');
+		$menu['User']->addChild('Profile', array('route' => 'users'))
+			->setAttribute('icon', 'icon-edit');
+
+            $menu['User']->addChild('Logout', array('route' => 'users'))
+    			->setAttribute('icon', 'icon-edit');
 
         return $menu;
     }

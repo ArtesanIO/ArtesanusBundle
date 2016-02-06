@@ -9,7 +9,7 @@ services:
         tags:
             - { name: form.type, alias: artesanus_users_password_type }
 
-    groups_type:
+    groups.type:
         class: ArtesanIO\ArtesanusBundle\Form\GroupsType
         tags:
             - { name: form.type, alias: groups_type }
@@ -24,7 +24,7 @@ services:
         tags:
             - { name: form.type, alias: artesanio_acl_grupo_roles }
 
-    roles_type:
+    roles.type:
         class: ArtesanIO\ArtesanusBundle\Form\RolesType
         tags:
             - { name: form.type, alias: roles_type }
@@ -43,12 +43,12 @@ services:
         tags:
             - { name: form.type, alias: artesanus_profile_type }
 
-    files_type:
+    files.type:
         class: ArtesanIO\ArtesanusBundle\Form\FilesType
         tags:
             - { name: form.type, alias: files_type }
 
-    artesanus.categories_type:
+    categories.type:
         class: ArtesanIO\ArtesanusBundle\Form\CategoriesType
         tags:
-            - { name: form.type, alias: artesanus_categories_type }
+            - { name: form.type, alias: categories_type }

@@ -23,6 +23,7 @@ class RoutesManagers extends Loader
         }
 
         $routes = new RouteCollection();
+        
         foreach($this->container->get('artesanus.managers')->getManagers() as $item){
 
             $routes->add($item, new Route($item, array(

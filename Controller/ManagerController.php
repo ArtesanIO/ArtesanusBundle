@@ -10,7 +10,7 @@ class ManagerController extends Controller
     public function listAction(Request $request)
     {
         $prefix = $request->get('_route');
-        
+
         $manager = $this->get($prefix.'.manager');
 
         $entity = $manager->create();

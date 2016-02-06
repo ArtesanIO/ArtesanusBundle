@@ -1,27 +1,27 @@
 artesanus_routes_managers:
     resource: .
     type: extra
-
-artesanus_console_acl:
-    resource: "@ArtesanusBundle/Resources/config/routing/acl.yml"
-    prefix: /acl
-
-artesanus_console_storage:
-    path:     /storage
-    defaults: { _controller: ArtesanusBundle:Storage:files }
-
-artesanus_console_storage_files_remove:
-    path:     /storage/files/{id}/remove
-    defaults: { _controller: ArtesanusBundle:Storage:filesRemove }
-
-artesanus_console_storage_categories:
-    path:     /storage/categories
-    defaults: { _controller: ArtesanusBundle:Storage:categories }
-
-artesanus_console_storage_category:
-    path:     /storage/category/{id}
-    defaults: { _controller: ArtesanusBundle:Storage:category }
-
-artesanus_console_storage_categories_delete:
-    path:     /storage/categories/{id}/delete
-    defaults: { _controller: ArtesanusBundle:Storage:delete }
+#
+# artesanus_console_acl:
+#     resource: "@ArtesanusBundle/Resources/config/routing/acl.yml"
+#     prefix: /acl
+#
+# artesanus_console_storage:
+#     path:     /storage
+#     defaults: { _controller: ArtesanusBundle:Storage:files }
+#
+# artesanus_console_storage_files_remove:
+#     path:     /storage/files/{id}/remove
+#     defaults: { _controller: ArtesanusBundle:Storage:filesRemove }
+#
+# artesanus_console_storage_categories:
+#     path:     /storage/categories
+#     defaults: { _controller: ArtesanusBundle:Storage:categories }
+#
+# artesanus_console_storage_category:
+#     path:     /storage/category/{id}
+#     defaults: { _controller: ArtesanusBundle:Storage:category }
+#
+# artesanus_console_storage_categories_delete:
+#     path:     /storage/categories/{id}/delete
+#     defaults: { _controller: ArtesanusBundle:Storage:delete }

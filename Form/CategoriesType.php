@@ -35,6 +35,6 @@ class CategoriesType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_categories_type';
+        return 'categories_type';
     }
 }
