@@ -12,14 +12,22 @@ class ArtesanusManagers extends ContainerAware
         $this->managers = array();
     }
 
-    public function addManager($manager)
+    public function addManager($manager, $package, $inConsole)
     {
-        $this->managers[] = $this->entityPrefix(get_class($manager));
+        $this->managers[$this->entityPrefix(get_class($manager))]['manager'] = $this->entityPrefix(get_class($manager));
+        $this->managers[$this->entityPrefix(get_class($manager))]['package'] = $package;
+        $this->managers[$this->entityPrefix(get_class($manager))]['in_console'] = $inConsole;
     }
 
     public function getManagers()
     {
-        return $this->managers;
+        $packages = array();
+
+        foreach($this->managers as $manager){
+            ($manager['package'] != '') ? $packages[$manager['package']][$manager['manager']] = $manager['manager']: $packages[] = $manager;;
+        }
+
+        return $packages;
     }
 
     public function entityPrefix($manager)

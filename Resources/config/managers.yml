@@ -6,7 +6,7 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags:
-            - { name: artesanus.manager, package: ACL, prefix: console }
+            - { name: artesanus.manager, package: ACL }
 
     groups.manager:
         class: ArtesanIO\ArtesanusBundle\Model\GroupsManager
@@ -15,7 +15,7 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags:
-            - { name: artesanus.manager, package: ACL, prefix: console }
+            - { name: artesanus.manager, package: ACL }
 
     roles.manager:
         class: ArtesanIO\ArtesanusBundle\Model\RolesManager
@@ -24,7 +24,7 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags:
-            - { name: artesanus.manager, package: ACL, prefix: console }
+            - { name: artesanus.manager, package: ACL }
 
     files.manager:
         class: ArtesanIO\ArtesanusBundle\Model\FilesManager
@@ -33,7 +33,7 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags:
-            - { name: artesanus.manager, package: ACL, prefix: console }
+            - { name: artesanus.manager, package: Storage}
 
     categories.manager:
         class: ArtesanIO\ArtesanusBundle\Model\CategoriesManager
@@ -42,4 +42,4 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags:
-            - { name: artesanus.manager, package: ACL, prefix: console }
+            - { name: artesanus.manager, in_console: true }

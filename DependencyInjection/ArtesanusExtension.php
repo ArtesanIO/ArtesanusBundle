@@ -24,8 +24,8 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
 
         $config = $this->processConfiguration($configuration, $configs);
 
-        if(isset($config["entities"])){
-            $container->setParameter('artesanus.entities', $config['entities']);
+        if(isset($config["packages"])){
+            $container->setParameter('artesanus.packages', $config['packages']);
         }
 
         // if(isset($config["cartero"])){

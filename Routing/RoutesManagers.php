@@ -23,24 +23,45 @@ class RoutesManagers extends Loader
         }
 
         $routes = new RouteCollection();
-        
-        foreach($this->container->get('artesanus.managers')->getManagers() as $item){
+        foreach($this->container->get('artesanus.managers')->getManagers() as $p => $packages){
+            if(!is_int($p)){
+                foreach($packages as $i => $item){
 
-            $routes->add($item, new Route($item, array(
-                '_controller' => 'ArtesanusBundle:Manager:list',
-            )));
+                    $p = strtolower($p);
 
-            $routes->add($item.'_new', new Route($item.'/new', array(
-                '_controller' => 'ArtesanusBundle:Manager:new',
-            )));
+                    $routes->add($i, new Route($p.'/'.$i, array(
+                        '_controller' => 'ArtesanusBundle:Manager:list',
+                    )));
 
-            $routes->add($item.'_edit', new Route($item.'/{id}', array(
-                '_controller' => 'ArtesanusBundle:Manager:edit',
-            )));
+                    $routes->add($i.'_new', new Route($p.'/'.$i.'/new', array(
+                        '_controller' => 'ArtesanusBundle:Manager:new',
+                    )));
 
-            $routes->add($item.'_delete', new Route($item.'/delete', array(
-                '_controller' => 'ArtesanusBundle:Manager:delete',
-            )));
+                    $routes->add($i.'_edit', new Route($p.'/'.$i.'/{id}', array(
+                        '_controller' => 'ArtesanusBundle:Manager:edit',
+                    )));
+
+                    $routes->add($i.'_delete', new Route($p.'/'.$i.'/delete', array(
+                        '_controller' => 'ArtesanusBundle:Manager:delete',
+                    )));
+                }
+            }else{
+                $routes->add($packages['manager'], new Route($packages['manager'], array(
+                    '_controller' => 'ArtesanusBundle:Manager:list',
+                )));
+
+                $routes->add($packages['manager'].'_new', new Route($packages['manager'].'/new', array(
+                    '_controller' => 'ArtesanusBundle:Manager:new',
+                )));
+
+                $routes->add($packages['manager'].'_edit', new Route($packages['manager'].'/{id}', array(
+                    '_controller' => 'ArtesanusBundle:Manager:edit',
+                )));
+
+                $routes->add($packages['manager'].'_delete', new Route($packages['manager'].'/delete', array(
+                    '_controller' => 'ArtesanusBundle:Manager:delete',
+                )));
+            }
         }
 
         return $routes;

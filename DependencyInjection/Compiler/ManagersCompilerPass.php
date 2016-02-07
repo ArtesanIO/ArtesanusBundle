@@ -24,10 +24,15 @@ class ManagersCompilerPass implements CompilerPassInterface
         );
 
         foreach ($taggedServices as $id => $tags) {
-            $definition->addMethodCall(
-                'addManager',
-                array(new Reference($id))
-            );
+            foreach($tags as $attributes){
+                $package = (isset($attributes['package'])) ? $attributes['package']: '';
+                $in_console = (isset($attributes['in_console'])) ? $attributes['in_console']: '';
+                $definition->addMethodCall(
+                    'addManager',
+                    array(new Reference($id), $package, $in_console)
+                );
+            }
+
         }
     }
 

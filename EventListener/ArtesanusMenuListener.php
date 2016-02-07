@@ -18,16 +18,25 @@ class ArtesanusMenuListener
     public function onArtesanusNavBar(ArtesanusMenuEvent $event)
     {
         $menu = $event->getMenu();
-        //
-        $menu->addChild('Entities', array('route' => 'users'))
-        ->setAttribute('dropdown', true)
-        ->setAttribute('icon', 'icon-user')
-        ->setAttribute('class', 'dropdown-toggle');
-        ;
 
-        foreach($this->managers->getManagers() as $manager){
-            $menu['Entities']->addChild($manager, array('route' => $manager))
-    			->setAttribute('icon', 'icon-edit');
+        foreach($this->managers->getManagers() as $p => $packages){
+            if(!is_int($p)){
+
+                $p = strtoupper($p);
+
+                $menu->addChild($p, array())
+                ->setAttribute('dropdown', true)
+                ->setAttribute('icon', 'icon-user')
+                ->setAttribute('class', 'dropdown-toggle');
+                ;
+
+                foreach($packages as $i => $item){
+                    $menu[$p]->addChild(ucwords($i), array('route' => $i))
+                		->setAttribute('icon', 'icon-edit');
+                }
+            }else{
+                $menu->addChild(strtoupper($packages['manager']), array('route' => $packages['manager']));
+            }
         }
 
 
