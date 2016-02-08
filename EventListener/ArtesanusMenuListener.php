@@ -22,7 +22,7 @@ class ArtesanusMenuListener
         foreach($this->managers->getManagers() as $p => $packages){
             if(!is_int($p)){
 
-                $p = strtoupper($p);
+                $p = ucwords($p);
 
                 $menu->addChild($p, array())
                 ->setAttribute('dropdown', true)
@@ -35,7 +35,7 @@ class ArtesanusMenuListener
                 		->setAttribute('icon', 'icon-edit');
                 }
             }else{
-                $menu->addChild(strtoupper($packages['manager']), array('route' => $packages['manager']));
+                $menu->addChild(ucwords($packages['manager']), array('route' => $packages['manager']));
             }
         }
 
