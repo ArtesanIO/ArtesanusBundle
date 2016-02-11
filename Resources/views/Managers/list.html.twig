@@ -38,7 +38,7 @@
                         <a href="{{ path(entityPrefix ~ '_edit', {id: entity.id }) }}" class="btn btn-default">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
-                        <a href="{{ path(entityPrefix, {id: entity.id }) }}" type="button" class="btn btn-default btn-delete">
+                        <a href="{{ path(entityPrefix ~ '_delete', {id: entity.id }) }}" type="button" class="btn btn-default btn-delete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </div>

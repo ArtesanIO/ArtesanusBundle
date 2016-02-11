@@ -41,7 +41,7 @@ class RoutesManagers extends Loader
                         '_controller' => 'ArtesanusBundle:Manager:edit',
                     )));
 
-                    $routes->add($i.'_delete', new Route($p.'/'.$i.'/delete', array(
+                    $routes->add($i.'_delete', new Route($p.'/'.$i.'/delete/{id}', array(
                         '_controller' => 'ArtesanusBundle:Manager:delete',
                     )));
                 }

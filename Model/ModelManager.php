@@ -107,11 +107,11 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
      */
     public function delete($model, $flush = true) {
 
-        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_before_delete.event', new ModelEvent($model, $this->getContainer()));
+        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_before_delete.event', new ModelEvent($model, $this->container));
 
         $this->remove($model, $flush);
 
-        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_after_delete.event', new ModelEvent($model, $this->getContainer()));
+        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_after_delete.event', new ModelEvent($model, $this->container));
     }
     /**
      * Remove model.

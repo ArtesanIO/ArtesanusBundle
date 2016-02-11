@@ -34,12 +34,8 @@ class ManagerController extends Controller
 
     public function editAction($id, Request $request)
     {
-        $prefix = $request->get('_route');
-
-        $prefix = explode('_', $prefix);
-        $prefix = $prefix[0];
+        $prefix = $this->entityPrefix($request->get('_route'));
         $manager = $this->get($prefix.'.manager');
-        $routes = array('edit' => $manager->routeEdit(), 'delete' => $manager->routeDelete());
 
         $entity = $manager->getRepository()->findOneBy(array('id' => $id));
 
@@ -56,8 +52,26 @@ class ManagerController extends Controller
         );
     }
 
-    public function deleteAction()
+    public function deleteAction($id, Request $request)
     {
-        exit('remove');
+        $prefix = $this->entityPrefix($request->get('_route'));
+        $manager = $this->get($prefix.'.manager');
+
+        $entity = $manager->getRepository()->findOneBy(array('id' => $id));
+
+        if(!$entity){
+            return $this->redirectToRoute($prefix);
+        }
+
+        $manager->delete($entity);
+
+        return $this->redirectToRoute($prefix);
+    }
+
+    private function entityPrefix($route)
+    {
+        $prefix = explode('_', $route);
+
+        return $prefix[0];
     }
 }
