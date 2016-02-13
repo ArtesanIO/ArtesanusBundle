@@ -21,8 +21,9 @@ body {
   color: #505050;
   font-weight: bold !important; }
 
-.navbar-brand {
-  background: #5F97FB;
+.navbar-brand,
+.navbar-brand:hover {
+  background: #5F97FB !important;
   color: #f1f1f1 !important;
   padding: 15px 50px; }
 
@@ -40,35 +41,27 @@ body {
 
 .section-header {
   display: inline-block;
-  padding: 10px 50px;
+  padding: 10px 5%;
   box-sizing: border-box; }
 
-.section-header-title,
-.section-header-menu,
-.section-header-plus {
+.section-header-title {
+  width: 50%;
   float: left; }
 
-.menu-section {
-  padding: 10px 0px 0px 12px; }
+.section-header-btn-plus {
+  width: 50%;
+  position: relative;
+  float: left;
+  text-align: right;
+  padding: 0px; }
 
-.section-header-menu .menu-section li {
-  display: inline-block; }
-
-.section-header-menu .menu-section li a {
-  padding: 22px;
-  color: #f1f1f1; }
-
-.menu-plus {
-  padding: 10px 0px 0px 0px; }
-
-.section-header-btn-plus .menu-plus li {
-  display: inline-block;
-  position: absolute; }
-
-.section-header-btn-plus .menu-plus li a {
-  padding: 22px;
-  color: #f1f1f1;
+.section-header-btn-plus button {
+  right: -50px;
+  padding: 20px 50px;
   background: #5F97FB;
+  border-radius: 0px;
+  border: 0px;
+  color: #F3F4F7;
   font-weight: bold; }
 
 #content-wrap {
