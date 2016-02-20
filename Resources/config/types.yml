@@ -4,6 +4,11 @@ services:
         tags:
             - { name: form.type, alias: users_type }
 
+    fos_user_registration:
+        class: FOS\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: fos_user_registration }
+
     artesanus.users_password_type:
         class: ArtesanIO\ArtesanusBundle\Form\UsersPasswordType
         tags:

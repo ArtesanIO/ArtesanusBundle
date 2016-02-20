@@ -1,21 +1,29 @@
 {% extends 'ArtesanusBundle::security.html.twig' %}
 
-{% block artesanus_security %}
+{% block fos_user_content %}
 {% if error %}
-    <div>{{ error.message }}</div>
+    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
 {% endif %}
-    {% embed "ArtesanusBundle::Components/form.html.twig" with { action: 'artesanus_security_login_check'}%}
+    {% embed "ArtesanusBundle::Components/form.html.twig" with { action: 'fos_user_security_check'}%}
         {% block form %}
             {% trans_default_domain 'ArtesanusBundle' %}
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
             <div class="form-group">
-              <label for="username">{{ 'artesanus.security.username'|trans }}</label>
-              <input type="text" class="form-control" id="" name="_username" value="{{ last_username }}" required=""/>
+                <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
             </div>
             <div class="form-group">
-              <label for="">{{ 'artesanus.security.password'|trans }}</label>
-              <input type="password" class="form-control" id="" name="_password"  required=""/>
+                <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                <input class="form-control" type="password" id="password" name="_password" required="required" />
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
             </div>
         {% endblock %}
     {% endembed %}
+    <hr>
+    <a href="{{ path('fos_user_resetting_request') }}" type="button" class="btn btn-default">
+        Forgot
+    </a>
 {% endblock %}

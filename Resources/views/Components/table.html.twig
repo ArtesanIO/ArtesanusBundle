@@ -4,6 +4,10 @@
 
 <table class="{{ class|default('table table-condensed') }}">
     {{ table._rows('thead', rows ) }}
-    {% if _tbody is not empty %}<tbody>{% block tbody %}{% endblock %}</tbody>{% endif %}
+    {% if _tbody is not empty %}
+        <tbody>
+            {% block tbody %}{% endblock %}
+        </tbody>
+    {% endif %}
     {{ table._rows('tfoot', rows ) }}
 </table>

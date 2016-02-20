@@ -11,7 +11,7 @@ class UsersManager extends ModelManager
 
     public function tableFields()
     {
-        return array('id','name');
+        return array('id','username','email', null);
     }
 
     public function setEncoder($encoder)

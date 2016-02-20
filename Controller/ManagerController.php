@@ -18,7 +18,7 @@ class ManagerController extends Controller
         $entities = $manager->getRepository()->findAll();
 
         $entityForm = $this->createForm($prefix.'_type', $entity)->handleRequest($request);
-
+        
         if($entityForm->isValid()){
             $manager->save($entity);
             return $manager->redirectTo($request, array('id' => $entity->getId()));
