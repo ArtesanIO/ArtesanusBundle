@@ -2,12 +2,17 @@
 
 <form
     class="{{ class|default('form') }}"
-    action="{% if action is defined %} {{ path(action) }} {% endif %} "
+    action="{% if action is defined %} {{ path(action) }}{% endif %}"
     method="{{ method|default('post') }}" {% if novalidate is defined %}{% if novalidate == true %}novalidate{% endif %}{% endif %}
     {% if enctype is defined %}{{ form_enctype(enctype) }}{% endif %}
     >
 
     {% block form %}{% endblock %}
+
+    {% if entityNew is defined and entityNew == true %}
+        <input type="hidden" name="newEntity" value=1>
+    {% endif %}
+
     <div class="btn-group">
         {% if actions is defined %}
             {{ btn.submit('Save','edit','', 'edit') }}

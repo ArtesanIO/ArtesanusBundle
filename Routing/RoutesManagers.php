@@ -35,7 +35,7 @@ class RoutesManagers extends Loader
 
                     $routes->add($i.'_new', new Route($p.'/'.$i.'/new', array(
                         '_controller' => 'ArtesanusBundle:Manager:new',
-                    )));
+                    ), array(), array(), '', array(), array('POST')));
 
                     $routes->add($i.'_edit', new Route($p.'/'.$i.'/{id}', array(
                         '_controller' => 'ArtesanusBundle:Manager:edit',

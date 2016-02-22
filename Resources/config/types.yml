@@ -10,7 +10,7 @@ services:
             - { name: form.type, alias: users_password_type }
 
     groups.type:
-        class: ArtesanIO\ArtesanusBundle\Form\GroupsType
+        class: ArtesanIO\ArtesanusBundle\Form\Type\GroupFormType
         tags:
             - { name: form.type, alias: groups_type }
 

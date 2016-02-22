@@ -7,3 +7,12 @@ services:
             - [setContainer, ['@service_container']]
         tags:
             - { name: artesanus.manager, package: ACL }
+
+    groups.manager:
+        class: ArtesanIO\ArtesanusBundle\Model\GroupsManager
+        arguments:
+            - ArtesanusBundle:Groups
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: artesanus.manager, package: ACL }

@@ -14,15 +14,8 @@ class GroupsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
-            ->add('name')
-            ->add('roles', 'collection', array(
-                'type' => 'artesanus_groups_roles_type',
-                'by_reference' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-            ))
+            ->add('groups')
         ;
     }
 

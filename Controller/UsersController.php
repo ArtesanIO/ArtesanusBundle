@@ -18,12 +18,7 @@ class UsersController extends ManagerController
 
         $entities = $manager->getRepository()->findAll();
 
-        $newEntityForm = $this->createForm('fos_user_registration', $entity)->handleRequest($request);
-
-        if($newEntityForm->isValid()){
-            $manager->save($entity);
-            return $manager->redirectTo($request, array('id' => $entity->getId()));
-        }
+        $newEntityForm = $this->createForm($prefix.'_type', $entity, array('action' => $prefix.'_new'))->handleRequest($request);
 
         return $this->render('ArtesanusBundle:Managers:list.html.twig', array(
             'entityPrefix' => $manager->entityPrefix(),
@@ -57,12 +52,7 @@ class UsersController extends ManagerController
 
         $newEntity = $manager->create();
 
-        $newEntityForm = $this->createForm('fos_user_registration', $newEntity)->handleRequest($request);
-
-        if($newEntityForm->isValid()){
-            $manager->save($newEntity);
-            return $manager->redirectTo($request, array('id' => $newEntity->getId()));
-        }
+        $newEntityForm = $this->createForm($prefix.'_type', $newEntity, array('action' => $prefix.'_new'))->handleRequest($request);
 
         return $this->render('ArtesanusBundle:ACL:user.html.twig', array(
             'entity' => $entity,

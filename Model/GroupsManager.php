@@ -6,24 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class GroupsManager extends ModelManager
 {
-    public function rolesOriginals($model)
+    public function tableFields()
     {
-        $collections = new ArrayCollection();
-
-        foreach($model->getRoles() as $item){
-            $collections->add($item);
-        }
-
-        return $collections;
+        return array('id','name',null);
     }
-
-    public function rolesUpdate($model, $original)
-    {
-        foreach($original as $i){
-            if(false === $model->getRoles()->contains($i)){
-                $this->em()->remove($i);
-            }
-        }
-    }
-
 }
