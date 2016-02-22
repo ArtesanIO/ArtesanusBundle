@@ -1,3 +1,7 @@
 users:
     path: /users
     defaults: { _controller: ArtesanusBundle:Users:list }
+
+users_edit:
+    path: /users/{id}
+    defaults: { _controller: ArtesanusBundle:Users:edit }

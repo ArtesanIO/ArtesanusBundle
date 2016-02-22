@@ -29,7 +29,8 @@ class UsersController extends ManagerController
             'entityPrefix' => $manager->entityPrefix(),
             'entities' => $entities,
             'fields' => $manager->tableFields(),
-            'new_entity_form' => $newEntityForm->createView())
+            'new_entity_form' => $newEntityForm->createView()
+            )
         );
     }
 
@@ -40,39 +41,35 @@ class UsersController extends ManagerController
 
         $entity = $manager->getRepository()->findOneBy(array('id' => $id));
 
-        $entityForm = $this->createForm($prefix.'_type', $entity)->handleRequest($request);
+        $entityForm = $this->createForm('fos_user_profile', $entity)->handleRequest($request);
 
         if($entityForm->isValid()){
             $manager->save($entity);
             return $manager->redirectTo($request, array('id' => $entity->getId()));
         }
 
-        return $this->render('ArtesanusBundle:Managers:edit.html.twig', array(
-            'entity' => $entity,
-            'entity_form' => $entityForm->createView())
-        );
-    }
+        $entityChangePasswordForm = $this->createForm('users_password_type')->handleRequest($request);
 
-    public function deleteAction($id, Request $request)
-    {
-        $prefix = $this->entityPrefix($request->get('_route'));
-        $manager = $this->get($prefix.'.manager');
-
-        $entity = $manager->getRepository()->findOneBy(array('id' => $id));
-
-        if(!$entity){
-            return $this->redirectToRoute($prefix);
+        if($entityChangePasswordForm->isValid()){
+            $manager->save($entity);
+            return $manager->redirectTo($request, array('id' => $entity->getId()));
         }
 
-        $manager->delete($entity);
+        $newEntity = $manager->create();
 
-        return $this->redirectToRoute($prefix);
-    }
+        $newEntityForm = $this->createForm('fos_user_registration', $newEntity)->handleRequest($request);
 
-    private function entityPrefix($route)
-    {
-        $prefix = explode('_', $route);
+        if($newEntityForm->isValid()){
+            $manager->save($newEntity);
+            return $manager->redirectTo($request, array('id' => $newEntity->getId()));
+        }
 
-        return $prefix[0];
+        return $this->render('ArtesanusBundle:ACL:user.html.twig', array(
+            'entity' => $entity,
+            'entity_form' => $entityForm->createView(),
+            'entity_change_password_form' => $entityChangePasswordForm->createView(),
+            'new_entity_form' => $newEntityForm->createView()
+            )
+        );
     }
 }

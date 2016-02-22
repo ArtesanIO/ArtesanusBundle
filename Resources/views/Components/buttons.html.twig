@@ -6,6 +6,15 @@
     </button>
 {%- endmacro -%}
 
+{%- macro action(text, path = null, class, icon = null, htmlAttributes = null, name = null, value = null) -%}
+
+    {% if app.request.attributes.get('_route') != path %}
+        <a href="{{ path(path) }}" name="{{ name }}" class="btn btn-{{ class|default('default') }}" {{ htmlAttributes }} value="{{ value }}">
+            {% if icon %}<i class="glyphicon glyphicon-{{ icon }}"></i> {% endif %} {{ text }}
+        </a>
+    {% endif %}
+{%- endmacro -%}
+
 {%- macro submit(text = 'Submit', name= null, class = "primary", value = null, icon = "send") -%}
     {% import _self as btns %}
 

@@ -41,6 +41,6 @@ class UsersPasswordType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_users_password_type';
+        return 'users_password_type';
     }
 }

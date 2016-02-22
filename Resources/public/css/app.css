@@ -99,4 +99,11 @@ body {
   bottom: 0px;
   left: 10px; }
 
+.form-group label {
+  font-size: 18px; }
+
+.form-group > input {
+  padding: 25px 15px;
+  font-size: 1.3em; }
+
 /*# sourceMappingURL=app.css.map */

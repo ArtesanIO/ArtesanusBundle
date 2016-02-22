@@ -18,7 +18,7 @@ class ManagerController extends Controller
         $entities = $manager->getRepository()->findAll();
 
         $entityForm = $this->createForm($prefix.'_type', $entity)->handleRequest($request);
-        
+
         if($entityForm->isValid()){
             $manager->save($entity);
             return $manager->redirectTo($request, array('id' => $entity->getId()));
@@ -68,7 +68,7 @@ class ManagerController extends Controller
         return $this->redirectToRoute($prefix);
     }
 
-    private function entityPrefix($route)
+    protected function entityPrefix($route)
     {
         $prefix = explode('_', $route);
 

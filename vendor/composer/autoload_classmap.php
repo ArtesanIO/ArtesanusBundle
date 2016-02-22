@@ -9,6 +9,7 @@ return array(
     'ArtesanIO\\ArtesanusBundle\\ArtesanusBundle' => $baseDir . '/ArtesanusBundle.php',
     'ArtesanIO\\ArtesanusBundle\\ArtesanusEvents' => $baseDir . '/ArtesanusEvents.php',
     'ArtesanIO\\ArtesanusBundle\\Controller\\ManagerController' => $baseDir . '/Controller/ManagerController.php',
+    'ArtesanIO\\ArtesanusBundle\\Controller\\UsersController' => $baseDir . '/Controller/UsersController.php',
     'ArtesanIO\\ArtesanusBundle\\DataFixtures\\ORM\\Dev\\ArtesanusLoader' => $baseDir . '/DataFixtures/ORM/ArtesanusLoader.php',
     'ArtesanIO\\ArtesanusBundle\\DependencyInjection\\ArtesanusExtension' => $baseDir . '/DependencyInjection/ArtesanusExtension.php',
     'ArtesanIO\\ArtesanusBundle\\DependencyInjection\\Compiler\\ManagersCompilerPass' => $baseDir . '/DependencyInjection/Compiler/ManagersCompilerPass.php',

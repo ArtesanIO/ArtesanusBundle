@@ -4,6 +4,12 @@
     <div id="artesanus-security">
         <div id="security-wrap">
             {{ block('fos_user_content') }}
+            <hr>
+            {% import "ArtesanusBundle::Components/buttons.html.twig" as btn %}
+            <div class="btn-group">
+                {{ btn.action('Login','fos_user_security_login') }}
+                {{ btn.action('Forgot','fos_user_resetting_request') }}
+            </div>
         </div>
     </div>
 </div>
