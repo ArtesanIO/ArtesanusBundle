@@ -21,6 +21,11 @@ class GroupsRolesType extends AbstractType
                 'empty_value' => 'artesanus.form.empty_value',
                 'translation_domain' => 'ArtesanusBundle',
             ))
+            ->add('enabled', 'choice', array(
+                'choices' => array(1 => 'Enabled', 0 => 'Disabled'),
+                'empty_value' => 'artesanus.form.empty_value',
+                'translation_domain' => 'ArtesanusBundle',
+            ))
         ;
     }
 
@@ -39,6 +44,6 @@ class GroupsRolesType extends AbstractType
      */
     public function getName()
     {
-        return 'artesanus_groups_roles_type';
+        return 'groups_roles_type';
     }
 }

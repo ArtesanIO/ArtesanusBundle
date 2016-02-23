@@ -10,38 +10,19 @@ services:
             - { name: form.type, alias: users_password_type }
 
     groups.type:
-        class: ArtesanIO\ArtesanusBundle\Form\Type\GroupFormType
+        class: ArtesanIO\ArtesanusBundle\Form\GroupsType
         tags:
             - { name: form.type, alias: groups_type }
 
-    artesanus.groups_roles_type:
+    groups_roles.type:
         class: ArtesanIO\ArtesanusBundle\Form\GroupsRolesType
         tags:
-            - { name: form.type, alias: artesanus_groups_roles_type }
-
-    artesanio.grupo_roles_type:
-        class: ArtesanIO\ArtesanusBundle\Form\GrupoRolesType
-        tags:
-            - { name: form.type, alias: artesanio_acl_grupo_roles }
+            - { name: form.type, alias: groups_roles_type }
 
     roles.type:
         class: ArtesanIO\ArtesanusBundle\Form\RolesType
         tags:
             - { name: form.type, alias: roles_type }
-
-    artesanus.user_type:
-        class: ArtesanIO\ArtesanusBundle\Form\UserType
-        arguments:
-            - @security.context
-        tags:
-            - { name: form.type, alias: artesanus_user_type }
-
-    artesanus.profile_type:
-        class: ArtesanIO\ArtesanusBundle\Form\ProfileType
-        arguments:
-            - @security.context
-        tags:
-            - { name: form.type, alias: artesanus_profile_type }
 
     files.type:
         class: ArtesanIO\ArtesanusBundle\Form\FilesType

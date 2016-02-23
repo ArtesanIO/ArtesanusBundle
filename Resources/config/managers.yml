@@ -16,3 +16,12 @@ services:
             - [setContainer, ['@service_container']]
         tags:
             - { name: artesanus.manager, package: ACL }
+
+    roles.manager:
+        class: ArtesanIO\ArtesanusBundle\Model\RolesManager
+        arguments:
+            - ArtesanusBundle:Roles
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: artesanus.manager, package: ACL }

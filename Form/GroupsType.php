@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the FOSUserBundle package.
+ *
+ * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace ArtesanIO\ArtesanusBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
@@ -8,30 +17,33 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class GroupsType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('groups')
+            ->add('name', null, array('label' => 'form.group_name', 'translation_domain' => 'FOSUserBundle'))
+            ->add('roles', 'collection', array(
+                'type'  => 'groups_roles_type',
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
+                'prototype' => true,
+            ))
         ;
     }
 
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ArtesanIO\ArtesanusBundle\Entity\Groups'
+            'data_class' => 'ArtesanIO\ArtesanusBundle\Entity\Groups',
         ));
     }
 
-    /**
-     * @return string
-     */
+    // public function getParent()
+    // {
+    //     return 'fos_user_group';
+    // }
+
     public function getName()
     {
         return 'groups_type';

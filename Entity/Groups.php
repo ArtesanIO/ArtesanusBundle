@@ -29,9 +29,15 @@ class Groups
     private $name;
 
     /**
+     * @ORM\OneToMany(targetEntity="ArtesanIO\ArtesanusBundle\Entity\GroupsRoles", mappedBy="groups", cascade={"persist", "remove"})
+     */
+
+    private $roles;
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -54,10 +60,62 @@ class Groups
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set roles
+     *
+     * @param string $roles
+     * @return Groups
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return string
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add roles
+     *
+     * @param \ArtesanIO\ArtesanusBundle\Entity\GroupsRoles $roles
+     * @return Groups
+     */
+    public function addRole(\ArtesanIO\ArtesanusBundle\Entity\GroupsRoles $roles)
+    {
+        $this->roles->add($roles);
+        $roles->setGroups($this);
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \ArtesanIO\ArtesanusBundle\Entity\GroupsRoles $roles
+     */
+    public function removeRole(\ArtesanIO\ArtesanusBundle\Entity\GroupsRoles $roles)
+    {
+        $this->roles->removeElement($roles);
     }
 }

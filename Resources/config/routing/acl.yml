@@ -5,3 +5,7 @@ users:
 users_edit:
     path: /users/{id}
     defaults: { _controller: ArtesanusBundle:Users:edit }
+
+groups_edit:
+    path: /groups/{id}
+    defaults: { _controller: ArtesanusBundle:Groups:edit }

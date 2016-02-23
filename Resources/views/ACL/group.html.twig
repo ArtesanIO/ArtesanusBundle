@@ -15,8 +15,8 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody class="collections" data-prototype="{{ form.groups_roles(group_form.roles.vars.prototype)|e }}">
-                            {% for role in group_form.roles %}
+                        <tbody class="collections" data-prototype="{{ form.groups_roles(entity_form.roles.vars.prototype)|e }}">
+                            {% for role in entity_form.roles %}
                                 {{ form.groups_roles(role) }}
                             {% endfor %}
                         </tbody>
@@ -24,7 +24,7 @@
                     <button type="button" class="btn btn-default add-collection">
                         <span class="glyphicon glyphicon-plus"></span> Agregar
                     </button>
-                        {{ form_widget(group_form) }}
+                        {{ form_widget(entity_form) }}
                 {% endblock %}
             {% endembed %}
         {% endblock %}

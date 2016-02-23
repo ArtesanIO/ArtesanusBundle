@@ -17,6 +17,12 @@ class UsersType extends AbstractType
             $builder
                 ->add('username')
                 ->add('email')
+                ->add('groups','entity', array(
+                    'class' => 'ArtesanIO\ArtesanusBundle\Entity\Groups',
+                    'property' => 'name',
+                    'empty_value' => 'artesanus.form.empty_value',
+                    'translation_domain' => 'ArtesanusBundle',
+                ))
             ;
     }
 
@@ -29,6 +35,11 @@ class UsersType extends AbstractType
             'data_class' => 'ArtesanIO\ArtesanusBundle\Entity\Users'
         ));
     }
+
+    // public function getParent()
+    // {
+    //     return 'fos_user_profile';
+    // }
 
     /**
      * @return string

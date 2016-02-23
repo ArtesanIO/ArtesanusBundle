@@ -14,6 +14,9 @@
             {{ form_widget(role.roles) }}
         </td>
         <td>
+            {{ form_widget(role.enabled) }}
+        </td>
+        <td>
             {% import _self as btn %}
             {{ btn.btn_delete() }}
         </td>

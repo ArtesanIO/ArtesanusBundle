@@ -10,4 +10,21 @@ class GroupsManager extends ModelManager
     {
         return array('id','name',null);
     }
+
+    public function rolesOriginals($model)
+    {
+        $collections = new ArrayCollection();
+        foreach($model->getRoles() as $item){
+            $collections->add($item);
+        }
+        return $collections;
+    }
+    public function rolesUpdate($model, $original)
+    {
+        foreach($original as $i){
+            if(false === $model->getRoles()->contains($i)){
+                $this->em()->remove($i);
+            }
+        }
+    }
 }
