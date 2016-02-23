@@ -35,6 +35,12 @@ class Groups
     private $roles;
 
     /**
+     * @ORM\OneToMany(targetEntity="ArtesanIO\ArtesanusBundle\Entity\Users", mappedBy="groups")
+     */
+
+    private $users;
+
+    /**
      * Get id
      *
      * @return integer
@@ -117,5 +123,38 @@ class Groups
     public function removeRole(\ArtesanIO\ArtesanusBundle\Entity\GroupsRoles $roles)
     {
         $this->roles->removeElement($roles);
+    }
+
+    /**
+     * Add users
+     *
+     * @param \ArtesanIO\ArtesanusBundle\Entity\Users $users
+     * @return Groups
+     */
+    public function addUser(\ArtesanIO\ArtesanusBundle\Entity\Users $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \ArtesanIO\ArtesanusBundle\Entity\Users $users
+     */
+    public function removeUser(\ArtesanIO\ArtesanusBundle\Entity\Users $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

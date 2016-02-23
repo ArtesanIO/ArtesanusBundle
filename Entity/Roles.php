@@ -66,4 +66,44 @@ class Roles
     {
         return $this->role;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add groups
+     *
+     * @param \ArtesanIO\ArtesanusBundle\Entity\GroupsRoles $groups
+     * @return Roles
+     */
+    public function addGroup(\ArtesanIO\ArtesanusBundle\Entity\GroupsRoles $groups)
+    {
+        $this->groups[] = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \ArtesanIO\ArtesanusBundle\Entity\GroupsRoles $groups
+     */
+    public function removeGroup(\ArtesanIO\ArtesanusBundle\Entity\GroupsRoles $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
 }

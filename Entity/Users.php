@@ -20,16 +20,45 @@ class Users extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ArtesanIO\ArtesanusBundle\Entity\Groups")
-     * @ORM\JoinTable(name="artesanus_users_groups",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToOne(targetEntity="ArtesanIO\ArtesanusBundle\Entity\Groups",  inversedBy="users")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
      */
     protected $groups;
+
 
     public function __construct()
     {
         parent::__construct();
+    }
+
+    /**
+     * Set groups
+     *
+     * @param \ArtesanIO\ArtesanusBundle\Entity\Groups $groups
+     * @return Users
+     */
+    public function setGroups(\ArtesanIO\ArtesanusBundle\Entity\Groups $groups = null)
+    {
+        $this->groups = $groups;
+
+        return $this;
+    }
+
+    public function getRoles()
+    {
+        $roles = $this->roles;
+
+        $groupsRoles = array();
+
+        foreach($this->groups->getRoles() as $role){
+
+            if($role->getEnabled() == 1){
+                $groupsRoles[] = $role->getRoles()->getRole();
+            }
+        }
+
+        $roles = array_merge($roles, $groupsRoles);
+
+        return array_unique($roles);
     }
 }
