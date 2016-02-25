@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="{{ asset('bower/bootstrap/dist/css/bootstrap.min.css') }}" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="{{ asset('bower/alertifyjs/dist/css/alertify.css') }}" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="{{ asset('bower/alertifyjs/dist/css/alertify-bootstrap.css') }}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{{ asset('bower/select2/dist/css/select2.min.css') }}" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="{{ asset('bundles/artesanus/css/app.css') }}" media="screen" title="no title" charset="utf-8">
         {% block artesanus_css %}{% endblock %}
     </head>
@@ -16,7 +17,9 @@
         {% include 'ArtesanusBundle::includes/footer-navbar.html.twig' %}
 
         <script src="{{ asset('bower/jquery/dist/jquery.min.js') }}" charset="utf-8"></script>
+        <script src="{{ asset('bower/select2/dist/js/select2.min.js') }}" charset="utf-8"></script>
         <script src="{{ asset('bower/bootstrap/dist/js/bootstrap.min.js') }}" charset="utf-8"></script>
+        <script src="{{ asset('bundles/artesanus/js/select2.js') }}" charset="utf-8"></script>
         <script src="{{ asset('bundles/artesanus/js/app.js') }}" charset="utf-8"></script>
 
         {% block artesanus_js %}{% endblock %}
