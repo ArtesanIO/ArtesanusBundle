@@ -12,26 +12,22 @@ use Symfony\Component\Routing\Router;
 
 class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
 {
-    protected $roles;
     protected $router;
     protected $security;
 
-    function __construct(RolesManager $roles, Router $router, SecurityContext $security)
+    function __construct(Router $router, SecurityContext $security)
     {
-        $this->roles    = $roles;
         $this->router   = $router;
         $this->security = $security;
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-        foreach($this->roles->getRoles() as $role){
-            if ($this->security->isGranted($role['key'])) {
-                $response = new RedirectResponse($this->router->generate($role['login_route_success']));
-            }
-        }
+        $user = $this->security->getToken()->getUser();
 
-        return $response;
+        if($user->getGroups()->getId() === 1){
+            return new RedirectResponse($this->router->generate('users'));
+        }
     }
 }
 

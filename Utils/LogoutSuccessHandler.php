@@ -19,7 +19,7 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 
     public function onLogoutSuccess(Request $request)
     {
-        return new RedirectResponse($request->headers->get('referer'));;
+        return new RedirectResponse($this->router->generate('fos_user_security_login'));
     }
 }
 

@@ -22,3 +22,11 @@ services:
 
     artesanus.entity_prefix:
         class: ArtesanIO\ArtesanusBundle\Utils\EntityPrefix
+
+    artesanus.login_success_handler:
+        class: ArtesanIO\ArtesanusBundle\Utils\LoginSuccessHandler
+        arguments: [@router, @security.context]
+
+    artesanus.logout_success_handler:
+        class: ArtesanIO\ArtesanusBundle\Utils\LogoutSuccessHandler
+        arguments: [@router]
