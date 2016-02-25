@@ -2,7 +2,6 @@
 
 namespace ArtesanIO\ArtesanusBundle\Utils;
 
-use ArtesanIO\ArtesanusBundle\Model\RolesManager;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;

@@ -53,7 +53,13 @@ class ManagerController extends Controller
             return $manager->redirectTo($request, array('id' => $entity->getId()));
         }
 
-        exit('Problemas');
+        return $this->render('ArtesanusBundle:Managers:list.html.twig', array(
+            'entityPrefix' => $manager->entityPrefix(),
+            'entities' => $entities,
+            'fields' => $manager->tableFields(),
+            'new_entity_form' => $newEntityForm->createView()
+            )
+        );
     }
 
     public function editAction($id, Request $request)

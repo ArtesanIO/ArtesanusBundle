@@ -7,29 +7,6 @@ use ArtesanIO\ArtesanusBundle\Controller\ManagerController;
 
 class GroupsController extends ManagerController
 {
-
-    public function newAction(Request $request)
-    {
-        $prefix = $request->get('_route');
-
-        $prefix = $this->entityPrefix($prefix);
-
-        $manager = $this->get($prefix.'.manager');
-
-        $entity = $manager->create();
-
-        $entities = $manager->getRepository()->findAll();
-
-        $newEntityForm = $this->createForm($prefix.'_type', $entity, array('action' => $prefix.'_new'))->handleRequest($request);
-
-        if($newEntityForm->isValid()){
-            $manager->save($entity);
-            return $manager->redirectTo($request, array('id' => $entity->getId()));
-        }
-
-        exit('Problemas');
-    }
-
     public function editAction($id, Request $request)
     {
         $prefix = $this->entityPrefix($request->get('_route'));

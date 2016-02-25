@@ -5,7 +5,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ArtesanusManagers extends ContainerAware
 {
-    private $manager;
+    private $managers;
 
     public function __construct()
     {
