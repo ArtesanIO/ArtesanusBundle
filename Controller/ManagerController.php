@@ -100,7 +100,6 @@ class ManagerController extends Controller
 
     protected function entityPrefix($route)
     {
-        $prefix = explode('_', $route);
-        return $prefix[0];
+        return $this->get('artesanus.entity_prefix')->getEntityPrefix($route);
     }
 }

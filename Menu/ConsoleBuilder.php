@@ -53,15 +53,19 @@ class ConsoleBuilder extends ContainerAware
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
 
-
     	/*
     	You probably want to show user specific information such as the username here. That's possible! Use any of the below methods to do this.
 
     	if($this->container->get('security.context')->isGranted(array('ROLE_ADMIN', 'ROLE_USER'))) {} // Check if the visitor has any authenticated roles
     	$username = $this->container->get('security.context')->getToken()->getUser()->getUsername(); // Get username of the current logged in user
-
     	*/
-		$menu->addChild('User', array('label' => 'Hi visitor'))
+
+
+        // exit();
+
+        $username = $this->container->get('security.context')->getToken()->getUser()->getUsername();
+
+		$menu->addChild('User', array('label' => $username))
 			->setAttribute('dropdown', true)
 			->setAttribute('icon', 'icon-user')
             ->setAttribute('class', 'dropdown-toggle');
@@ -69,9 +73,44 @@ class ConsoleBuilder extends ContainerAware
 		$menu['User']->addChild('Profile', array('route' => 'users'))
 			->setAttribute('icon', 'icon-edit');
 
-            $menu['User']->addChild('Logout', array('route' => 'users'))
+            $menu['User']->addChild('Logout', array('route' => 'fos_user_security_logout'))
     			->setAttribute('icon', 'icon-edit');
 
+        return $menu;
+    }
+
+    public function subMenu(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+    	$menu->setChildrenAttribute('class', 'menu-section');
+
+        $request = $this->container->get('request');
+        $routeName = $request->get('_route');
+
+        $managers = $this->container->get('artesanus.managers');
+
+        $package = '';
+
+        foreach($managers->getManagers() as $manager){
+            foreach($manager as $m){
+                if($routeName === $m){
+                    $package = $manager;
+                }
+            }
+        }
+        
+        foreach($package as $p){
+            $menu->addChild($p, array('route' => $p))
+    			->setAttribute('icon', 'icon-list');
+        }
+
+
+        //
+		// $menu->addChild('Groups', array('route' => 'artesanus_console_acl_groups'))
+		// 	->setAttribute('icon', 'icon-group');
+        //
+        //     $menu->addChild('Roles', array('route' => 'artesanus_console_acl_roles'))
+    	// 		->setAttribute('icon', 'icon-list');
         return $menu;
     }
 

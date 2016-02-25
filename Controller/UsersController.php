@@ -7,28 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UsersController extends ManagerController
 {
-    public function listAction(Request $request)
-    {
-
-        $prefix = $request->get('_route');
-
-        $manager = $this->get($prefix.'.manager');
-
-        $entity = $manager->create();
-
-        $entities = $manager->getRepository()->findAll();
-
-        $newEntityForm = $this->createForm($prefix.'_type', $entity, array('action' => $prefix.'_new'))->handleRequest($request);
-
-        return $this->render('ArtesanusBundle:Managers:list.html.twig', array(
-            'entityPrefix' => $manager->entityPrefix(),
-            'entities' => $entities,
-            'fields' => $manager->tableFields(),
-            'new_entity_form' => $newEntityForm->createView()
-            )
-        );
-    }
-
     public function editAction($id, Request $request)
     {
         $prefix = $this->entityPrefix($request->get('_route'));

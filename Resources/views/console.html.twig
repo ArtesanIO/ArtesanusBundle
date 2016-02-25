@@ -38,6 +38,7 @@
 <div id="section-header">
     <div class="section-header section-header-title">
         <h4>{% block artesanus_section_title %}{% endblock %} <small>{% block artesanus_section_subtitle %}{% endblock %}</small></h4>
+        {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:subMenu') }}
     </div>
     <div class="section-header section-header-btn-plus">
         {% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}

@@ -19,3 +19,6 @@ services:
             - @artesanus.managers
         tags:
           - { name: kernel.event_listener, event: artesanus.navbar, method: onArtesanusNavBar }
+
+    artesanus.entity_prefix:
+        class: ArtesanIO\ArtesanusBundle\Utils\EntityPrefix
