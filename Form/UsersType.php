@@ -15,8 +15,16 @@ class UsersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
             $builder
+                ->add('enabled')
                 ->add('username')
                 ->add('email')
+                ->add('plainPassword', 'repeated', array(
+                    'type' => 'password',
+                    'options' => array('translation_domain' => 'FOSUserBundle'),
+                    'first_options' => array('label' => 'form.password'),
+                    'second_options' => array('label' => 'form.password_confirmation'),
+                    'invalid_message' => 'fos_user.password.mismatch',
+                ))
                 ->add('groups','entity', array(
                     'class' => 'ArtesanIO\ArtesanusBundle\Entity\Groups',
                     'property' => 'name',

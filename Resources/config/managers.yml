@@ -25,3 +25,12 @@ services:
             - [setContainer, ['@service_container']]
         tags:
             - { name: artesanus.manager, package: ACL }
+
+    categories.manager:
+        class: ArtesanIO\ArtesanusBundle\Model\CategoriesManager
+        arguments:
+            - ArtesanusBundle:Categories
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: artesanus.manager }

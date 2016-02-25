@@ -31,13 +31,6 @@ class Categories
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255)
-     */
-    private $slug;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -47,12 +40,18 @@ class Categories
      */
 
     private $files;
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->files = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -75,7 +74,7 @@ class Categories
     /**
      * Get category
      *
-     * @return string
+     * @return string 
      */
     public function getCategory()
     {
@@ -98,18 +97,11 @@ class Categories
     /**
      * Get description
      *
-     * @return string
+     * @return string 
      */
     public function getDescription()
     {
         return $this->description;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->files = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -138,33 +130,10 @@ class Categories
     /**
      * Get files
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getFiles()
     {
         return $this->files;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Categories
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 }

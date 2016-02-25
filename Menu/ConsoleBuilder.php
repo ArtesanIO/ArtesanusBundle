@@ -10,18 +10,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ConsoleBuilder extends ContainerAware
 {
-    protected $container;
-
-    public function setContainer(ContainerInterface $container = NULL)
-    {
-        $this->container = $container;
-    }
-
-    public function getContainer()
-    {
-        return $this->container;
-    }
-
     public function consoleMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root', array('childrenAttributes' => array('class' => 'nav navbar-nav')));
@@ -85,7 +73,7 @@ class ConsoleBuilder extends ContainerAware
     	$menu->setChildrenAttribute('class', 'menu-section');
 
         $request = $this->container->get('request');
-        $routeName = $request->get('_route');
+        $routeName = $this->container->get('artesanus.entity_prefix')->getEntityPrefix($request->get('_route'));
 
         $managers = $this->container->get('artesanus.managers');
 
@@ -98,9 +86,9 @@ class ConsoleBuilder extends ContainerAware
                 }
             }
         }
-        
+
         foreach($package as $p){
-            $menu->addChild($p, array('route' => $p))
+            $menu->addChild(ucwords($p), array('route' => $p))
     			->setAttribute('icon', 'icon-list');
         }
 

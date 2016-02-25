@@ -61,20 +61,28 @@ body{
 
 .section-header{
     display: inline-block;
-    padding: 10px 5%;
+    padding: 10px 0px;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+}
+
+.section-header-sub-menu ul{
     box-sizing: border-box;
 }
 
-.section-header-title{
-    width: 50%;
-    float: left;
+.section-header-sub-menu ul li{
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.section-header-sub-menu ul li a{
+    color: $white;
 }
 
 .section-header-btn-plus{
-    width: 50%;
-    position: relative;
-    float: left;
-    text-align: right;
+    float: right;
     padding: 0px;
 }
 
