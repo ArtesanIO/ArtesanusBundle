@@ -42,13 +42,12 @@ class ArtesanusExtension extends Extension implements PrependExtensionInterface
         $knpMenuConfig['default_renderer']  = 'twig'; // The renderer to use, list is also available by default
         $container->prependExtensionConfig('knp_menu', $knpMenuConfig);
 
-        // $fosUserConfig['db_driver']                     = 'orm'; // other valid values are 'mongodb', 'couchdb'
-        // $fosUserConfig['firewall_name']                 = 'main';
-        // $fosUserConfig['user_class']                    = 'ArtesanIO\ArtesanusBundle\Entity\Users';
-        // #$fosUserConfig['group']['group_class']          = 'ArtesanIO\ArtesanusBundle\Entity\Group';
-        // $fosUserConfig['resetting']['token_ttl']        = 86400;
-        //
-        // $container->prependExtensionConfig('fos_user', $fosUserConfig);
+        $fosUserConfig['db_driver']                     = 'orm'; // other valid values are 'mongodb', 'couchdb'
+        $fosUserConfig['firewall_name']                 = 'main';
+        $fosUserConfig['user_class']                    = 'ArtesanIO\ArtesanusBundle\Entity\Users';
+        $fosUserConfig['resetting']['token_ttl']        = 86400;
+
+        $container->prependExtensionConfig('fos_user', $fosUserConfig);
 
         $configs = $container->getExtensionConfig($this->getAlias());
         $this->processConfiguration(new Configuration(), $configs);

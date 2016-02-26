@@ -56,6 +56,7 @@ return array(
     'ArtesanIO\\ArtesanusBundle\\Utils\\ArtesanusManagers' => $baseDir . '/Utils/ArtesanusManagers.php',
     'ArtesanIO\\ArtesanusBundle\\Utils\\Cartero' => $baseDir . '/Utils/Cartero.php',
     'ArtesanIO\\ArtesanusBundle\\Utils\\Encoder' => $baseDir . '/Utils/Encoder.php',
+    'ArtesanIO\\ArtesanusBundle\\Utils\\EntityPrefix' => $baseDir . '/Utils/EntityPrefix.php',
     'ArtesanIO\\ArtesanusBundle\\Utils\\Flashers' => $baseDir . '/Utils/Flashers.php',
     'ArtesanIO\\ArtesanusBundle\\Utils\\FlashersExtension' => $baseDir . '/Utils/FlashersExtension.php',
     'ArtesanIO\\ArtesanusBundle\\Utils\\LoginSuccessHandler' => $baseDir . '/Utils/LoginSuccessHandler.php',
