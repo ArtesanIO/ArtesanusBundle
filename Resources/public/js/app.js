@@ -14,7 +14,7 @@ $(document).ready(function(){
         divParent = $(this).parent();
         formParent = divParent.parent();
 
-        ordenesColeccion = formParent.find($('table tbody.collections'));
+        ordenesColeccion = formParent.find($('table tbody.form-collections'));
 
         ordenesColeccion.data('index', ordenesColeccion.find(':input').length);
 

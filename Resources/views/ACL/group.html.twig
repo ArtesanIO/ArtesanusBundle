@@ -7,24 +7,8 @@
         {% block col %}
             {% embed "ArtesanusBundle::Components/form.html.twig" %}
                 {% block form %}
-                    {% import "ArtesanusBundle::Components/forms.html.twig" as form %}
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Role</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="collections" data-prototype="{{ form.groups_roles(entity_form.roles.vars.prototype)|e }}">
-                            {% for role in entity_form.roles %}
-                                {{ form.groups_roles(role) }}
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <button type="button" class="btn btn-default add-collection">
-                        <span class="glyphicon glyphicon-plus"></span> Agregar
-                    </button>
-                        {{ form_widget(entity_form) }}
+                    {% form_theme entity_form.roles 'ArtesanusBundle::Form/data-collection.html.twig' %}
+                    {{ form_widget(entity_form) }}
                 {% endblock %}
             {% endembed %}
         {% endblock %}

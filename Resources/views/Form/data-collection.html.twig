@@ -1,0 +1,105 @@
+{% use "bootstrap_3_layout.html.twig" %}
+
+{%- block collection_widget -%}
+
+    {% if prototype is defined %}
+        {%- set attr = attr|merge({'data-prototype': block('collection_item_widget') }) -%}
+    {% endif %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        {{ block('labels') }}
+                        <th></th>
+                    </tr>
+                </thead>
+                {%- if form.parent is empty and errors|length > 0 -%}
+                <tr>
+                    <td colspan="2">{{- form_errors(form) -}}</td>
+                </tr>
+                {%- endif -%}
+                <tbody {{ block('widget_container_attributes') }} class="form-collections">
+                    {% for child in form %}
+                    <tr>
+                        <td>{{ child.vars.value.id }}</td>
+                        {{ form_widget(child) }}
+                        <td class="text-center">
+                                <button type="button" class="btn btn-default delete-collection">
+                                  <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-default add-collection">
+              <span class="glyphicon glyphicon-plus-sign"></span> Add
+            </button>
+        </div>
+    </div>
+    {{ form_rest(form) }}
+{%- endblock collection_widget -%}
+
+{%- block form_row -%}
+    <td>
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+    </td>
+{%- endblock form_row -%}
+
+{%- block form_label -%}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</th>
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{%- block collection_item_widget -%}
+<tr>
+    <td>#</td>
+    {{ form_widget(prototype) }}
+    <td class="text-center">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </div>
+    </td>
+</tr>
+{%- endblock -%}
+
+{% block labels %}
+
+{% set labels = [] %}
+{% for rows in form %}
+    {% for row in rows %}
+    {% set labels = row.parent.children %}
+    {% endfor %}
+{% endfor %}
+
+{% for key, label in labels %}
+    <th>
+        {{ translation_domain is same as(false) ? key : key|trans({}, translation_domain) }}
+    </th>
+{% endfor %}
+
+{% endblock %}
