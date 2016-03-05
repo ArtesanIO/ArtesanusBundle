@@ -5,12 +5,42 @@
 {% block artesanus_section_body %}
     {% embed "ArtesanusBundle::Components/col.html.twig" with { 'large': 4 }%}
         {% block col %}
-            {% embed "ArtesanusBundle::Components/form.html.twig" %}
-                {% block form %}
-                    {% form_theme entity_form.roles 'ArtesanusBundle::Form/data-collection.html.twig' %}
-                    {{ form_widget(entity_form) }}
-                {% endblock %}
-            {% endembed %}
+        <div class="panel panel-default">
+          <div class="panel-body">
+              {% embed "ArtesanusBundle::Components/form.html.twig" %}
+                  {% block form %}
+                      {% import "ArtesanusBundle::Components/forms.html.twig" as form %}
+
+                      <div class="form-group">
+                        <label for=""></label>
+                        {{ form_row(entity_form.name) }}
+                      </div>
+
+                      <table class="table table-condensed">
+                          <thead>
+                              <tr>
+                                  <th>Role</th>
+                                  <th>Enabled</th>
+                                  <th></th>
+                                  <th></th>
+                              </tr>
+                          </thead>
+                          <tbody class="form-collections" data-prototype="{{ form.groups_roles(entity_form.roles.vars.prototype)|e }}">
+                              {% for role in entity_form.roles %}
+                                  {{ form.groups_roles(role) }}
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                      <hr>
+                      <button type="button" class="btn btn-default add-collection">
+                          <span class="glyphicon glyphicon-plus"></span> Agregar
+                      </button>
+                      {{ form_rest(entity_form) }}
+                  {% endblock %}
+              {% endembed %}
+          </div>
+        </div>
+
         {% endblock %}
     {% endembed %}
 {% endblock %}

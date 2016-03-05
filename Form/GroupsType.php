@@ -25,9 +25,9 @@ class GroupsType extends AbstractType
             ->add('roles', 'collection', array(
                 'type'  => 'groups_roles_type',
                 'allow_add' => true,
-                'by_reference' => false,
                 'allow_delete' => true,
-                'prototype' => true,
+                'by_reference' => false,
+                'prototype' => true
             ))
         ;
     }
