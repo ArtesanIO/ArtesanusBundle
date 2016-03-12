@@ -53,7 +53,7 @@ class ConsoleBuilder extends ContainerAware
     public function subMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
-    	$menu->setChildrenAttribute('class', 'menu-section');
+    	$menu->setChildrenAttribute('class', 'btn-group');
 
         $request = $this->container->get('request');
         $routeName = $this->container->get('artesanus.entity_prefix')->getEntityPrefix($request->get('_route'));

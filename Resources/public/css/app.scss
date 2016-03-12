@@ -1,145 +1,152 @@
-$primary: #5F97FB;
-$second: #282931;
-$third: #505050;
-$font-white: #f1f1f1;
-$btn-default: #dedede;
-$btn-primary: $second;
-$white: #F3F4F7;
-
-.btn-default{
-    background: $btn-default;
-}
-
-.btn-primary{
-    background: $btn-primary;
-}
-
-$primary-font: Helvetica, sans-serif;
-
-html, body{
-    width: 100%;
-    height: 100%;
-}
-
-body{
-    background: $white;
-    font: $primary-font;
-}
-
-.navbar-default{
-    background-color: none;
-    border: none;
-    background: #dedede;
-}
-
-.nav .navbar-nav ul li a{
-    color: #505050;
-    font-weight: bold!important;
-}
-
-.navbar-brand,
-.navbar-brand:hover{
-    background: $primary!important;
-    color: #f1f1f1!important;
-    padding: 15px 50px;
-}
-
-.navbar-brand:hover{
-    background: $primary;
-    color: #f1f1f1!important;
-}
-
-#section-header{
-    width: 100%;
-    float: left;
-    top: 50px;
-    position: relative;
-    background: $second;
-    color: white;
-}
-
-.section-header{
-    display: inline-block;
-    padding: 10px 0px;
-    box-sizing: border-box;
-    float: left;
-    position: relative;
-}
-
-.section-header-sub-menu ul{
-    box-sizing: border-box;
-}
-
-.section-header-sub-menu ul li{
-    display: inline-block;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-
-.section-header-sub-menu ul li a{
-    color: $white;
-}
-
-.section-header-btn-plus{
-    float: right;
-    padding: 0px;
-}
-
-.section-header-btn-plus button{
-    right: -50px;
-    padding: 20px 50px;
-    background: $primary;
-    border-radius: 0px;
-    border: 0px;
-    color: $white;
-    font-weight: bold;
-}
-
-#content-wrap{
-    padding: 150px 50px 0px
-}
-
-#wrap-artesanus-security{
-    width: 500px;
-    margin: auto;
-    margin-top: 13em;
-}
-
-#wrap-artesanus-body{
-    width: 100%;
-    float: left;
-    position: relative;
-    padding: 15px;
-    padding-bottom: 70px;
-}
-
-#artesanus-security{
-    width: 100%;
-    height: 100%;
-    float: left;
-    position: relative;
-    padding: 20px;
-    background: #dedede;
+// $primary: #5F97FB;
+// $second: #282931;
+// $third: #505050;
+// $font-white: #f1f1f1;
+// $btn-default: #dedede;
+// $btn-primary: $second;
+// $white: #F3F4F7;
+//
+// .btn-default{
+//     background: $btn-default;
+// }
+//
+// .btn-primary{
+//     background: $btn-primary;
+// }
+//
+// $primary-font: Helvetica, sans-serif;
+//
+// html, body{
+//     width: 100%;
+//     height: 100%;
+// }
+//
+// body{
+//     background: $white;
+//     font: $primary-font;
+// }
+//
+// .navbar-default{
+//     background-color: none;
+//     border: none;
+//     background: #dedede;
+// }
+//
+// .nav .navbar-nav ul li a{
+//     color: #505050;
+//     font-weight: bold!important;
+// }
+//
+// .navbar-brand,
+// .navbar-brand:hover{
+//     background: $primary!important;
+//     color: #f1f1f1!important;
+//     padding: 15px 50px;
+// }
+//
+// .navbar-brand:hover{
+//     background: $primary;
+//     color: #f1f1f1!important;
+// }
+//
+// #section-header{
+//     width: 100%;
+//     float: left;
+//     top: 50px;
+//     position: relative;
+//     background: $second;
+//     color: white;
+// }
+//
+// .section-header{
+//     display: inline-block;
+//     padding: 10px 0px;
+//     box-sizing: border-box;
+//     float: left;
+//     position: relative;
+// }
+//
+// .section-header-sub-menu ul{
+//     box-sizing: border-box;
+// }
+//
+// .section-header-sub-menu ul li{
+//     display: inline-block;
+//     margin-top: 10px;
+//     margin-left: 10px;
+// }
+//
+// .section-header-sub-menu ul li a{
+//     color: $white;
+// }
+//
+// .section-header-btn-plus{
+//     float: right;
+//     padding: 0px;
+// }
+//
+// .section-header-btn-plus button{
+//     right: -50px;
+//     padding: 20px 50px;
+//     background: $primary;
+//     border-radius: 0px;
+//     border: 0px;
+//     color: $white;
+//     font-weight: bold;
+// }
+//
+// #content-wrap{
+//     padding: 150px 50px 0px
+// }
+//
+// #wrap-artesanus-security{
+//     width: 500px;
+//     margin: auto;
+//     margin-top: 13em;
+// }
+//
+// #wrap-artesanus-body{
+//     width: 100%;
+//     float: left;
+//     position: relative;
+//     padding: 15px;
+//     padding-bottom: 70px;
+// }
+//
+// #artesanus-security{
+//     width: 100%;
+//     height: 100%;
+//     float: left;
+//     position: relative;
+//     padding: 20px;
+//     background: #dedede;
+// }
+//
+// #security-wrap{
+//     width: 500px;
+//     margin: auto;
+//     margin-top: 13em;
+// }
+// .alert{
+//     width: auto;
+//     position: absolute;
+//     z-index: 2003;
+//     bottom: 0px;
+//     left: 10px;
+// }
+//
+// .form-group label{
+//     font-size: 18px;
+// }
+//
+// .form-group > input{
+//     padding: 25px 15px;
+//     font-size: 1.3em;
+// }
+.artesanus-section-body{
+    margin-top: 80px;
 }
 
 #security-wrap{
-    width: 500px;
-    margin: auto;
-    margin-top: 13em;
-}
-.alert{
-    width: auto;
-    position: absolute;
-    z-index: 2003;
-    bottom: 0px;
-    left: 10px;
-}
-
-.form-group label{
-    font-size: 18px;
-}
-
-.form-group > input{
-    padding: 25px 15px;
-    font-size: 1.3em;
+    margin-top: 12em;
 }

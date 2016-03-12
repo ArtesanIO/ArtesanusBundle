@@ -1,0 +1,19 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block item %}
+    <a href="{{ item.uri }}" type="button" class="btn btn-default">
+        {% if item.attribute('icon') is defined %}
+            <span class="glyphicon glyphicon-{{ item.attribute('icon') }}"></span>
+        {% endif %}
+        {{ item.name }}
+    </a>
+{% endblock %}
+
+{% block list %}
+{% if item.hasChildren and options.depth is not same as(0) and item.displayChildren %}
+    {% import _self as knp_menu %}
+    <div class="btn-group">
+        {{ block('children') }}
+    </div>
+{% endif %}
+{% endblock %}

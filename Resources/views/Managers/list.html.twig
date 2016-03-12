@@ -10,7 +10,7 @@
 
     {% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}
 
-    {% embed "ArtesanusBundle::Components/table.html.twig" with { 'rows': fields }%}
+    {% embed "ArtesanusBundle::Components/table.html.twig" with { 'class': 'table table-hover', 'rows': fields }%}
         {% block tbody %}
 
             {% for entity in entities %}
@@ -27,10 +27,10 @@
                 {% endfor %}
                 <td class="text-right">
                     <div class="btn-group">
-                        <a href="{{ path(entityPrefix ~ '_edit', {id: entity.id }) }}" class="btn btn-default">
+                        <a href="{{ path(entityPrefix ~ '_edit', {id: entity.id }) }}" class="btn btn-primary">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
-                        <a href="{{ path(entityPrefix ~ '_delete', {id: entity.id }) }}" type="button" class="btn btn-default btn-delete">
+                        <a href="{{ path(entityPrefix ~ '_delete', {id: entity.id }) }}" type="button" class="btn btn-danger btn-delete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </div>

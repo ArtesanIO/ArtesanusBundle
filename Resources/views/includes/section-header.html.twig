@@ -1,10 +1,7 @@
-<div id="section-header">
-    <div class="section-header section-header-sub-menu">
-        {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:subMenu') }}
-    </div>
 
-    <div class="section-header section-header-btn-plus">
+    {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:subMenu', {'template': 'ArtesanusBundle:Menu/knp_btn_group.html.twig'}) }}
+    <div class="btn-group">
         {% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}
-        {{ btn.modal('artesanus.titles.new'|trans({}, 'ArtesanusBundle'),'myModal') }}
+        {{- btn.modal('artesanus.titles.new'|trans({}, 'ArtesanusBundle'),'myModal','success') -}}
     </div>
-</div>
+    <hr>

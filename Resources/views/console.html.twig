@@ -7,11 +7,9 @@
     {% block new_entity_form %}
         {% include 'ArtesanusBundle::Includes/new-entity-form.html.twig' %}
     {% endblock %}
-
-    {% include 'ArtesanusBundle::Includes/section-header.html.twig' %}
-
-    <div id="content-wrap">
-        {% block artesanus_section_body %}{% endblock %}
+    <div class="container col-lg-12 artesanus-section-body">
+            {% include 'ArtesanusBundle::Includes/section-header.html.twig' %}
+            {% block artesanus_section_body %}{% endblock %}
     </div>
 
 {% endblock %}
