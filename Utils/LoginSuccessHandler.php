@@ -24,7 +24,7 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
     {
         $user = $this->security->getToken()->getUser();
 
-        if($user->getGroups()->getId() === 1){
+        if($user->getGroups()->getName() === 'Admin'){
             return new RedirectResponse($this->router->generate('users'));
         }
     }
