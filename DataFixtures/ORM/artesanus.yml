@@ -1,0 +1,39 @@
+ArtesanIO\ArtesanusBundle\Entity\Users:
+    admin:
+        username: admin
+        email: admin@admin.com
+        password: admin
+        groups: @groupAdmin
+        enabled: true
+    users{2...100}:
+        username: <username()>
+        email: <email()>
+        password: <password()>
+        groups: @groupAdmin
+        enabled: true
+
+ArtesanIO\ArtesanusBundle\Entity\Groups:
+    groupAdmin:
+        name: Admin
+    groupUser:
+        name: User
+
+ArtesanIO\ArtesanusBundle\Entity\Roles:
+    role_admin:
+        role: ROLE_ADMIN
+    role_user:
+        role: ROLE_USER
+
+ArtesanIO\ArtesanusBundle\Entity\GroupsRoles:
+    group_role_admin_admin:
+        groups: @groupAdmin
+        roles: @role_admin
+        enabled: true
+    group_role_admin_user:
+        groups: @groupAdmin
+        roles: @role_user
+        enabled: true
+    group_role_user_user:
+        groups: @groupUser
+        roles: @role_user
+        enabled: true

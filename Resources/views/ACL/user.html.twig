@@ -6,32 +6,31 @@
 
 {% embed "ArtesanusBundle::Components/col.html.twig" with { 'large': 4 }%}
     {% block col %}
-        {% embed "ArtesanusBundle::Components/form.html.twig" with { 'actions': true }%}
-            {% block form %}
-                {{ form_widget(entity_form) }}
+        {% embed "ArtesanusBundle::Components/panel.html.twig"%}
+            {% block body %}
+                {% embed "ArtesanusBundle::Components/form.html.twig" with { 'actions': true }%}
+                    {% block form %}
+                        {{ form_widget(entity_form) }}
+                    {% endblock %}
+                {% endembed %}
             {% endblock %}
         {% endembed %}
+
     {% endblock %}
 {% endembed %}
 
 {% embed "ArtesanusBundle::Components/col.html.twig" with { 'large': 4 }%}
     {% block col %}
-        {% embed "ArtesanusBundle::Components/form.html.twig" with { 'actions': true }%}
-            {% block form %}
-                {{ form_widget(entity_change_password_form) }}
+        {% embed "ArtesanusBundle::Components/panel.html.twig"%}
+            {% block body %}
+            {% embed "ArtesanusBundle::Components/form.html.twig" with { 'actions': true }%}
+                {% block form %}
+                    {{ form_widget(entity_change_password_form) }}
+                {% endblock %}
+            {% endembed %}
             {% endblock %}
         {% endembed %}
     {% endblock %}
 {% endembed %}
-
-{# embed "ArtesanusBundle::Components/col.html.twig" with { 'large': 4 }#}
-    {# block col #}
-        {# embed "ArtesanusBundle::Components/form.html.twig" #}
-            {# block form #}
-                {# form_widget(user_password_form) #}
-            {# endblock #}
-        {# endembed #}
-    {# endblock #}
-{# endembed #}
 
 {% endblock %}

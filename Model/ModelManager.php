@@ -32,16 +32,14 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         $this->class = $class;
     }
 
+    protected function get($id)
+    {
+        return $this->container->get($id);
+    }
+
     public function em()
     {
         return $this->get('doctrine.orm.entity_manager');
-    }
-
-    public function entityPrefix()
-    {
-        $prefix = explode(':', $this->class);
-
-        return strtolower(end($prefix));
     }
 
     public function getRepository()
@@ -49,9 +47,11 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         return $this->em()->getRepository($this->class);
     }
 
-    protected function get($id)
+    public function entityPrefix()
     {
-        return $this->container->get($id);
+        $prefix = explode('\\', $this->class);
+
+        return strtolower(end($prefix));
     }
 
     public function getDispatcher() {
@@ -77,15 +77,13 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
      * @param boolean $flush
      * @return BaseModel
      */
-    public function save($model, $flush = true, $saveOrUpdate = false)
+    public function save($model, $flush = true)
     {
-        $saveOrUpdate = ($saveOrUpdate) ? 'update': 'save';
-
-        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_before_'.$saveOrUpdate.'.event', new ModelEvent($model, $this->container));
+        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_before_save.event', new ModelEvent($model, $this->container));
 
         $this->persist($model, $flush);
 
-        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_after_'.$saveOrUpdate.'.event', new ModelEvent($model, $this->container));
+        $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_after_save.event', new ModelEvent($model, $this->container));
 
         return $model;
     }
@@ -97,7 +95,6 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         $this->em()->persist($model);
         if ($flush) {
             $this->em()->flush();
-            $this->container->get("session")->getFlashBag()->add('info', $this->getFlashSave());
         }
     }
     /**
@@ -120,7 +117,6 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         $this->em()->remove($model);
         if ($flush) {
             $this->em()->flush();
-            $this->container->get("session")->getFlashBag()->add('danger', $this->getFlashRemove());
         }
     }
     /**
@@ -135,65 +131,20 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         return $this->get('kernel')->isDebug();
     }
 
-    public function getFlashSave()
+    public function redirectTo($request, $parameters = array(), $status = 302)
     {
-        return $this->container->get('translator')->trans('artesanus.msn_flash.saved', array(), 'ArtesanusBundle');
-    }
-
-    public function getFlashRemove()
-    {
-        return $this->container->get('translator')->trans('artesanus.msn_flash.removed', array(), 'ArtesanusBundle');
-    }
-
-    public function redirectTo($request, $parameters = null, $status = 302)
-    {
-        $submitAction = 'edit';
-
-        if($request->request->get('new')){
-            $submitAction = 'new';
-            $parameters = array();
-        }
+        $action = $this->entityPrefix().'_edit';
 
         if($request->request->get('close')){
-            $submitAction = 'close';
+            $action = $this->entityPrefix();
             $parameters = array();
         }
 
-        return new RedirectResponse($this->container->get('router')->generate($this->submitActionRoutes()[$submitAction], $parameters), $status);
-    }
-
-    public function submitActionRoutes()
-    {
-        return array(
-            'edit' => $this->entityPrefix().'_edit',
-            'new' => $this->entityPrefix().'_new',
-            'close' => $this->entityPrefix()
-        );
+        return new RedirectResponse($this->container->get('router')->generate($action, $parameters), $status);
     }
 
     public function tableFields()
     {
         return array('id');
     }
-
-    public function routeList()
-    {
-        return $this->entityPrefix();
-    }
-
-    public function routeNew()
-    {
-        return $this->entityPrefix().'_new';
-    }
-
-    public function routeEdit()
-    {
-        return $this->entityPrefix().'_edit';
-    }
-
-    public function routeDelete()
-    {
-        return $this->entityPrefix().'_delete';
-    }
-
 }

@@ -2,7 +2,7 @@ services:
     users.manager:
         class: ArtesanIO\ArtesanusBundle\Model\UsersManager
         arguments:
-            - ArtesanusBundle:Users
+            - ArtesanIO\ArtesanusBundle\Entity\Users
         calls:
             - [setContainer, ['@service_container']]
         tags:
@@ -11,7 +11,7 @@ services:
     groups.manager:
         class: ArtesanIO\ArtesanusBundle\Model\GroupsManager
         arguments:
-            - ArtesanusBundle:Groups
+            - ArtesanIO\ArtesanusBundle\Entity\Groups
         calls:
             - [setContainer, ['@service_container']]
         tags:
@@ -20,7 +20,7 @@ services:
     roles.manager:
         class: ArtesanIO\ArtesanusBundle\Model\RolesManager
         arguments:
-            - ArtesanusBundle:Roles
+            - ArtesanIO\ArtesanusBundle\Entity\Roles
         calls:
             - [setContainer, ['@service_container']]
         tags:
@@ -29,7 +29,7 @@ services:
     categories.manager:
         class: ArtesanIO\ArtesanusBundle\Model\CategoriesManager
         arguments:
-            - ArtesanusBundle:Categories
+            - ArtesanIO\ArtesanusBundle\Entity\Categories
         calls:
             - [setContainer, ['@service_container']]
         tags:

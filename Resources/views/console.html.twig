@@ -2,55 +2,16 @@
 
 {% block artesanus %}
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand">ArtesanusBundle</a>
+    {% include 'ArtesanusBundle::Includes/navbar.html.twig' %}
 
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:consoleMenu', {'template': 'ArtesanusBundle:Menu:knp_menu.html.twig'}) }}
-            {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:mainMenu', {'template': 'ArtesanusBundle:Menu:knp_menu.html.twig'}) }}
-
-            {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:userMenu', {'template': 'ArtesanusBundle:Menu:knp_menu.html.twig'}) }}
-        </div>
-    </div>
-</nav>
-
-{% embed 'ArtesanusBundle::Components/modal.html.twig' with { id: 'myModal', type: 'sm'}%}
-    {% block title %}
-    {% embed "ArtesanusBundle::Components/form.html.twig" with { 'actions': true, 'enctype': new_entity_form, entityNew: true, action: new_entity_form.vars.action }%}
-        {% block form %}
-            {{ form_widget(new_entity_form) }}
-        {% endblock %}
-    {% endembed %}
+    {% block new_entity_form %}
+        {% include 'ArtesanusBundle::Includes/new-entity-form.html.twig' %}
     {% endblock %}
-{% endembed %}
 
-<div id="section-header">
-    <div class="section-header section-header-sub-menu">
-        {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:subMenu') }}
-    </div>
+    {% include 'ArtesanusBundle::Includes/section-header.html.twig' %}
 
-    <div class="section-header section-header-btn-plus">
-        {% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}
-
-        {{ btn.modal('Nuevo','myModal') }}
-    </div>
-</div>
-{# flashers() #}
     <div id="content-wrap">
-
         {% block artesanus_section_body %}{% endblock %}
     </div>
-
 
 {% endblock %}

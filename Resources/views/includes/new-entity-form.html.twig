@@ -1,0 +1,9 @@
+{% embed 'ArtesanusBundle::Components/modal.html.twig' with { id: 'myModal', type: 'sm'}%}
+    {% block title %}
+    {% embed "ArtesanusBundle::Components/form.html.twig" with { 'actions': true, 'enctype': new_entity_form, entityNew: true, action: new_entity_form.vars.action }%}
+        {% block form %}
+            {{ form_widget(new_entity_form) }}
+        {% endblock %}
+    {% endembed %}
+    {% endblock %}
+{% endembed %}

@@ -15,18 +15,4 @@ class ArtesanusLoader extends AbstractLoader
             __DIR__.'/artesanus.yml'
         ];
     }
-
-    public function characterName()
-    {
-        $names = [
-            'Cristian',
-            'Dulce',
-            'Emmanuel',
-            'David',
-            'Ivanna',
-            'Regina'
-        ];
-
-        return $names[array_rand($names)];
-    }
 }

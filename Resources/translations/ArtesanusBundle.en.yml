@@ -1,27 +1,13 @@
 artesanus:
     titles:
-        acl: ACL
-        menus: Menus
-        routing: Routing
-        media: Media
-        storage: Storage
+        new: New
 
     subtitles:
-        acl.users: Users
-        acl.groups: Groups
-        acl.roles: Roles
-        storage.files: Files
-        storage.categories: Categories
     buttons:
-        submmit: Submmit
+        submmit: Submit
 
     form:
         empty_value: '--Choose--'
-
-    msn_flash:
-        saved: 'Saved'
-        updated: 'Updated'
-        removed: 'Removed'
 
     security:
         username: Username

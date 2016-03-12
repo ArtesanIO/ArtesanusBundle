@@ -1,0 +1,10 @@
+<div id="section-header">
+    <div class="section-header section-header-sub-menu">
+        {{ knp_menu_render('ArtesanusBundle:ConsoleBuilder:subMenu') }}
+    </div>
+
+    <div class="section-header section-header-btn-plus">
+        {% import 'ArtesanusBundle::Components/buttons.html.twig' as btn %}
+        {{ btn.modal('artesanus.titles.new'|trans({}, 'ArtesanusBundle'),'myModal') }}
+    </div>
+</div>
