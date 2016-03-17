@@ -10,7 +10,7 @@ class ManagerController extends Controller
     public function listAction(Request $request)
     {
 
-        $prefix = $request->get('_route');
+        $prefix = $this->entityPrefix($request->get('_route'));
 
         $manager = $this->get($prefix.'.manager');
 
@@ -19,11 +19,6 @@ class ManagerController extends Controller
         $entities = $manager->getRepository()->findAll();
 
         $newEntityForm = $this->createForm($prefix.'_type', $entity, array('action' => $prefix.'_new'))->handleRequest($request);
-
-        if($newEntityForm->isValid()){
-            $manager->save($entity);
-            return $manager->redirectTo($request, array('id' => $entity->getId()));
-        }
 
         return $this->render('ArtesanusBundle:Managers:list.html.twig', array(
             'entityPrefix' => $manager->entityPrefix(),
@@ -36,9 +31,7 @@ class ManagerController extends Controller
 
     public function newAction(Request $request)
     {
-        $prefix = $request->get('_route');
-
-        $prefix = $this->entityPrefix($prefix);
+        $prefix = $this->entityPrefix($request->get('_route'));
 
         $manager = $this->get($prefix.'.manager');
 
@@ -65,6 +58,7 @@ class ManagerController extends Controller
     public function editAction($id, Request $request)
     {
         $prefix = $this->entityPrefix($request->get('_route'));
+
         $manager = $this->get($prefix.'.manager');
 
         $newEntity = $manager->create();
@@ -77,7 +71,7 @@ class ManagerController extends Controller
 
         if($entityForm->isValid()){
             $manager->save($entity);
-            return $manager->redirectTo($request, array('id' => $entity->getId()));
+            return $manager->redirectTo(array('id' => $entity->getId()));
         }
 
         return $this->render('ArtesanusBundle:Managers:edit.html.twig', array(
@@ -91,6 +85,7 @@ class ManagerController extends Controller
     public function deleteAction($id, Request $request)
     {
         $prefix = $this->entityPrefix($request->get('_route'));
+
         $manager = $this->get($prefix.'.manager');
 
         $entity = $manager->getRepository()->findOneBy(array('id' => $id));

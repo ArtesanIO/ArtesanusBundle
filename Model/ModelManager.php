@@ -16,17 +16,12 @@ use ArtesanIO\ArtesanusBundle\Model\ModelManagerInterface;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class ModelManager extends ContainerAware implements ModelManagerInterface
 {
     protected $class;
 
-    /**
-     * Constructor.
-     *
-     * @param EntityManager  $em
-     * @param string   $class
-     */
     public function __construct($class)
     {
         $this->class = $class;
@@ -42,41 +37,52 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         return $this->get('doctrine.orm.entity_manager');
     }
 
+    public function getClass()
+    {
+        $metadata = $this->em()->getClassMetadata($this->class);
+
+        return $metadata->name;
+    }
+
     public function getRepository()
     {
-        return $this->em()->getRepository($this->class);
+        return $this->em()->getRepository($this->getClass());
+    }
+
+    public function find($id)
+    {
+        return $this->getRepository()->find($id);
+    }
+
+    public function findOneBy($array = array())
+    {
+        return $this->getRepository()->findOneBy($array);
+    }
+
+    public function findAll()
+    {
+        return $this->getRepository()->findAll();
     }
 
     public function entityPrefix()
     {
-        $prefix = explode('\\', $this->class);
+        $prefix = explode('\\', $this->getClass());
 
         return strtolower(end($prefix));
     }
 
-    public function getDispatcher() {
+    public function getDispatcher()
+    {
         return $this->get('event_dispatcher');
     }
 
-    /**
-     * Create model object
-     *
-     * @return BaseModel
-     */
-    public function create() {
-
-        $class = $this->em()->getClassMetadata($this->class);
-
-        return new $class->name;
+    public function create()
+    {
+        $class = $this->getClass();
+        return new $class;
 
     }
-    /**
-     * Persist the model
-     *
-     * @param $model
-     * @param boolean $flush
-     * @return BaseModel
-     */
+
     public function save($model, $flush = true)
     {
         $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_before_save.event', new ModelEvent($model, $this->container));
@@ -88,21 +94,16 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         return $model;
     }
 
-    /**
-     *	This is basic save function. Child model can overwrite this.
-     */
-    protected function persist($model, $flush = true, $flash = array()) {
+    protected function persist($model, $flush = true)
+    {
         $this->em()->persist($model);
         if ($flush) {
             $this->em()->flush();
         }
     }
-    /**
-     * Delete a model.
-     *
-     * @param BaseModel $model
-     */
-    public function delete($model, $flush = true) {
+
+    public function delete($model, $flush = true)
+    {
 
         $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_before_delete.event', new ModelEvent($model, $this->container));
 
@@ -110,19 +111,17 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
 
         $this->getDispatcher()->dispatch($this->entityPrefix() . '.model_after_delete.event', new ModelEvent($model, $this->container));
     }
-    /**
-     * Remove model.
-     */
-    public function remove($model, $flush = true) {
+
+    public function remove($model, $flush = true)
+    {
         $this->em()->remove($model);
         if ($flush) {
             $this->em()->flush();
         }
     }
-    /**
-     * Reload the model data.
-     */
-    public function reload($model) {
+
+    public function reload($model)
+    {
         $this->em->refresh($model);
     }
 
@@ -131,11 +130,11 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
         return $this->get('kernel')->isDebug();
     }
 
-    public function redirectTo($request, $parameters = array(), $status = 302)
+    public function redirectTo($parameters = array(), $status = 302)
     {
         $action = $this->entityPrefix().'_edit';
 
-        if($request->request->get('close')){
+        if($this->get('request')->request->get('close')){
             $action = $this->entityPrefix();
             $parameters = array();
         }

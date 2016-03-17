@@ -16,6 +16,8 @@ interface ModelManagerInterface
 {
     public function getRepository();
 
+    public function getClass();
+
     public function getDispatcher();
 
     public function save($model, $flush= true);
@@ -26,5 +28,11 @@ interface ModelManagerInterface
 
     public function isDebug();
 
-    public function redirectTo($request, $parameters);
+    public function redirectTo($parameters);
+
+    public function find($id);
+
+    public function findOneBy($array = array());
+
+    public function findAll();
 }
